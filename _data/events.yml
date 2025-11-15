@@ -1,0 +1,26 @@
+- name: Wedding Ceremony
+  main_event: true
+  date: 2026-06-15 16:00:00 -04:00
+  endDate: 2026-06-15 20:00:00 -04:00
+  attire: formal
+  description: Join us for our wedding ceremony. Please arrive at least 15 minutes early to find your seat.
+  location:
+    address: 123 Wedding Venue Street
+    city: Your City
+    state: ST
+    long_state: Your State
+    zip: 12345
+    google_maps_url: https://maps.google.com
+  calendar_description: We can't wait to celebrate with you!
+
+- name: Reception
+  date_alt: Immediately following the ceremony
+  attire: formal
+  description: Dinner, dancing, and celebration will follow the ceremony at the same venue.
+  location:
+    address: 123 Wedding Venue Street
+    city: Your City
+    state: ST
+    long_state: Your State
+    zip: 12345
+    google_maps_url: https://maps.google.com

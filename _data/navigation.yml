@@ -1,0 +1,12 @@
+- name: Our Story
+  link: /#ourstory
+- name: Celebrations
+  link: /celebrations
+# - name: People
+#   link: /people
+- name: FAQ
+  link: /faq
+# - name: Registry
+#   link: /registry
+# - name: RSVP
+#   modal_id: rsvp-modal

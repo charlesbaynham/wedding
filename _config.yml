@@ -13,6 +13,7 @@ plugins:
 
 exclude:
   - flake.nix
+  - _compress_images_cache.yml
   - flake.lock
   - Gemfile
   - Gemfile.lock

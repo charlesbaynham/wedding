@@ -1,0 +1,23 @@
+# Uncomment and customize sections as needed
+
+# families:
+#   - pic: family1.jpg
+#     name: Family Name
+#     people: Parent1, Parent2, Sibling
+
+# kids:
+#   - pic: flowergirl.jpg
+#     name: Flower Girl Name
+#     role: Flower Girl
+
+# her_side:
+#   - name: Bridesmaid Name
+#     pic: bridesmaid1.jpg
+#     role: Maid of Honor
+#     description: Best Friend
+
+# his_side:
+#   - name: Groomsman Name
+#     pic: groomsman1.jpg
+#     role: Best Man
+#     description: Brother

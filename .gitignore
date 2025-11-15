@@ -1,4 +1,5 @@
 # Jekyll
+_compress_images_cache.yml
 _site/
 .sass-cache/
 .jekyll-cache/
