@@ -1,9 +1,8 @@
 # Site settings
 title: Charles and Gaby
 email: charles.baynham@gmail.com
-url: https://charlesbaynham.github.io/wedding/
-baseurl: "/wedding"
-# url: https://houseabsolute.co.uk
+url: https://wedding.houseabsolute.co.uk
+baseurl: ""
 description: "We're getting married and can't wait to celebrate with you!"
 host: 0.0.0.0 # listen to LAN connections
 plugins:
