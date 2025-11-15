@@ -1,5 +1,6 @@
 # A sample Gemfile
 source "https://rubygems.org"
 
-gem "jekyll"
-gem 'jekyll-sitemap'
+gem "jekyll", "~> 3.9"
+gem "jekyll-sitemap"
+gem "webrick", "~> 1.8"

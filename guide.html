@@ -4,14 +4,13 @@ title: City Guide
 billboard_class: billboard-bridge-walk
 ---
 
-{% if site.guide[site.context] %}
-  <section class="container content-section text-center">
-    <p>
-      In case you need some inspiration when deciding what to do in Chicago,
-      here are a few of our favorites!
-    </p>
+<section class="container content-section text-center">
+  <p>
+    In case you need some inspiration when deciding what to do in the area,
+    here are a few of our favorites!
+  </p>
 
-    {% for section in site.guide[site.context] %}
+  {% for section in site.guide %}
       <h3>{{ section[0] }}</h3>
       <div class="row">
         {% for one in section[1] %}
@@ -32,14 +31,13 @@ billboard_class: billboard-bridge-walk
   <section class="container content-section text-center">
     <div class="row">
       <div class="col-lg-12">
-        <h3>Map of Chicago</h3>
+        <h3>Map of Your City</h3>
         <p>
           To help you get oriented, most of the above places are marked below.
         </p>
         <div>
-          <iframe src="https://www.google.com/maps/d/u/0/embed?mid=z0XYnxwl5wDk.kCMdy34paGR4" class="map"></iframe>
+          <iframe src="https://www.google.com/maps/d/u/0/embed?mid=YOUR_GOOGLE_MAP_ID" class="map"></iframe>
         </div>
       </div>
     </div>
   </section>
-{% endif %}

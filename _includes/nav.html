@@ -29,25 +29,20 @@
                     <li class="{% if page.url == '/details/' %}active{% endif %}">
                         <a href="/details">Details</a>
                     </li>
-                    {% if site.faq[site.context] %}
-                      <li class="{% if page.url == '/faq/' %}active{% endif %}">
-                        <a href="/faq">FAQ</a>
-                      </li>
-                    {% endif %}
-                    {% if site.guide[site.context] %}
-                      <li class="{% if page.url == '/faq/' %}active{% endif %}">
-                        <a href="/guide">City Guide</a>
-                      </li>
-                    {% endif %}
+                    <li class="{% if page.url == '/faq/' %}active{% endif %}">
+                      <a href="/faq">FAQ</a>
+                    </li>
+                    <li class="{% if page.url == '/guide/' %}active{% endif %}">
+                      <a href="/guide">City Guide</a>
+                    </li>
                     <li class="{% if page.url == '/etc/' %}active{% endif %}">
                       <a href="/etc">Etc</a>
                     </li>
-                    {% if site.context == "chi" %}
-                        <li class="notification-link">
-                          <a href="#" class="ga-email-nav" data-toggle="modal" data-target="#subscribe-modal">
-                            <i class="fa fa-exclamation-circle notification-link--icon"></i>
-                            Updates
-                          </a>
+                    <li class="notification-link">
+                      <a href="#" class="ga-email-nav" data-toggle="modal" data-target="#subscribe-modal">
+                        <i class="fa fa-exclamation-circle notification-link--icon"></i>
+                        Updates
+                      </a>
                         </li>
                     {% endif %}
                 </ul>
