@@ -1,6 +1,6 @@
 # Jekyll
 _compress_images_cache.yml
-_site/
+# _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
