@@ -1,0 +1,354 @@
+# Site settings
+title: Chris & Nikita
+email: chris@baclig.me
+url: http://www.chrisandnikita.com
+description: "We're getting married and can't wait to celebrate with you!"
+baseurl: ""
+host: 0.0.0.0 # listen to LAN connections
+gems:
+  - jekyll-sitemap
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# Possible values
+# `chi` - Chicago
+# `lbc` - Long Beach
+context: chi
+
+locations:
+  hilton: &hilton_location
+    location_name: Hilton Chicago
+    address1: 720 S Michigan Ave.
+    address2: Chicago, IL 60605
+    coordinates: 41.872592,-87.62481
+    google_maps_url: https://www.google.com/maps/place/Hilton+Chicago/@41.8725329,-87.6248502,17z/data=!4m7!1m4!3m3!1s0x880e2c99242c7a2f:0x4de3d4bb09dba1!2sHilton+Chicago!3b1!3m1!1s0x880e2c99242c7a2f:0x4de3d4bb09dba1
+  vashi: &vashi_location
+    location_name: Vashi Residence
+    address1: 211 N Savanna Ct.
+    address2: Lake Forest, IL 60045
+    coordinates: 42.243377,-87.878189
+    google_maps_url: https://www.google.com/maps/place/211+N+Savanna+Ct,+Lake+Forest,+IL+60045/@42.244292,-87.8793387,17z/data=!3m1!4b1!4m2!3m1!1s0x880f951707bd6ae1:0xee4caaaf8316d979
+  navy_pier: &navy_pier_location
+    location_name: Navy Pier Grand Ballroom
+    address1: 600 E Grand Ave.
+    address2: Chicago, IL 60611
+    coordinates: 41.891932,-87.611652
+    google_maps_url: https://www.google.com/maps/place/Navy+Pier/@41.8813917,-87.616019,15z/data=!4m5!1m2!2m1!1snavy+pier!3m1!1s0x880e2b4d91f12edb:0xd0acdb96b088a4dc
+  st_michael: &st_michael_location
+    location_name: St. Michael in Old Town
+    address1: 1633 N Cleveland Ave.
+    address2: Chicago, IL 60614
+    coordinates: 41.911652,-87.641253
+    google_maps_url: https://www.google.com/maps/place/St+Michael+in+Old+Town/@41.912635,-87.6408956,15z/data=!4m2!3m1!1s0x0:0xe227f2c7eb743c04
+  aquarium: &aquarium_location
+    location_name: Aquarium of the Pacific
+    address1: 100 Aquarium Way
+    address2: Long Beach, CA 90802
+    coordinates: 33.762145,-118.196914
+    google_maps_url: https://www.google.com/maps/place/Aquarium+of+the+Pacific/@33.7621508,-118.1991698,17z/data=!3m1!4b1!4m2!3m1!1s0x80dd313032cc7cb5:0x96dadf4782e15e96
+  hyatt: &hyatt_location
+    location_name: Hyatt Centric
+    address1: 100 W Monroe St
+    address2: Chicago, IL 60603
+    coordinates: 41.8807816,-87.631112
+    google_maps_url: https://www.google.com/maps/place/Hyatt+Centric+The+Loop+Chicago/@41.8807816,-87.631112,15z/data=!4m2!3m1!1s0x0:0xc98ca00ba03f886e?sa=X&ved=0ahUKEwiXxLXTlsjJAhXn4IMKHXNAD2oQ_BIIgAEwCg
+  renaissance: &renaissance_location
+    location_name: Renaissance Long Beach
+    address1: 111 E Ocean Blvd
+    address2: Long Beach, CA 90802
+    coordinates: 33.7674056,-118.1915634
+    google_maps_url: https://www.google.com/maps/place/Renaissance+Long+Beach+Hotel/@33.767385,-118.19168,15z/data=!4m2!3m1!1s0x0:0x19c2a818049de073?sa=X&ved=0ahUKEwiz1oXnsdTKAhXCHR4KHRmkC6sQ_BIIjQEwCg
+
+hotels:
+  chi:
+    - name: Hilton Chicago
+      phone: +1-312-922-4400
+      reserve_url: https://resweb.passkey.com/go/VashiBacligWeding
+      rate: $229/night
+      description: Includes continental breakfast each morning
+      <<: *hilton_location
+    - name: Hyatt Centric
+      phone: +1-312-236-1234
+      reserve_url: https://aws.passkey.com/g/54381507
+      rate: $199/night
+      description: Centrally located in the middle of the loop
+      <<: *hyatt_location
+  lbc:
+    - name: Renaissance Long Beach
+      phone: +1-562-437-5900
+      reserve_url: https://resweb.passkey.com/go/bacligwedding
+      rate: $169/night
+      description: A few blocks away from the aquarium
+      <<: *renaissance_location
+
+events:
+  chi:
+    - name: Mehndi Night
+      date: Thursday, May 26, 2016
+      time: 7pm
+      attire: Casual
+      description: A casual family gathering where henna is applied in intricate designs to the hands and feet of the bride and her female guests. Meant as one of many ritual adornments for the Hindu bride, it is said that the darker the henna turns out, the greater the love the bride has for her groom.  Mehndi artists also hide the groom’s name or initials into the bride’s henna design and it is her job to find them before the wedding. Traditionally, the bride is not allowed to work in her husband’s house until after the mehndi has completely faded. Further, with their hands covered in henna paste, the women of the party are unable to cook or serve during the Mehndi celebration, so the men are invited to feed and serve the women.
+      transportation:
+      <<: *vashi_location
+    - name: Garba
+      date: Friday, May 27, 2016
+      time: 7pm
+      attire: Semi-formal
+      description: A night of traditional Gujarati folk dancing! Set to energetic music, garba is a style of group dance performed as a ritual homage to a the Hindu goddess of creation, Ambama. Garba is usually accompanied by Raas, a similar style of dance dedicated to the Hindu god Krishna that incorporates a set of sticks called Dandiya. Both are traditionally performed during the Gujarati festival of Navratri (“nine-nights”) and also as a precedent to special occasions such as weddings. Everyone is invited and encourage to join in the dancing - don’t worry, there will be tutorials!  And keep an eye out for a few special performances from close family and friends.
+      transportation: Discounted self-parking will be available.
+      <<: *hilton_location
+    - name: Hindu Wedding
+      date: Saturday, May 28, 2016
+      time: 10am
+      attire: Formal
+      description: The Hindu wedding ceremony as described by the Vedas, the Hindu scriptures, is over 5,000 years old and is traditionally performed in the Sanskrit language. The ceremony commemorates the bride and groom no longer existing as two independent souls but as a spiritual oneness. Ceremonies include the Barat (Arrival of the Groom), Pokhna Vidhi (Welcoming of the Groom), Jai Mala (Exchange of Garlands), Vastra Granthi Bandhan (Tying the Knot), Mangalphera (Holy Circles around the Fire), and Saptapadi (Taking Life’s Seven Steps).
+      transportation: Discounted self-parking will be available.
+      <<: *hilton_location
+    - name: Catholic Wedding
+      date: Sunday, May 29, 2016
+      time: 3pm
+      attire: Black Tie Optional
+      description: The traditional Catholic wedding is enhanced in Filipino culture by several traditions. Ceremonial sponsors or godparents are chosen by the betrothed as role models for their future married life and participate in the procession with the bridal party. Two separate candles are lit at the beginning of the ceremony, which the bride and groom then join into a single flame signifying the union of their two families. A veil is placed over the shoulders of the bride and groom during the ceremony, demonstrating the clothing of two individuals as one. A cord is then looped in a figure 8 and placed over the heads of the bride and group to signify everlasting fidelity.
+      transportation: Limited self-parking available.
+      shuttle: Transportation will also be provided between Hilton Chicago and St. Michael in Old Town.
+      <<: *st_michael_location
+    - name: Reception
+      date: Sunday, May 29, 2016
+      time: 5:30pm
+      attire: Black Tie Optional
+      description: Join us for dinner and dancing as we celebrate our marriage into the night!
+      transportation: Complimentary valet parking will be available at Navy Pier. Follow signs for Navy Pier parking to the East Parking garage, entrance two.
+      shuttle: Transportation will also be provided between St. Michael in Old Town, Navy Pier and Hilton Chicago.
+      <<: *navy_pier_location
+  lbc:
+    - name: Reception
+      date: Satuday, June 4, 2016
+      time: 7pm
+      attire: Semi-formal
+      description: Join us for dinner and dancing as we celebrate our marriage into the night!
+      transportation:
+      <<: *aquarium_location
+
+people:
+  families:
+    - pic: vashis.jpg
+      name: The Vashis
+      people: Pankaj, Glynis, Rohan and Cosmo
+    - pic: bacligs.jpg
+      name: The Bacligs
+      people: Crispin, Bernadette, Jon and Samantha
+  kids:
+    - pic: nadiya.jpg
+      name: Nadiya Kundu
+      title: Flower Girl
+    - pic: jaanvi.jpg
+      name: Jaanvi Vashi
+      title: Flower Girl
+    - pic: levi.jpg
+      name: Levi Lagrimas
+      title: Ring Bearer
+  her_side:
+    - name: Samantha Baclig
+      pic: samie.jpg
+      role: Junior Bridesmaid
+      description: Chris’ Sister
+    - name: Ronak Vashi
+      pic: ronak.jpg
+      role: Bridesmaid
+      description: Nikita’s Cousin
+    - name: Trisha DaSilva
+      pic: trisha.jpg
+      role: Bridesmaid
+      description: Nikita’s Cousin
+    - name: Gabby Colaianni
+      pic: gabbyc.jpg
+      role: Bridesmaid
+      description: Nikita’s High School Friend
+    - name: Devyn Brown
+      pic: devyn.jpg
+      role: Bridesmaid
+      description: Nikita’s College Roommate
+    - name: Chelsea Barabas
+      pic: chelsea.jpg
+      role: Bridesmaid
+      description: Nikita’s College Roommate
+    - name: Tanya Aylward
+      pic: tanya.jpg
+      role: Bridesmaid
+      description: Nikita’s College Friend
+    - name: Sanjana Tandon
+      pic: sanjana.jpg
+      role: Bridesmaid
+      description: Nikita’s College Friend
+    - name: Leigha Winters
+      pic: leigha.jpg
+      role: Bridesmaid
+      description: Nikita’s Post-College Roommate
+    - name: Miriam Komisar
+      pic: miriam.jpg
+      role: Bridesmaid
+      description: Nikita’s Medical School  Friend
+    - name: Meagan Appleman
+      pic: meagan.jpg
+      role: Bridesmaid
+      description: Nikita’s Medical School Friend
+    - name: Gabby Aguilar
+      pic: gabbya.jpg
+      role: Bridesmaid
+      description: Nikita’s Medical School Friend
+  his_side:
+    - name: Jonathan Baclig
+      pic: jon.jpg
+      role: Best Man
+      description: Chris’ Brother
+    - name: Rohan Vashi
+      pic: rohan.jpg
+      role: Groomsman
+      description: Nikita’s Brother
+    - name: Ryan Abad
+      pic: ryan.jpg
+      role: Groomsman
+      description: Chris’ Cousin
+    - name: Gabriel Mendoza
+      pic: gabe.jpg
+      role: Groomsman
+      description: Chris’ High School Friend
+    - name: Eric Ma
+      pic: eric.jpg
+      role: Groomsman
+      description: Chris’ College Roommate
+    - name: Rajan Patel
+      pic: rajan.jpg
+      role: Groomsman
+      description: Chris’ College Roommate
+    - name: Arpeet Shah
+      pic: arpeet.jpg
+      role: Groomsman
+      description: Chris’ College Friend
+    - name: Winston Lofton
+      pic: winston.jpg
+      role: Groomsman
+      description: Chris’ College Friend
+    - name: Scott Keyes
+      pic: scott.jpg
+      role: Groomsman
+      description: Chris’ College Friend
+    - name: Isaac Johnson
+      pic: isaac.jpg
+      role: Groomsman
+      description: Chris’ Post-College Roommate
+    - name: Dare Kolawale
+      pic: dare.jpg
+      role: Groomsman
+      description: Chris’ Post-College  Roommate
+faq:
+  chi:
+    - question: OMG what do I wear?
+      answer: |
+        The Garba night on Friday is primarily a night of Indian folk dancing, so be prepared to kick off your shoes, roll up your sleeves and get a light aerobic workout in!
+
+        <strong>Ladies</strong>: While Indian clothing is entirely appropriate, it's definitely not necessary! A colorful dress or skirt and top works well - it doesn't have to be super fancy. Avoid wearing black or white if you can. If you have something Indian or are planning on buying/borrowing, I would suggest a simple <a href="https://www.google.com/search?q=salwar+kameez&espv=2&biw=1440&bih=801&tbm=isch&tbo=u&source=univ&sa=X&ved=0ahUKEwikz62d5NzMAhUB3IMKHXPABVUQsAQIGw">Salwar Kameez</a> or <a href="https://www.google.com/search?q=lehenga&espv=2&biw=1440&bih=801&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj1h8Ot5NzMAhWF7IMKHTBCBxAQ_AUIBigB">Lehenga</a>.
+        <strong>Gentelmen</strong>: Think dress pants and a button-down shirt. Consider the jacket and tie optional.
+
+        The Indian wedding ceremony on Saturday will be considerably less active (but will still include some dancing during the Baraat!) and is a more formal occassion.
+
+        <strong>Ladies</strong>: For this event, wear what you would wear to a more formal wedding. Again, Indian clothing is appropriate but not required.  However, if you were going to pick one event to wear that outfit you borrowed from your Indian friend, this would be it. If you're going with American attire, formal cocktail dresses and evening wear is most appropriate. Again, try to avoid wearing white, black, or red (usually worn by the bride). If you're wearing something Indian, a more formal lehenga (see above) works, but this would also be a great opportunity to wear a <a href="https://www.google.com/search?q=lehenga&espv=2&biw=1440&bih=801&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj1h8Ot5NzMAhWF7IMKHTBCBxAQ_AUIBigB#tbm=isch&q=sari">sari</a>. Keep in mind that a sari is a challenge to put on, so if you do decide to go this route, keep your eyes open for an email about where/when to meet on Saturday morning to get some assistance tying your sari!
+        <strong>Gentlemen</strong>: Break out the jacket and tie for this one, and thanks in advance for dealing with the midday heat!
+
+        The Catholic ceremony and reception on Sunday will be a little more formal than Saturday's events.
+
+        <strong>Ladies</strong>: Wear your formal evening wear!  If you've got a full-length gown hanging in the back of your closet, this would be a great opportunity to break it out. No color restrictions here (except maybe not white - don't want to be confused for the bride!). At some Indian events, the guests have time to change outfits before the reception, however there won't be time for a costume change at our event so plan on wearing your dress/gown all night.
+        <strong>Gentlemen</strong>: Jacket and ties are encouraged. For those with a tuxedo, this would be a good time to dust that off too, but it's by no means required to get past the bouncers (There won't be any bouncers.)
+
+    - question: Do you have a sari I can borrow?
+      answer: |
+        Maybe! Nikita has already doled out many of her Indian outfits, but if you're still interested shoot her an email (nvashi25@gmail.com) and she'll check.
+    - question: |
+        I have a pretty seriously allergy to [insert allergen here], can you accomodate me?
+      answer: |
+        Yes! Get in touch with us ASAP, so we can make sure we keep any [insert allergen here] away from you!
+    - question: Should I rent a car?
+      answer: |
+        No! For those guests coming from out of town, we will be providing transportation to and from all the events and the hotels. Even if you're staying somewhere else or want to explore more of the city, we'd highly recommend taking public transportation or cabs around downtown Chicago since parking in the city is hard to find and typically not cheap.
+
+        Check out our section on <a href="/details/#getting-around">Getting Around</a> for more info.
+    - question: What's happening Saturday night and Sunday morning?
+      answer: |
+        Nothing! There will be lunch served directly after the Hindu ceremony on Saturday, but after that, you're free! There are a lot of things going on in Chicago that weekend, so consider this half-time. Feel free to explore the city at your own pace, and rest up before the home stretch.
+    - question: Is Chris going to ride in on a/an [insert large mammal here]?
+      answer: |
+        No, unless you're asking if Chris is going to ride a horse. Then the answer is yes - Chris is going to ride in on a white horse at the Baraat on Saturday.
+    - question: Do I have to dance at the Garba?
+      answer: No! Although we have a feeling you're going to want to once you see everyone doing it. Peer pressure is a real thing.
+    - question: What kind of sick moves am I going to learn on Friday night?
+      answer: Friday night will consist of garba and raas, two different styles of Indian dance. Garba is a repetitive, circular group dance (think electric slide, but in a circle). Raas is a partner dance (don't worry - we'll find you all partners!) with sticks that happens in long rotating lines.  I know this sounds complex, but we'll be hosting tutorials on Friday night and will have plenty of people circulating to answer any questions about the dance.  And, for those of you with some dance anxiety, there will be an open bar :)
+    - question: I heard you're moving!  Where and when?
+    - answer: We are!  We're moving to Seattle directly after the wedding so Nikita can start her internal medicine residency at University of Washington, so we're extremely excited to spend this last epic Chicago weekend with you all :)
+
+  lbc: false
+
+guide:
+  chi:
+    explore:
+      - title: Millenium Park & Cloud Gate
+        description: While lots of visitors come to see "The Bean," there's a lot more to see at Millenium Park including giant screens of people spitting on you (yes, that's a real thing), the Lurie Garden and Pritzker Pavillion. And while you're there, it might also be a good time to cross the street and check out Maggie Daley Park.
+      - title: Maggie Daley Park
+        description: This park just opened a few years ago, and is a must-see for kids with a large portion of it dedicated to play areas for children. While the ice skating ribbon is popular in the winter, there are also rock climbing walls and tennis courts to keep you busy in the summer months.
+      - title: Grant Park & Buckingham Fountain
+        description: Stretching from just south of Navy Pier all the way to Museum Campus, don't be surprised to see one or two events going on at any given time. If you're staying anywhere in the loop and looking for some exercise, you won't be alone walking or jogging around the park at any time of day either. And don't forget to check out Buckingham Fountain as well, another iconic Chicago landmark.
+      - title: River Cruise Architecture Tour
+        description: Another must-do for anyone visiting Chicago! Enjoy views of the city's sky scrapers and learning about the Chicago history while cruising down the Chicago River. There are a few different companies that offer architecture cruises, but our favorite is the one run by the <a href="https://www.architecture.org/experience-caf/tours/detail/chicago-architecture-foundation-river-cruise-aboard-chicagos-first-lady-cruises/">Chicago Architecture Foundation on Chicago's First Lady</a>.
+      - title: Navy Pier
+        description: Yes, the reception on Sunday is going to be at the Navy Pier Ballroom, but there's so much more to do here! Memorial day weekend just happens to be the grand opening of the new-and-improved Ferris Wheel celebrating the pier's 100th anniversary. For the kids, there are rides, games, laser tag, a children's museum and more.
+      - title: Magnificent Mile
+        description: If your idea of a good time is shopping 'til you drop, then this is the place for you. Starting at the river and running all the way down Michigan Avenue until Oak Street is almost every store you could imagine. The John Hancock building also sits on the north end of Michigan Avenue, if you need a break from spending all that dough. Keep an eye out for the original water tower, which is one of only a few structures in the city that survived the Great Chicago Fire.
+      - title: Lincoln Park (and Zoo)
+        description: While not really walking distance from the Loop, if you make it out to Linoln Park (a short uber-ride away) you won't be disappointed. Lincoln Park is a beautiful place for a walk or run, highlighted by the zoo, which sits in the center of the park and is free to the public. Check out the monkeys, tigers, giraffes and more!
+      - title: John Hancock Center
+        description: The fourth tallest building in Chicago, there are a few restaurants and stores on the ground level, but the real sights to see are on 94th floor at the 360˚ Chicago observation deck where, you guessed it, you can get a 360 degree view of the city. And, for those that need a little more exictement in their life, you can check out Tilt, which will lean you out the base of the building 30 degrees to see eveything straight to the bottom. For those less adventurous, grab a drink at the Signature Lounge on the 96th floor or a bite at the Signature Room on the 95th floor. Time it right and you'll get a fantastic view of the sunset.
+      - title: Willis Tower
+        description: Even though all the cool kids still call it Sears Tower, it's new name doesn't change the fact that it's still the tallest building in Chicago. Similar to the John Hancock, The Sky Deck on the 103rd floor of Willis Tower also gives a 360 degree view of the city from the southern part of the Loop. The Ledge in the Sky Deck takes Tilt one step further and actually puts you in a glass balcony, letting you stare straight past your feet to the sidewalk below.
+      - title: The Second City
+        description: Don't let the name fool you - The Second City is a legendary improv and comedy club that's been the starting point for some of the world's greatest comedians, both past and present. Many of your favorite Saturday Night Live comedians originated here. You can catch a stand-up comedy show or watch one of the many improv shows they put on throught the week.
+    food:
+      - title: Deep Dish Pizza
+        description: This is what Chicago is known for. The classic debate is between Giordano's and Lou Malnati's (we both prefer Giordano's), so if you're looking to start your deep dish adventure somewhere, we'd suggest one of those two. There are multiple locations throughout the city.
+      - title: Italian Beef
+        description: Another Chicago staple. When staying in Chicago for the first time, a visit to Portillo's is almost required just to experience the fast-food/amusement park atmosphere inside. For something less touristy, hit up any of the Al's Beef locations in the city. While the establishments are  typically not much to look at, a beef dipped with hot and sweet peppers will make you think you're in sandwich heaven.
+      - title: Steakhouses
+        description: If you want a steak, you've come to thr right town. From national chains to Chicago-only classics, there's almost too many to choose from. For something that you can't find outside of Chicago, we recommend Chicago Cut Steakhouse, where you might find yourself sitting next to celebrities (Obama eats here every time he's in town!) while overlooking the Chicago River. For a good steak in a not-so-traditional, speakeasy setting, try Bavette's Bar and Boeuf.
+      - title: Eataly
+        description: It's like Italy but with "eat" at the front, get it?! Jokes aside, the grocery store/food court/restaurant is like walking into a mini outdoor market. Each restaurant in the building is set up along the same aisles that hold the food used to prepare your meals. Come for the amazing pasta and pizza, stay for the gelato and Nutella Bar. Be warned, Eataly does get crowded on the weekends.
+      - title: Xoco, Tompolobampo, Frontera Grill
+        description: Rick Bayless has redefined Mexican cuisine in Chicago and around the country. These are his signature three restaurants. Xoco is a casual lunch spot where you can pick a torta (sandwich). Frontera Grill takes a limited number of reservations, but is mostly first come, first served, so plan on coming an hour or so before you want to eat. Tompolobampo is a fancier, sit-down meal and typically requires reservations unless you show up at 4:30 with the hopes of getting one of the walk in tables.
+      - title: Girl and the Goat & Little Goat
+        description: Girl and the Goat is the restaurant that Stephanie Izard opened after winning Top Chef Season Four and serves an eclectic menu, including a section dedicated to, you guessed it, goat. Reservations are hard to come by, but you might be able to snag a table at the bar area if you show up around 4:30pm or 10:00pm. But whatever you do, make sure you get the green beans! If you want something a little less high maintenance, she also owns a newer diner-style restaurant right across the street called Little Goat as well as a brand new Chinese restaurant down the street called Duck Duck Goat.
+      - title: Au Cheval
+        description: The restaurant is dimly lit and typically cramped with music blaring from the speakers. They don't take reservations and you'll probably end up waiitng at least an hour and a half for a table. BUT if you can stomach all those things, get the double cheeseburger with bacon, an egg and (if you're daring) foie gras. That's the one that's been called the best burger in America.
+      - title: Big Star
+        description: Situated a little further away from the action of the weekend in Wicker Park, if you make the treck out on the Blue Line, you'll be rewarded with margaritas, cold beers and some of the best tacos in the city. If the weather is nice, you can enjoy all this and more while sitting on their huge patio.
+        title: Brunch/Coffee
+          description:|
+            Craving eggs and coffee? There are more options than we have time to offer!  A famous choice, with several locations around the city, is Yolk, but you'll end up waiting for an hour on a Saturday or Sunday morning. For a traditional brunch without the wait, try Eggy's. Tucked away in the heart of Lakeshore East, this place is in our backyard and we're likely there on any given Sunday (try the chilaquiles!). For a meatier brunch, try The Publican in West Loop - they're known for their thick-cut bacon. Want both savory and sweet? Check out Cafe Ba-Ba-Reeba in Lincoln Park. A well-known tapas place, they also secretly serve brunch with tapas-sized portions that allow you to order eggs AND pancakes. For a quick cup of coffee, try Intelligentsia (also served at many brunch spots) or Dollop Cafe.
+    drinks:
+      - title: Rooftops
+        description: When the weather cooperates, everyone in the city heads straight to the roofs. Check out the Roof at the Wit if you're looking for a sheek, ultra-lounge feel. The IO Lounge at the Godfrey lets you hedge your bets as far as weather is concerend with an outdoor and indoor area. Cindy's on the roof of the Chicago Athletic Association Hotel on Michigan Avenue serves great drinks and has a great view of Grant Park, Lake Michigan and beyond.
+      - title: Pops for Champagne & Watershed
+        description: We're celebrating a wedding, why not have some champagne? Pops serves champagne, sparkling wine and cocktails featuring them both. If that's not your fancy, look for the black W and head downstairs to somewhat-hidden Watershed, which features comfy seats, a sizable local beer selection, and some of the best whiskeys around.
+      - title: Hubbard Street
+        description: Just north of the loop across the Chicago River is where you'll find the bars and clubs of the River North neighborhood on and around Hubbard Street. Combined with the slew of restaurants in and around River North, you can easily make a night of wandering the scene here. Social 25 and Rockit are centrally located and good if you're looking for some drinks and dancing, but you can generally find both at most places on Hubbard Street as well.  Lines got you down?  Try Mercer 311 (usually no line, no cover, and great music).
+      - title: Breweries
+        description: Goose Island is a Chicago staple and has a new tasting room in West Loop that also offers tours of it's facilities.  Goose Island also offers a full-service restaurant that serves up its famous brews, for those of you worried about bringing children to a tasting room. Revolution Brewery is also a local favorite and has a tap room and brewery tours a little further from downtown. Lagunitas recently opened a huge brewery in Chicago as well that features an equally huge taproom.
+      - title: The Aviary
+        description: From the same people who operate Alinea, which has been named best restaurant in the country, The Aviary serves creatively designed cocktails that will likely have you telling stories about the drinks you experienced there. They do take a few walk-ins, but your best bet is to buy tickets ahead of time, which is effectively a deposit toward your drinks and snacks for the night.
+
+  lbc: false
+
+google:
+  key: AIzaSyB6rRW9hmltJZvoNLO7dewTmGqZn8LIRFU
+
+calendar:
+  ical: https://www.google.com/calendar/ical/baclig.com_fqi9g8u7mre0m4oaqj1p66608c%40group.calendar.google.com/public/basic.ics
+  google_id: baclig.com_fqi9g8u7mre0m4oaqj1p66608c@group.calendar.google.com
