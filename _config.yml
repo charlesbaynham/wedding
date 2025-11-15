@@ -1,0 +1,20 @@
+title: Our Wedding
+description: Wedding website
+baseurl: ""
+url: ""
+
+theme: jekyll-theme-easy-wedding
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+exclude:
+  - flake.nix
+  - flake.lock
+  - Gemfile
+  - Gemfile.lock
+  - .gems/
+  - result
