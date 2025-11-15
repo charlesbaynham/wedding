@@ -1,8 +1,0 @@
-spouse1:
-  short_name: Charles
-  # long_name: Your Full Name
-  role: Spouse
-spouse2:
-  short_name: Gaby
-  # long_name: Partner Full Name
-  role: Spouse
