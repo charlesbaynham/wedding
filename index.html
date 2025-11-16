@@ -11,18 +11,78 @@ invisible_nav: true
                 <div class="col-md-10 col-md-offset-1">
                   <div class="hero-box text-center">
                     <h1 class="brand-heading">{{ site.title }}</h1>
-                    <p class="intro-text" style="font-size: 2em; margin-top: 40px;">
+                    <h2>25th October 2026 - Cancún, México</h2>
+                    <p class="intro-text">
                       <i class="fa fa-heart"></i>
                     </p>
-                    <p class="intro-text" style="font-size: 1.2em; margin-top: 30px;">
-                      25th October 2026 - Cancún, México
-                    </p>
-                    <p class="intro-text" style="font-size: 1.5em; margin-top: 20px;">
-                      Coming soon...
+                    <p class="intro-text">
+                      <h2>RSVP</h2>
+                      <p>
+                        <span class="lang-en">
+                          We hope you can come but Mexico is a long way away, so
+                          we completely understand that many people won't be able
+                          to. If you're not sure yet, please use the slider to
+                          estimate how likely you think it is that you can make
+                          it.
+                          <br><br>
+                          Please fill this out only once for each group.
+                        </span>
+                        <span class="lang-es" lang="es">
+                          Esperamos que puedas venir, pero México está muy lejos, así que
+                          entendemos completamente que muchas personas no podrán hacerlo.
+                          Si aún no estás seguro, por favor usa el control deslizante para
+                          estimar qué tan probable crees que es que puedas venir.
+                          <br><br>
+                          Por favor rellena esto solo una vez por cada grupo.
+                        </span>
+                      </p>
+                      <form action="https://formspree.io/f/mvgdvpab" method="post" class="rsvp-form">
+                        <div class="form-group mb-3">
+                          <label for="likelihood">
+                            <span class="label-en">How likely are you to be able to come?</span>
+                            <span class="label-es" lang="es">¿Qué tan probable es que puedas venir?</span>
+                          </label>
+                          <input type="range" class="form-control" id="likelihood" name="likelihood" min="0" max="100" value="100">
+                          <span id="likelihood-value" style="display: block; margin-top: 5px;">100%</span>
+                        </div>
+                        <div class="form-group mb-3">
+                          <label for="names">
+                            <span class="label-en">Names</span>
+                            <span class="label-es" lang="es">Nombres</span>
+                          </label>
+                          <input type="text" class="form-control" id="names" name="names" placeholder="Enter your names" data-ph-en="Enter your names" data-ph-es="Escribe tus nombres" required>
+                        </div>
+                        <div class="form-group mb-3">
+                          <label for="email">
+                            <span class="label-en">Email</span>
+                            <span class="label-es" lang="es">Correo electrónico</span>
+                          </label>
+                          <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" data-ph-en="Enter your email" data-ph-es="Escribe tu correo electrónico" required>
+                        </div>
+                        <div class="form-group mb-3">
+                          <label for="count">
+                            <span class="label-en">How many are you responding for?</span>
+                            <span class="label-es" lang="es">¿Para cuántas personas estás respondiendo?</span>
+                          </label>
+                          <input type="number" class="form-control" id="count" name="count" min="1" placeholder="1" data-ph-en="1" data-ph-es="1" required>
+                        </div>
+                        <div class="form-group mb-3">
+                          <label for="address">
+                            <span class="label-en">Postal Address</span>
+                            <span class="label-es" lang="es">Dirección postal</span>
+                          </label>
+                          <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter your postal address" data-ph-en="Enter your postal address" data-ph-es="Escribe tu dirección postal"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                          <span class="label-en">Submit RSVP</span>
+                          <span class="label-es" lang="es">Enviar confirmación</span>
+                        </button>
+                      </form>
                     </p>
                     {% if site.email %}
                     <p class="intro-text" style="margin-top: 30px;">
-                      Questions? <a href="mailto:{{ site.email }}" style="color: #AFA63D; text-decoration: underline;">Email us</a>
+                      <span class="label-en">Questions? <a href="mailto:{{ site.email }},gb.quintero@gmail.com" >Email us</a></span>
+                      <span class="label-es" lang="es">¿Preguntas? <a href="mailto:{{ site.email }},gb.quintero@gmail.com" >Escríbenos</a></span>
                     </p>
                     {% endif %}
                   </div>

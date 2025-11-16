@@ -5,66 +5,149 @@
  */
 
 // jQuery to collapse the navbar on scroll
-$(window).scroll(function() {
-    var hiddenNavBar = $(".navbar.navbar-hidden-top");
+$(window).scroll(function () {
+  var hiddenNavBar = $(".navbar.navbar-hidden-top");
 
-    if (hiddenNavBar.length) {
-      if (hiddenNavBar.offset().top > 50) {
-          $(".navbar-fixed-top").addClass("top-nav-collapse");
-      } else {
-          $(".navbar-fixed-top").removeClass("top-nav-collapse");
-      }  
+  if (hiddenNavBar.length) {
+    if (hiddenNavBar.offset().top > 50) {
+      $(".navbar-custom").addClass("top-nav-collapse");
+    } else {
+      $(".navbar-custom").removeClass("top-nav-collapse");
     }
+  }
 });
 
-$(function() {
+$(function () {
   // jQuery for page scrolling feature - requires jQuery Easing plugin
-  $('a.page-scroll').bind('click', function(event) {
-      var $anchor = $(this);
-      $('html, body').stop().animate({
-          scrollTop: $($anchor.attr('href')).offset().top
-      }, 1500, 'easeInOutExpo');
-      event.preventDefault();
+  $("a.page-scroll").bind("click", function (event) {
+    var $anchor = $(this);
+    $("html, body")
+      .stop()
+      .animate(
+        {
+          scrollTop: $($anchor.attr("href")).offset().top,
+        },
+        1500,
+        "easeInOutExpo"
+      );
+    event.preventDefault();
   });
 
-  NOTIFICATION_COOKIE = 'c<3n';
+  NOTIFICATION_COOKIE = "c<3n";
 
-  var hasSeenNotification = function(){
-    return new RegExp(NOTIFICATION_COOKIE  + '=' + '1').test(document.cookie);
+  var hasSeenNotification = function () {
+    return new RegExp(NOTIFICATION_COOKIE + "=" + "1").test(document.cookie);
   };
 
-  var markNotificationAsRead = function(){
-    document.cookie = NOTIFICATION_COOKIE + '=1;max-age=99999;path=/';
+  var markNotificationAsRead = function () {
+    document.cookie = NOTIFICATION_COOKIE + "=1;max-age=99999;path=/";
     toggleNotificationIcon(false);
-  }
+  };
 
-  var toggleNotificationIcon = function(show){
-    $('.notification-link').toggleClass('notify', show);  
-  }
-  
+  var toggleNotificationIcon = function (show) {
+    $(".notification-link").toggleClass("notify", show);
+  };
+
   if (!hasSeenNotification()) toggleNotificationIcon(true);
 
-  $(document).on('show.bs.modal', markNotificationAsRead);
+  $(document).on("show.bs.modal", markNotificationAsRead);
 
   // Closes the Responsive Menu on Menu Item Click
-  $('.navbar-collapse ul li a').click(function() {
-      $('.navbar-toggle:visible').click();
+  $(".navbar-collapse ul li a").click(function () {
+    $(".navbar-toggle:visible").click();
   });
 
-  $('nav').on('show.bs.collapse', function(){
-      $(this).addClass('is-expanded');
-  })
+  $("nav").on("show.bs.collapse", function () {
+    $(this).addClass("is-expanded");
+  });
 
-  $('nav').on('hide.bs.collapse', function(){
-      $(this).removeClass('is-expanded');
-  })
+  $("nav").on("hide.bs.collapse", function () {
+    $(this).removeClass("is-expanded");
+  });
 
   // GA Tracking
-  $('.ga-email-nav').click(function(){
-    ga('send', 'event', 'Email Signup', 'Open Form', 'Nav Bar');
+  $(".ga-email-nav").click(function () {
+    ga("send", "event", "Email Signup", "Open Form", "Nav Bar");
   });
 
-  $('.ga-email-etc-coming-soon').click(function(){
-    ga('send', 'event', 'Email Signup', 'Open Form', 'ETC - Coming Soon');
+  $(".ga-email-etc-coming-soon").click(function () {
+    ga("send", "event", "Email Signup", "Open Form", "ETC - Coming Soon");
   });
+
+  // RSVP slider value update
+  $("#likelihood").on("input", function () {
+    $("#likelihood-value").text(this.value + "%");
+  });
+
+  // Language slider EN(0)/ES(1) - Site-wide toggle
+  var $langSlider = $("#langSlider");
+  var LANG_KEY = "siteLang"; // 'en' or 'es'
+
+  function applyLanguageToBlocks(isES) {
+    // Toggle inline label spans globally
+    $(".label-en").toggle(!isES);
+    $(".label-es").toggle(isES);
+
+    // Toggle generic language content blocks by class
+    $(".lang-en").toggle(!isES);
+    $(".lang-es").toggle(isES);
+
+    // Update placeholders site-wide for inputs having data-ph-en / data-ph-es
+    $("[data-ph-en][data-ph-es]").each(function () {
+      var $el = $(this);
+      var ph = isES ? $el.data("ph-es") : $el.data("ph-en");
+      if (typeof ph !== "undefined") $el.attr("placeholder", ph);
+    });
+
+    // Also set document language attribute for accessibility
+    try {
+      document.documentElement.setAttribute("lang", isES ? "es" : "en");
+    } catch (e) {}
+  }
+
+  function updateLanguage(shouldPersist) {
+    var isES = $langSlider.val() === "1";
+
+    // Apply globally
+    applyLanguageToBlocks(isES);
+
+    // Persist preference
+    if (shouldPersist) {
+      try {
+        localStorage.setItem(LANG_KEY, isES ? "es" : "en");
+      } catch (e) {}
+    }
+  }
+
+  if ($langSlider.length) {
+    // Initialize from saved preference (default to EN)
+    try {
+      var saved = localStorage.getItem(LANG_KEY);
+      if (saved === "es") {
+        $langSlider.val(1);
+      } else {
+        $langSlider.val(0);
+      }
+    } catch (e) {}
+
+    // Apply on load without persisting
+    updateLanguage(false);
+
+    // React to slider changes
+    $langSlider.on("input change", function () {
+      updateLanguage(true);
+    });
+
+    // Make EN/ES labels clickable to toggle slider
+    $(".lang-option").on("click", function () {
+      var val = $(this).data("lang") === "es" ? 1 : 0;
+      $langSlider.val(val).trigger("change");
+    });
+  } else {
+    // No slider on the page: still respect saved preference and apply globally
+    try {
+      var savedOnly = localStorage.getItem(LANG_KEY);
+      applyLanguageToBlocks(savedOnly === "es");
+    } catch (e) {}
+  }
 });
