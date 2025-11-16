@@ -385,6 +385,10 @@ body {
   width: 100%;
 }
 
+.navbar-header{
+  width: 100%;
+}
+
 .navbar-lang-toggle {
   display: inline-flex;
   align-items: center;
@@ -392,8 +396,10 @@ body {
   padding: 4px 10px;
   margin-left: 10px;
   border-radius: 20px;
-  background: rgba(255,255,255,0.15);
+  background: #AAA;
   backdrop-filter: blur(4px);
+  float: right;           /* Push toggler to the right */
+  margin-right: 0;        /* Ensure it hugs the right edge */
 }
 
 .navbar-lang-toggle .lang-option {
