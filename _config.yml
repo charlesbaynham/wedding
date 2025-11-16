@@ -11,6 +11,8 @@ plugins:
 # Build settings
 markdown: kramdown
 permalink: pretty
+exclude:
+  - vendor/
 
 locations:
   ceremony_venue: &ceremony_location
