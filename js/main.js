@@ -79,34 +79,39 @@ $(function () {
     $("#likelihood-value").text(this.value + "%");
   });
 
-  // Language slider EN(0)/ES(1)
+  // Language slider EN(0)/ES(1) - Site-wide toggle
   var $langSlider = $("#langSlider");
-  var $enText = $("#rsvp-text-en");
-  var $esText = $("#rsvp-text-es");
   var LANG_KEY = "siteLang"; // 'en' or 'es'
 
-  function updateLanguage(shouldPersist) {
-    var isES = $langSlider.val() === "1";
-    if (isES) {
-      $enText.hide();
-      $esText.show();
-    } else {
-      $esText.hide();
-      $enText.show();
-    }
+  function applyLanguageToBlocks(isES) {
+    // Toggle inline label spans globally
+    $(".label-en").toggle(!isES);
+    $(".label-es").toggle(isES);
 
-    // Toggle label language visibility
-    var $form = $(".rsvp-form");
-    $form.find(".label-en").toggle(!isES);
-    $form.find(".label-es").toggle(isES);
+    // Toggle generic language content blocks by class
+    $(".lang-en").toggle(!isES);
+    $(".lang-es").toggle(isES);
 
-    // Update placeholders based on selected language
-    $form.find("[data-ph-en][data-ph-es]").each(function () {
+    // Update placeholders site-wide for inputs having data-ph-en / data-ph-es
+    $("[data-ph-en][data-ph-es]").each(function () {
       var $el = $(this);
       var ph = isES ? $el.data("ph-es") : $el.data("ph-en");
       if (typeof ph !== "undefined") $el.attr("placeholder", ph);
     });
 
+    // Also set document language attribute for accessibility
+    try {
+      document.documentElement.setAttribute("lang", isES ? "es" : "en");
+    } catch (e) {}
+  }
+
+  function updateLanguage(shouldPersist) {
+    var isES = $langSlider.val() === "1";
+
+    // Apply globally
+    applyLanguageToBlocks(isES);
+
+    // Persist preference
     if (shouldPersist) {
       try {
         localStorage.setItem(LANG_KEY, isES ? "es" : "en");
@@ -125,15 +130,24 @@ $(function () {
       }
     } catch (e) {}
 
+    // Apply on load without persisting
+    updateLanguage(false);
+
+    // React to slider changes
     $langSlider.on("input change", function () {
       updateLanguage(true);
     });
-    updateLanguage(false);
 
     // Make EN/ES labels clickable to toggle slider
     $(".lang-option").on("click", function () {
       var val = $(this).data("lang") === "es" ? 1 : 0;
       $langSlider.val(val).trigger("change");
     });
+  } else {
+    // No slider on the page: still respect saved preference and apply globally
+    try {
+      var savedOnly = localStorage.getItem(LANG_KEY);
+      applyLanguageToBlocks(savedOnly === "es");
+    } catch (e) {}
   }
 });

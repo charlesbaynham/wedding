@@ -338,6 +338,14 @@ body {
   color: inherit;
 }
 
+/* Generic language block helpers */
+.lang-en {
+  /* visible by default */
+}
+.lang-es {
+  display: none; /* hidden by default, shown when ES selected */
+}
+
 /* Author: cbaclig */
 
 dd {
