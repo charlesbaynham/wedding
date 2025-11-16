@@ -20,6 +20,16 @@
           buildInputs = with pkgs; [ rubyEnv bundler bundix git ];
 
           shellHook = ''
+            # Install correct bundler version if needed
+            GEMFILE_BUNDLER_VERSION=$(grep -A 1 "BUNDLED WITH" Gemfile.lock 2>/dev/null | tail -n 1 | tr -d ' ')
+            echo "Installing Bundler $GEMFILE_BUNDLER_VERSION to match Gemfile.lock..."
+            gem install bundler:$GEMFILE_BUNDLER_VERSION --no-document >/dev/null 2>&1 || true
+
+            # Install dependencies if Gemfile.lock exists but gems aren't installed
+            echo "Installing Ruby dependencies..."
+            bundle install
+            echo ""
+
             # Create serve alias
             alias serve='bundle exec jekyll serve'
 
@@ -32,7 +42,7 @@
             echo "  bundle install     - Install Ruby dependencies"
             echo "  bundix            - Generate gemset.nix from Gemfile.lock"
             echo ""
-            echo "Get started: bundle install && serve"
+            echo "Get started: serve"
           '';
         };
 
