@@ -82,6 +82,7 @@ $(function () {
   // Language slider EN(0)/ES(1) - Site-wide toggle
   var $langSlider = $("#langSlider");
   var LANG_KEY = "siteLang"; // 'en' or 'es'
+  var isLangAnimating = false;
 
   function applyLanguageToBlocks(isES) {
     // Toggle inline label spans globally
@@ -106,7 +107,7 @@ $(function () {
   }
 
   function updateLanguage(shouldPersist) {
-    var isES = $langSlider.val() === "1";
+    var isES = parseFloat($langSlider.val()) >= 0.5;
 
     // Apply globally
     applyLanguageToBlocks(isES);
@@ -135,14 +136,86 @@ $(function () {
 
     // React to slider changes
     $langSlider.on("input change", function () {
-      updateLanguage(true);
+      if (!isLangAnimating) {
+        updateLanguage(true);
+      }
     });
 
-    // Make EN/ES labels clickable to toggle slider
+    // Smoothly animate slider to a target value (0 or 1)
+    function animateLangSliderTo(target, duration) {
+      duration = duration || 220; // ms
+      var start = parseFloat($langSlider.val());
+      var end = target;
+      if (start === end) {
+        // No movement needed; still ensure language is correct
+        updateLanguage(true);
+        return;
+      }
+      var startTime = null;
+      isLangAnimating = true;
+
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      function step(ts) {
+        if (startTime === null) startTime = ts;
+        var elapsed = ts - startTime;
+        var t = Math.min(1, elapsed / duration);
+        var eased = easeInOutCubic(t);
+        var value = start + (end - start) * eased;
+        // Update visual position without triggering change handlers
+        $langSlider.val(value);
+        if (t < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          // Snap to final value and apply language once
+          $langSlider.val(end);
+          isLangAnimating = false;
+          updateLanguage(true);
+        }
+      }
+
+      window.requestAnimationFrame(step);
+    }
+
+    // Make EN/ES labels clickable to toggle slider (animate instead of jump)
     $(".lang-option").on("click", function () {
-      var val = $(this).data("lang") === "es" ? 1 : 0;
-      $langSlider.val(val).trigger("change");
+      var target = $(this).data("lang") === "es" ? 1 : 0;
+      animateLangSliderTo(target, 220);
     });
+
+    // Override default click/tap on the slider: toggle instead of landing mid-way
+    function getClientX(evt) {
+      var e = evt.originalEvent || evt;
+      if (e.touches && e.touches.length) return e.touches[0].clientX;
+      if (e.changedTouches && e.changedTouches.length)
+        return e.changedTouches[0].clientX;
+      return e.clientX;
+    }
+
+    function handleToggleFromPointer(evt) {
+      // Ignore if we're mid-animation
+      if (isLangAnimating) return;
+      try {
+        evt.preventDefault();
+        evt.stopPropagation();
+      } catch (e) {}
+      var rect = $langSlider[0].getBoundingClientRect();
+      var x = getClientX(evt) - rect.left;
+      var ratio = Math.max(0, Math.min(1, x / rect.width));
+      var target = ratio >= 0.5 ? 1 : 0;
+      // Focus for accessibility/keyboard continuity
+      try {
+        $langSlider[0].focus();
+      } catch (e) {}
+      animateLangSliderTo(target, 220);
+    }
+
+    // Bind to pointer/mouse/touch start so the native slider doesn't jump first
+    $langSlider.on("pointerdown", handleToggleFromPointer);
+    $langSlider.on("mousedown", handleToggleFromPointer);
+    $langSlider.on("touchstart", handleToggleFromPointer);
   } else {
     // No slider on the page: still respect saved preference and apply globally
     try {
