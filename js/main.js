@@ -78,4 +78,24 @@ $(function () {
   $("#likelihood").on("input", function () {
     $("#likelihood-value").text(this.value + "%");
   });
+
+  // Language slider EN(0)/ES(1)
+  var $langSlider = $("#langSlider");
+  var $enText = $("#rsvp-text-en");
+  var $esText = $("#rsvp-text-es");
+
+  function updateLanguage() {
+    if ($langSlider.val() === "1") {
+      $enText.hide();
+      $esText.show();
+    } else {
+      $esText.hide();
+      $enText.show();
+    }
+  }
+
+  if ($langSlider.length) {
+    $langSlider.on("input change", updateLanguage);
+    updateLanguage();
+  }
 });

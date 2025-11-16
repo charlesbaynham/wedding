@@ -18,37 +18,47 @@ invisible_nav: true
                     <p class="intro-text">
                       <h2>RSVP</h2>
                       <p>
-                        We hope you can come but Mexico is a long way away, so
-                        we completely understand that many people won't be able
-                        to. If you're not sure yet, please use the slider to
-                        estimate how likely you think it is that you can make
-                        it. 
-
-                        Please fill this out only once for each group. 
+                        <span id="rsvp-text-en">
+                          We hope you can come but Mexico is a long way away, so
+                          we completely understand that many people won't be able
+                          to. If you're not sure yet, please use the slider to
+                          estimate how likely you think it is that you can make
+                          it.
+                          <br><br>
+                          Please fill this out only once for each group.
+                        </span>
+                        <span id="rsvp-text-es" style="display:none" lang="es">
+                          Esperamos que puedas venir, pero México está muy lejos, así que
+                          entendemos completamente que muchas personas no podrán hacerlo.
+                          Si aún no estás seguro, por favor usa el control deslizante para
+                          estimar qué tan probable crees que es que puedas venir.
+                          <br><br>
+                          Por favor rellena esto solo una vez por cada grupo.
+                        </span>
                       </p>
                       <form action="https://formspree.io/f/mvgdvpab" method="post" class="rsvp-form">
                         <div class="form-group mb-3">
-                          <label for="likelihood">How likely are you to be able to come?</label>
+                          <label for="likelihood">How likely are you to be able to come?<span class="label-es" lang="es">¿Qué tan probable es que puedas venir?</span></label>
                           <input type="range" class="form-control" id="likelihood" name="likelihood" min="0" max="100" value="100">
                           <span id="likelihood-value" style="display: block; margin-top: 5px;">100%</span>
                         </div>
                         <div class="form-group mb-3">
-                          <label for="names">Names</label>
+                          <label for="names">Names<span class="label-es" lang="es">Nombres</span></label>
                           <input type="text" class="form-control" id="names" name="names" placeholder="Enter your names" required>
                         </div>
                         <div class="form-group mb-3">
-                          <label for="email">Email</label>
+                          <label for="email">Email<span class="label-es" lang="es">Correo electrónico</span></label>
                           <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
                         </div>
                         <div class="form-group mb-3">
-                          <label for="count">How many are you responding for?</label>
+                          <label for="count">How many are you responding for?<span class="label-es" lang="es">¿Para cuántas personas estás respondiendo?</span></label>
                           <input type="number" class="form-control" id="count" name="count" min="1" placeholder="1" required>
                         </div>
                         <div class="form-group mb-3">
-                          <label for="address">Postal Address</label>
+                          <label for="address">Postal Address<span class="label-es" lang="es">Dirección postal</span></label>
                           <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter your postal address"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit RSVP</button>
+                        <button type="submit" class="btn btn-primary">Submit RSVP <span class="label-es" lang="es">Enviar confirmación</span></button>
                       </form>
                     </p>
                     {% if site.email %}

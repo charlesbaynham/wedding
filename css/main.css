@@ -385,6 +385,53 @@ body {
   width: 100%;
 }
 
+.navbar-lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  margin-left: 10px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(4px);
+}
+
+.navbar-lang-toggle .lang-option {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+
+.navbar-lang-toggle .lang-slider {
+  width: 55px;
+  cursor: pointer;
+}
+
+.navbar-lang-toggle .lang-slider::-webkit-slider-thumb {
+  background: #AFA63D;
+}
+
+.navbar-lang-toggle .lang-slider::-moz-range-thumb {
+  background: #AFA63D;
+}
+
+.label-es {
+  display: block;
+  font-size: 0.8em;
+  font-style: italic;
+  color: #666;
+  margin-top: 2px;
+}
+
+.translation-es {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9em;
+  font-style: italic;
+  color: #e0e0e0;
+}
+
 
 /* Author: cbaclig */
 
