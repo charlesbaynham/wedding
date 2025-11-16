@@ -99,8 +99,8 @@ $(function () {
     updateLanguage();
 
     // Make EN/ES labels clickable to toggle slider
-    $(".lang-option").on("click", function() {
-      var val = $(this).text() === "ES" ? 1 : 0;
+    $(".lang-option").on("click", function () {
+      var val = $(this).data("lang") === "es" ? 1 : 0;
       $langSlider.val(val).trigger("change");
     });
   }

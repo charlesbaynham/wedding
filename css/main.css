@@ -389,6 +389,12 @@ body {
   width: 100%;
 }
 
+.navbar-lang-toggle,
+.navbar-lang-toggle * {
+  cursor: pointer;
+}
+
+
 .navbar-lang-toggle {
   display: inline-flex;
   align-items: center;
@@ -411,7 +417,7 @@ body {
 
 .navbar-lang-toggle .lang-slider {
   width: 55px;
-  cursor: pointer;
+  background-color: transparent;
 }
 
 .navbar-lang-toggle .lang-slider::-webkit-slider-thumb {
