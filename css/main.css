@@ -87,18 +87,18 @@ a:focus {
     color: #fff;
 }
 
-.navbar-custom .navbar-brand .navbar-toggle:focus,
-.navbar-custom .navbar-brand .navbar-toggle:active {
+.navbar-custom .navbar-brand .navbar-toggler:focus,
+.navbar-custom .navbar-brand .navbar-toggler:active {
     outline: 0;
 }
 
-.navbar-custom .navbar-toggle {
+.navbar-custom .navbar-toggler {
   margin-top: 5px;
   margin-bottom: 5px;
   color: #fff;
 }
 
-.navbar-custom.top-nav-collapse .navbar-toggle {
+.navbar-custom.top-nav-collapse .navbar-toggler {
   color: inherit;
 }
 
