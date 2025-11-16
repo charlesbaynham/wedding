@@ -380,6 +380,12 @@ body {
     webkit-tap-highlight-color: rgba(255,255,255,.2);
 }
 
+.rsvp-form label {
+  text-align: left;
+  width: 100%;
+}
+
+
 /* Author: cbaclig */
 
 dd {
