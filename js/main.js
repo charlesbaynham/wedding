@@ -101,14 +101,16 @@ $(function () {
     $form.find(".label-es").toggle(isES);
 
     // Update placeholders based on selected language
-    $form.find("[data-ph-en][data-ph-es]").each(function(){
+    $form.find("[data-ph-en][data-ph-es]").each(function () {
       var $el = $(this);
-      var ph = isES ? $el.data('ph-es') : $el.data('ph-en');
-      if (typeof ph !== 'undefined') $el.attr('placeholder', ph);
+      var ph = isES ? $el.data("ph-es") : $el.data("ph-en");
+      if (typeof ph !== "undefined") $el.attr("placeholder", ph);
     });
 
     if (shouldPersist) {
-      try { localStorage.setItem(LANG_KEY, isES ? 'es' : 'en'); } catch(e) {}
+      try {
+        localStorage.setItem(LANG_KEY, isES ? "es" : "en");
+      } catch (e) {}
     }
   }
 
@@ -116,16 +118,21 @@ $(function () {
     // Initialize from saved preference (default to EN)
     try {
       var saved = localStorage.getItem(LANG_KEY);
-      if (saved === 'es') { $langSlider.val(1); }
-      else { $langSlider.val(0); }
-    } catch(e) {}
+      if (saved === "es") {
+        $langSlider.val(1);
+      } else {
+        $langSlider.val(0);
+      }
+    } catch (e) {}
 
-    $langSlider.on("input change", function(){ updateLanguage(true); });
+    $langSlider.on("input change", function () {
+      updateLanguage(true);
+    });
     updateLanguage(false);
 
     // Make EN/ES labels clickable to toggle slider
     $(".lang-option").on("click", function () {
-      var val = $(this).data('lang') === 'es' ? 1 : 0;
+      var val = $(this).data("lang") === "es" ? 1 : 0;
       $langSlider.val(val).trigger("change");
     });
   }
