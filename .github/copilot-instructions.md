@@ -368,6 +368,14 @@ events:
 5. **Keep JavaScript minimal** - site uses jQuery for basic interactivity only
 6. **Mobile-first** - Test on small screens, Bootstrap handles responsive behavior
 7. **Update Google API keys** - Don't commit real API keys to public repos
+8. **Bilingual prose (EN/ES)** - All visible prose (paragraphs, labels, placeholders, buttons) must be available in English and Spanish. Default to English and provide a UI toggle to switch language.
+
+### Bilingual Content
+
+- **Implementation pattern:** Wrap parallel strings with `<span class="label-en">…</span>` and `<span class="label-es" lang="es">…</span>`, hide `.label-es` by default in CSS, and toggle visibility via JS.
+- **Placeholders:** Provide `data-ph-en` / `data-ph-es` attributes on inputs and update `placeholder` on language change.
+- **Paragraphs:** Use paired containers with IDs (e.g., `#rsvp-text-en`, `#rsvp-text-es`) and toggle `display`.
+- **Toggle UI:** Use a simple nav control (e.g., a slider or buttons) to switch EN/ES site-wide content.
 
 ## Quick Reference
 

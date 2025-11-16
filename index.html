@@ -38,27 +38,45 @@ invisible_nav: true
                       </p>
                       <form action="https://formspree.io/f/mvgdvpab" method="post" class="rsvp-form">
                         <div class="form-group mb-3">
-                          <label for="likelihood">How likely are you to be able to come?<span class="label-es" lang="es">¿Qué tan probable es que puedas venir?</span></label>
+                          <label for="likelihood">
+                            <span class="label-en">How likely are you to be able to come?</span>
+                            <span class="label-es" lang="es">¿Qué tan probable es que puedas venir?</span>
+                          </label>
                           <input type="range" class="form-control" id="likelihood" name="likelihood" min="0" max="100" value="100">
                           <span id="likelihood-value" style="display: block; margin-top: 5px;">100%</span>
                         </div>
                         <div class="form-group mb-3">
-                          <label for="names">Names<span class="label-es" lang="es">Nombres</span></label>
-                          <input type="text" class="form-control" id="names" name="names" placeholder="Enter your names" required>
+                          <label for="names">
+                            <span class="label-en">Names</span>
+                            <span class="label-es" lang="es">Nombres</span>
+                          </label>
+                          <input type="text" class="form-control" id="names" name="names" placeholder="Enter your names" data-ph-en="Enter your names" data-ph-es="Escribe tus nombres" required>
                         </div>
                         <div class="form-group mb-3">
-                          <label for="email">Email<span class="label-es" lang="es">Correo electrónico</span></label>
-                          <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                          <label for="email">
+                            <span class="label-en">Email</span>
+                            <span class="label-es" lang="es">Correo electrónico</span>
+                          </label>
+                          <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" data-ph-en="Enter your email" data-ph-es="Escribe tu correo electrónico" required>
                         </div>
                         <div class="form-group mb-3">
-                          <label for="count">How many are you responding for?<span class="label-es" lang="es">¿Para cuántas personas estás respondiendo?</span></label>
-                          <input type="number" class="form-control" id="count" name="count" min="1" placeholder="1" required>
+                          <label for="count">
+                            <span class="label-en">How many are you responding for?</span>
+                            <span class="label-es" lang="es">¿Para cuántas personas estás respondiendo?</span>
+                          </label>
+                          <input type="number" class="form-control" id="count" name="count" min="1" placeholder="1" data-ph-en="1" data-ph-es="1" required>
                         </div>
                         <div class="form-group mb-3">
-                          <label for="address">Postal Address<span class="label-es" lang="es">Dirección postal</span></label>
-                          <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter your postal address"></textarea>
+                          <label for="address">
+                            <span class="label-en">Postal Address</span>
+                            <span class="label-es" lang="es">Dirección postal</span>
+                          </label>
+                          <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter your postal address" data-ph-en="Enter your postal address" data-ph-es="Escribe tu dirección postal"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit RSVP <span class="label-es" lang="es">Enviar confirmación</span></button>
+                        <button type="submit" class="btn btn-primary">
+                          <span class="label-en">Submit RSVP</span>
+                          <span class="label-es" lang="es">Enviar confirmación</span>
+                        </button>
                       </form>
                     </p>
                     {% if site.email %}

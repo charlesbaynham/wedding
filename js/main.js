@@ -83,24 +83,49 @@ $(function () {
   var $langSlider = $("#langSlider");
   var $enText = $("#rsvp-text-en");
   var $esText = $("#rsvp-text-es");
+  var LANG_KEY = "siteLang"; // 'en' or 'es'
 
-  function updateLanguage() {
-    if ($langSlider.val() === "1") {
+  function updateLanguage(shouldPersist) {
+    var isES = $langSlider.val() === "1";
+    if (isES) {
       $enText.hide();
       $esText.show();
     } else {
       $esText.hide();
       $enText.show();
     }
+
+    // Toggle label language visibility
+    var $form = $(".rsvp-form");
+    $form.find(".label-en").toggle(!isES);
+    $form.find(".label-es").toggle(isES);
+
+    // Update placeholders based on selected language
+    $form.find("[data-ph-en][data-ph-es]").each(function(){
+      var $el = $(this);
+      var ph = isES ? $el.data('ph-es') : $el.data('ph-en');
+      if (typeof ph !== 'undefined') $el.attr('placeholder', ph);
+    });
+
+    if (shouldPersist) {
+      try { localStorage.setItem(LANG_KEY, isES ? 'es' : 'en'); } catch(e) {}
+    }
   }
 
   if ($langSlider.length) {
-    $langSlider.on("input change", updateLanguage);
-    updateLanguage();
+    // Initialize from saved preference (default to EN)
+    try {
+      var saved = localStorage.getItem(LANG_KEY);
+      if (saved === 'es') { $langSlider.val(1); }
+      else { $langSlider.val(0); }
+    } catch(e) {}
+
+    $langSlider.on("input change", function(){ updateLanguage(true); });
+    updateLanguage(false);
 
     // Make EN/ES labels clickable to toggle slider
     $(".lang-option").on("click", function () {
-      var val = $(this).data("lang") === "es" ? 1 : 0;
+      var val = $(this).data('lang') === 'es' ? 1 : 0;
       $langSlider.val(val).trigger("change");
     });
   }

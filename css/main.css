@@ -428,12 +428,12 @@ body {
   background: #AFA63D;
 }
 
+.label-en { display: inline; }
 .label-es {
-  display: block;
-  font-size: 0.8em;
-  font-style: italic;
-  color: #666;
-  margin-top: 2px;
+  display: none; /* hidden by default, shown when ES selected */
+  font-size: inherit;
+  font-style: inherit;
+  color: inherit;
 }
 
 .translation-es {
