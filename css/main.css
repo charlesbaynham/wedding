@@ -402,7 +402,7 @@ body {
   padding: 4px 10px;
   margin-left: 10px;
   border-radius: 20px;
-  background: #AAA;
+  background: white;
   backdrop-filter: blur(4px);
   float: right;           /* Push toggler to the right */
   margin-right: 0;        /* Ensure it hugs the right edge */
@@ -412,7 +412,7 @@ body {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: #fff;
+  color: #000;
 }
 
 .navbar-lang-toggle .lang-slider {
