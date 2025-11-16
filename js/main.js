@@ -5,66 +5,77 @@
  */
 
 // jQuery to collapse the navbar on scroll
-$(window).scroll(function() {
-    var hiddenNavBar = $(".navbar.navbar-hidden-top");
+$(window).scroll(function () {
+  var hiddenNavBar = $(".navbar.navbar-hidden-top");
 
-    if (hiddenNavBar.length) {
-      if (hiddenNavBar.offset().top > 50) {
-          $(".navbar-fixed-top").addClass("top-nav-collapse");
-      } else {
-          $(".navbar-fixed-top").removeClass("top-nav-collapse");
-      }  
+  if (hiddenNavBar.length) {
+    if (hiddenNavBar.offset().top > 50) {
+      $(".navbar-fixed-top").addClass("top-nav-collapse");
+    } else {
+      $(".navbar-fixed-top").removeClass("top-nav-collapse");
     }
+  }
 });
 
-$(function() {
+$(function () {
   // jQuery for page scrolling feature - requires jQuery Easing plugin
-  $('a.page-scroll').bind('click', function(event) {
-      var $anchor = $(this);
-      $('html, body').stop().animate({
-          scrollTop: $($anchor.attr('href')).offset().top
-      }, 1500, 'easeInOutExpo');
-      event.preventDefault();
+  $("a.page-scroll").bind("click", function (event) {
+    var $anchor = $(this);
+    $("html, body")
+      .stop()
+      .animate(
+        {
+          scrollTop: $($anchor.attr("href")).offset().top,
+        },
+        1500,
+        "easeInOutExpo"
+      );
+    event.preventDefault();
   });
 
-  NOTIFICATION_COOKIE = 'c<3n';
+  NOTIFICATION_COOKIE = "c<3n";
 
-  var hasSeenNotification = function(){
-    return new RegExp(NOTIFICATION_COOKIE  + '=' + '1').test(document.cookie);
+  var hasSeenNotification = function () {
+    return new RegExp(NOTIFICATION_COOKIE + "=" + "1").test(document.cookie);
   };
 
-  var markNotificationAsRead = function(){
-    document.cookie = NOTIFICATION_COOKIE + '=1;max-age=99999;path=/';
+  var markNotificationAsRead = function () {
+    document.cookie = NOTIFICATION_COOKIE + "=1;max-age=99999;path=/";
     toggleNotificationIcon(false);
-  }
+  };
 
-  var toggleNotificationIcon = function(show){
-    $('.notification-link').toggleClass('notify', show);  
-  }
-  
+  var toggleNotificationIcon = function (show) {
+    $(".notification-link").toggleClass("notify", show);
+  };
+
   if (!hasSeenNotification()) toggleNotificationIcon(true);
 
-  $(document).on('show.bs.modal', markNotificationAsRead);
+  $(document).on("show.bs.modal", markNotificationAsRead);
 
   // Closes the Responsive Menu on Menu Item Click
-  $('.navbar-collapse ul li a').click(function() {
-      $('.navbar-toggle:visible').click();
+  $(".navbar-collapse ul li a").click(function () {
+    $(".navbar-toggle:visible").click();
   });
 
-  $('nav').on('show.bs.collapse', function(){
-      $(this).addClass('is-expanded');
-  })
+  $("nav").on("show.bs.collapse", function () {
+    $(this).addClass("is-expanded");
+  });
 
-  $('nav').on('hide.bs.collapse', function(){
-      $(this).removeClass('is-expanded');
-  })
+  $("nav").on("hide.bs.collapse", function () {
+    $(this).removeClass("is-expanded");
+  });
 
   // GA Tracking
-  $('.ga-email-nav').click(function(){
-    ga('send', 'event', 'Email Signup', 'Open Form', 'Nav Bar');
+  $(".ga-email-nav").click(function () {
+    ga("send", "event", "Email Signup", "Open Form", "Nav Bar");
   });
 
-  $('.ga-email-etc-coming-soon').click(function(){
-    ga('send', 'event', 'Email Signup', 'Open Form', 'ETC - Coming Soon');
+  $(".ga-email-etc-coming-soon").click(function () {
+    ga("send", "event", "Email Signup", "Open Form", "ETC - Coming Soon");
+  });
+
+  // RSVP slider value update
+  $("#likelihood").on("input", function () {
+    $("#likelihood-value").text(this.value + "%");
   });
 });
