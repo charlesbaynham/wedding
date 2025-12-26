@@ -24,10 +24,21 @@ h4,
 h5,
 h6 {
   margin: 0 0 35px;
-  text-transform: uppercase;
   font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
   letter-spacing: 1px;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-style: italic;
 }
 
 p {
@@ -48,11 +59,13 @@ ul {
   }
 }
 
+.centred-text {
+  text-align: center;
+}
+
 a {
-  color: #afa63d;
+  color: #efdd17;
   text-decoration: underline;
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 
@@ -62,27 +75,32 @@ a:focus {
   color: #11505d;
 }
 
-/* removed unused .light */
-
 .navbar-custom {
   margin-bottom: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   text-transform: uppercase;
   font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #fff;
+  backdrop-filter: blur(4px) brightness(50%);
+  border-bottom: 3px solid #afa63d;
+  box-shadow: #888 0px 1px 10px;
 }
 
 .navbar-custom .navbar-brand {
   font-weight: 700;
 }
 
+/* Highlight the active nav link */
+.navbar-custom .navbar-brand.active {
+  color: #afa63d;
+  background-color: rgba(175, 166, 61, 0.08);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(175, 166, 61, 0.08);
+  text-decoration: none;
+}
+
 .navbar-custom .navbar-brand:focus {
   outline: 0;
 }
-
-/* removed outdated nested brand-togglers */
-
-/* removed unused .navbar-toggler overrides */
 
 .navbar-custom a {
   color: #404040;
@@ -93,64 +111,41 @@ a:focus {
   font-size: 14px;
 }
 
-.navbar-custom.top-nav-collapse .nav li.active,
-.navbar-custom.is-expanded .nav li.active {
-  outline: none;
-  background-color: #ddd;
-}
-
 .navbar-custom .nav li a {
-  -webkit-transition: background 0.3s ease-in-out;
-  -moz-transition: background 0.3s ease-in-out;
   transition: background 0.3s ease-in-out;
 }
 
 .navbar-custom .nav li a:hover,
-.navbar-custom .nav li a:focus,
-.navbar-custom .nav li a.active {
+.navbar-custom .nav li a:focus {
   outline: 0;
   background-color: rgba(255, 255, 255, 0.3);
 }
 
 .navbar-custom.top-nav-collapse .nav li a:hover,
-.navbar-custom.top-nav-collapse .nav li a:focus,
-.navbar-custom.top-nav-collapse .nav li a.active {
+.navbar-custom.top-nav-collapse .nav li a:focus {
   outline: 0;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-.navbar-custom {
-  border-bottom: 3px solid #afa63d;
-  box-shadow: #888 0px 1px 10px;
-}
-
 .navbar {
-  border-bottom: 0;
   box-shadow: none;
   letter-spacing: 1px;
   background: 0 0;
-  -webkit-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
-  -moz-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
-  transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+  transition: background 0.5s ease-in-out, padding 0.5s ease-in-out,
+    border-bottom 0.5s ease-in-out;
 }
 
-.navbar-custom.is-expanded,
 .top-nav-collapse {
   padding: 0;
   background-color: #fff;
 }
 
-.navbar-custom.is-expanded a,
 .navbar-custom.top-nav-collapse a {
   color: #404040;
 }
 
 .navbar a {
   color: #fff;
-}
-.navbar-custom.top-nav-collapse {
-  border-bottom: 3px solid #afa63d;
-  box-shadow: #888 0px 1px 10px;
 }
 
 .hero-box {
@@ -169,21 +164,6 @@ a:focus {
   }
 }
 
-.intro {
-  display: table;
-  width: 100%;
-  height: 100vh;
-  text-align: center;
-  color: #fff;
-  text-shadow: black 2px 2px 10px;
-  background: url(../img/header.jpg) no-repeat top center scroll;
-  background-color: #000000;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-}
-
 @media (min-width: 992px) {
   /*
     Only allow background-attachment: fixed for desktop-ish sizes
@@ -194,11 +174,6 @@ a:focus {
   }
 }
 
-.intro .intro-body {
-  display: table-cell;
-  vertical-align: middle;
-}
-
 .brand-heading {
   font-size: 40px;
   letter-spacing: 0.025em;
@@ -206,6 +181,10 @@ a:focus {
 
 .intro-text {
   font-size: 19px;
+}
+
+.main-body {
+  margin-top: 2cm;
 }
 
 @media (min-width: 767px) {
@@ -222,19 +201,6 @@ a:focus {
   }
 }
 
-/* removed unused btn-circle and pulse keyframes */
-
-.content-section {
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
-.content-section h2 small {
-  white-space: nowrap;
-}
-
-/* removed unused .download-section */
-
 .map {
   width: 100%;
   height: 400px;
@@ -247,29 +213,6 @@ a:focus {
   }
 }
 
-.btn {
-  text-transform: uppercase;
-  font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
-.btn-default {
-  border: 1px solid #219ab3;
-  color: #219ab3;
-  background-color: transparent;
-}
-
-.btn-default:hover,
-.btn-default:focus {
-  border: 1px solid #219ab3;
-  outline: 0;
-  color: #000000;
-  background-color: #219ab3;
-}
-
 footer {
   padding: 50px 0;
 }
@@ -280,11 +223,6 @@ footer p {
 
 body {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
-}
-
-.rsvp-form label {
-  text-align: left;
-  width: 100%;
 }
 
 .navbar-header {
@@ -304,7 +242,6 @@ body {
   margin-left: 10px;
   border-radius: 20px;
   background: white;
-  backdrop-filter: blur(4px);
   float: right; /* Push toggler to the right */
   margin-right: 0; /* Ensure it hugs the right edge */
 }
@@ -340,12 +277,6 @@ body {
 }
 
 /* Generic language block helpers */
-.lang-en {
-  /* visible by default */
-}
-.lang-es {
-  display: none; /* hidden by default, shown when ES selected */
-}
 
 /* Author: cbaclig */
 
@@ -353,75 +284,23 @@ dd {
   white-space: pre-line;
 }
 
-.thumbnail.thumbnail-hotel {
-  padding: 0;
-  border-radius: 0;
-}
-
-.thumbnail.thumbnail-hotel .caption {
-  padding-top: 35px;
-}
-
-.thumbnail.thumbnail-hotel .caption h4 {
-  margin-bottom: 0;
-}
-
-.thumbnail.thumbnail-portrait .caption h4 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.thumbnail.thumbnail-portrait {
-  padding: 0;
-  border: none;
-  margin-bottom: 0;
-}
-
 .billboard {
   display: table;
   width: 100%;
-  height: 300px;
-  text-align: center;
+  height: 100vh;
+  min-height: 100%;
   color: #fff;
   text-shadow: black 2px 2px 10px;
   background-color: #000000;
   background-repeat: no-repeat;
-  background-position: top center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
+  background-position: center center;
   background-size: cover;
-  -o-background-size: cover;
   position: relative;
-}
-
-.billboard-header {
-  /* Height of nav + 2px bottom border*/
-  margin-top: 52px;
-  height: 175px;
-}
-
-.billboard-text {
-  position: absolute;
-  top: 50%;
-  margin-top: -0.5em;
-  height: 1em;
-  text-align: center;
-  width: 100%;
-  letter-spacing: 0.1em;
-  font-size: 40px;
 }
 
 @media (min-width: 767px) {
   .billboard {
     height: 400px;
-  }
-
-  .billboard-header {
-    height: 300px;
-  }
-
-  .billboard-text {
-    font-size: 80px;
   }
 }
 
@@ -435,64 +314,7 @@ dd {
   }
 }
 
-.billboard-two {
-  background-position: left center;
-  background-image: url(../img/story-two.jpg);
+.email-us {
+  margin-top: 30px;
+  text-align: center;
 }
-
-.billboard-three {
-  background-image: url(../img/story-three.jpg);
-}
-
-.billboard-four {
-  background-image: url(../img/story-four.jpg);
-}
-
-.billboard-wall {
-  background-position: center center;
-  background-image: url(../img/wall.jpg);
-}
-
-.billboard-stairs {
-  background-position: center center;
-  background-image: url(../img/stairs.jpg);
-}
-
-/* removed unused .billboard-skyline */
-
-.billboard-bridge-walk {
-  background-position: center top;
-  background-image: url(../img/bridge-walk.jpg);
-}
-
-.billboard-ramp-walk {
-  background-position: center center;
-  background-image: url(../img/ramp-walk.jpg);
-}
-
-.billboard-river-smile {
-  background-position: center center;
-  background-image: url(../img/river-smile.jpg);
-}
-
-@media (min-width: 767px) {
-  .billboard-wall {
-    background-position: center -170px;
-  }
-
-  .billboard-bridge-walk {
-    background-position: center -160px;
-  }
-
-  .billboard-stairs {
-    background-position: center -185px;
-  }
-
-  .billboard-ramp-walk {
-    background-position: center -190px;
-  }
-}
-
-/* removed unused floating-info and floating-button */
-
-/* removed unused notification-link styles */

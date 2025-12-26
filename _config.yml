@@ -1,6 +1,6 @@
 # Site settings
 title: Charles and Gaby
-email: charles.baynham@gmail.com
+email: wedding@houseabsolute.co.uk
 url: https://wedding.houseabsolute.co.uk
 baseurl: ""
 description: "We're getting married and can't wait to celebrate with you!"
@@ -14,147 +14,47 @@ permalink: pretty
 exclude:
   - vendor/
 
-locations:
-  ceremony_venue: &ceremony_location
-    location_name: Ceremony Venue Name
-    address1: 123 Main Street
-    address2: Your City, ST 12345
-    coordinates: 0.000000,0.000000
-    google_maps_url: https://www.google.com/maps
-  reception_venue: &reception_location
-    location_name: Reception Venue Name
-    address1: 456 Oak Avenue
-    address2: Your City, ST 12345
-    coordinates: 0.000000,0.000000
-    google_maps_url: https://www.google.com/maps
+# Background image
+default_background_image: img/header.jpg
+# faq:
+#   - question: What should I wear?
+#     answer: |
+#       The dress code for our wedding is formal attire. For women, cocktail dresses or formal gowns are appropriate. For men, suits or tuxedos are recommended.
+#   - question: Will transportation be provided?
+#     answer: |
+#       Yes! We will have shuttle service running between the ceremony venue, reception venue, and recommended hotels throughout the evening.
+#   - question: Is there parking available?
+#     answer: |
+#       Complimentary parking is available at both the ceremony and reception venues. Detailed parking instructions will be provided closer to the date.
+#   - question: Can I bring a date?
+#     answer: |
+#       Please refer to your invitation for the number of guests invited. If your invitation includes "and guest," you are welcome to bring a plus one.
+#   - question: Will there be vegetarian/vegan options?
+#     answer: |
+#       Yes! Our menu will include vegetarian options. Please indicate any dietary restrictions on your RSVP card, and we'll do our best to accommodate.
+#   - question: What time should I arrive?
+#     answer: |
+#       We recommend arriving 20-30 minutes before the ceremony start time to allow for parking and seating.
+#   - question: Are children welcome?
+#     answer: |
+#       We love your little ones, but we've decided to make our wedding an adults-only celebration. We hope this gives you a chance to relax and enjoy the evening!
 
-hotels:
-  - name: Hotel Option 1
-    phone: +1-555-123-4567
-    reserve_url: https://example.com/hotel-booking
-    rate: $XXX/night
-    description: Conveniently located near the venue
-    location_name: Hotel Option 1
-    address1: 789 Hotel Drive
-    address2: Your City, ST 12345
-    coordinates: 0.000000,0.000000
-    google_maps_url: https://www.google.com/maps
-  - name: Hotel Option 2
-    phone: +1-555-987-6543
-    reserve_url: https://example.com/hotel-booking-2
-    rate: $XXX/night
-    description: Another great option for guests
-    location_name: Hotel Option 2
-    address1: 321 Lodging Lane
-    address2: Your City, ST 12345
-    coordinates: 0.000000,0.000000
-    google_maps_url: https://www.google.com/maps
-
-events:
-  - name: Wedding Ceremony
-    date: Saturday, Month Day, Year
-    time: 3:00 PM
-    attire: Formal
-    description: Join us as we exchange vows and celebrate our commitment to one another. The ceremony will be held outdoors (weather permitting) followed by a cocktail reception.
-    transportation: Parking information and directions will be provided.
-    <<: *ceremony_location
-  - name: Reception & Dinner
-    date: Saturday, Month Day, Year
-    time: 5:30 PM
-    attire: Formal
-    description: Join us for dinner, dancing, and celebration into the night!
-    transportation: Complimentary shuttle service will be available between the ceremony and reception venues.
-    <<: *reception_location
-
-people:
-  families:
-    - pic: family1.jpg
-      name: The [Surname] Family
-      people: Parent 1, Parent 2, Sibling 1, Sibling 2
-    - pic: family2.jpg
-      name: The [Surname] Family
-      people: Parent 1, Parent 2, Sibling 1
-  kids:
-    - pic: flowergirl.jpg
-      name: Flower Girl Name
-      title: Flower Girl
-    - pic: ringbearer.jpg
-      name: Ring Bearer Name
-      title: Ring Bearer
-  her_side:
-    - name: Maid of Honor
-      pic: moh.jpg
-      role: Maid of Honor
-      description: Bride's Sister/Best Friend
-    - name: Bridesmaid 1
-      pic: bridesmaid1.jpg
-      role: Bridesmaid
-      description: College Friend
-    - name: Bridesmaid 2
-      pic: bridesmaid2.jpg
-      role: Bridesmaid
-      description: Childhood Friend
-  his_side:
-    - name: Best Man
-      pic: bestman.jpg
-      role: Best Man
-      description: Groom's Brother/Best Friend
-    - name: Groomsman 1
-      pic: groomsman1.jpg
-      role: Groomsman
-      description: College Friend
-    - name: Groomsman 2
-      pic: groomsman2.jpg
-      role: Groomsman
-      description: Childhood Friend
-
-faq:
-  - question: What should I wear?
-    answer: |
-      The dress code for our wedding is formal attire. For women, cocktail dresses or formal gowns are appropriate. For men, suits or tuxedos are recommended.
-  - question: Will transportation be provided?
-    answer: |
-      Yes! We will have shuttle service running between the ceremony venue, reception venue, and recommended hotels throughout the evening.
-  - question: Is there parking available?
-    answer: |
-      Complimentary parking is available at both the ceremony and reception venues. Detailed parking instructions will be provided closer to the date.
-  - question: Can I bring a date?
-    answer: |
-      Please refer to your invitation for the number of guests invited. If your invitation includes "and guest," you are welcome to bring a plus one.
-  - question: Will there be vegetarian/vegan options?
-    answer: |
-      Yes! Our menu will include vegetarian options. Please indicate any dietary restrictions on your RSVP card, and we'll do our best to accommodate.
-  - question: What time should I arrive?
-    answer: |
-      We recommend arriving 20-30 minutes before the ceremony start time to allow for parking and seating.
-  - question: Are children welcome?
-    answer: |
-      We love your little ones, but we've decided to make our wedding an adults-only celebration. We hope this gives you a chance to relax and enjoy the evening!
-
-guide:
-  explore:
-    - title: Local Attraction 1
-      description: A must-see destination in the area with beautiful views and interesting history. Perfect for a morning or afternoon visit.
-    - title: Local Attraction 2
-      description: Another great spot to explore with unique architecture and cultural significance.
-    - title: Local Park or Garden
-      description: A beautiful outdoor space perfect for a leisurely walk or picnic. Great for families with children.
-  food:
-    - title: Local Restaurant 1
-      description: Known for their signature dish and local cuisine. Reservations recommended on weekends.
-    - title: Local Restaurant 2
-      description: A casual dining spot with great atmosphere and diverse menu options.
-    - title: Coffee Shop
-      description: The best place in town for coffee and breakfast. Try their specialty pastries!
-  drinks:
-    - title: Local Bar/Lounge
-      description: A popular spot for evening drinks with great cocktails and a lively atmosphere.
-    - title: Brewery/Winery
-      description: Local craft brewery/winery offering tours and tastings. A fun afternoon activity!
-
-google:
-  key: YOUR_GOOGLE_API_KEY_HERE
-
-calendar:
-  ical: https://www.google.com/calendar/ical/YOUR_CALENDAR_ID/public/basic.ics
-  google_id: YOUR_CALENDAR_ID@group.calendar.google.com
+# Navigation links for the main nav bar
+navigation:
+  - title: "C & G"
+    url: "/"
+  - title_en: "Location"
+    title_es: "Ubicación"
+    url: "/location/"
+  - title_en: "Ceremony"
+    title_es: "Ceremonia"
+    url: "/ceremony/"
+  - title_en: "Activities"
+    title_es: "Actividades"
+    url: "/activities/"
+  - title_en: "RSVP"
+    title_es: "Confirmación"
+    url: "/rsvp/"
+# calendar:
+#   ical: https://www.google.com/calendar/ical/YOUR_CALENDAR_ID/public/basic.ics
+#   google_id: YOUR_CALENDAR_ID@group.calendar.google.com

@@ -36,13 +36,13 @@
             echo "Jekyll wedding website development environment"
             echo ""
             echo "Available commands:"
-            echo "  serve              - Start local development server (alias for bundle exec jekyll serve)"
+            echo "  nix run .#default  - Start local development server (alias for bundle exec jekyll serve)"
             echo "  jekyll serve       - Start local development server"
             echo "  jekyll build       - Build static site"
             echo "  bundle install     - Install Ruby dependencies"
             echo "  bundix            - Generate gemset.nix from Gemfile.lock"
             echo ""
-            echo "Get started: serve"
+            echo "Get started: nix run"
           '';
         };
 

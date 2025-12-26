@@ -65,14 +65,7 @@ $(function () {
     $(this).removeClass("is-expanded");
   });
 
-  // GA Tracking
-  $(".ga-email-nav").click(function () {
-    ga("send", "event", "Email Signup", "Open Form", "Nav Bar");
-  });
-
-  $(".ga-email-etc-coming-soon").click(function () {
-    ga("send", "event", "Email Signup", "Open Form", "ETC - Coming Soon");
-  });
+  // Google Analytics tracking removed - ga object not initialized
 
   // RSVP slider value update
   $("#likelihood").on("input", function () {
