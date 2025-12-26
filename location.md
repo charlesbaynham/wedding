@@ -12,8 +12,8 @@ Our wedding will be in Mexico, in the beautiful Yucatan region. In October, you 
 
 We will be staying in **Puerto Morelos** before the wedding which is a 20 minute drive from the airport. This is a beautiful town of white sand and beaches that's not too overrun by tourists. From here, we'll head out to [various activities](/activities) which we would love you to join us on!
 
-The wedding itself will be in Cenote Zapote Ecopark, a half-hour drive from Puerto Morelos into the jungle. We will organise shared transport closer to the time, and there are also hotels close to the park.
+The wedding itself will be in **Cenote Zapote Ecopark**, a half-hour drive from Puerto Morelos into the jungle. We will organise shared transport closer to the time, and there are also hotels close to the park.
 
 ## Booking accommodation and transport
 
-Our wedding planner is happy to organise both accommodation and transport for anyone who wants it. We'll be in touch about transport later, but if you would like her to organise your hotel for you then please email us at {{site.email}}.
+Our wedding planner is happy to organise both accommodation and transport for anyone who wants it. We'll be in touch about transport later, but if you would like her to organise your hotel for you then please [email us at {{site.email}}](mailto:{{site.email}}).
