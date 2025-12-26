@@ -8,15 +8,12 @@ This is a Jekyll-based wedding website built with Bootstrap 3, designed to be ea
 
 - **Layouts** (`_layouts/`): Base templates for pages
   - `default.html` - Main layout with nav, footer, and JS includes
-  - `info.html` - Layout for informational pages with billboard headers
 - **Includes** (`_includes/`): Reusable components
   - `nav.html` - Navigation bar
   - `head.html` - HTML head with meta tags and CSS
   - `js.html` - JavaScript includes at bottom of page
   - `google_map.html` - Google Maps static image component
-  - `hotel_thumbnail.html` - Hotel display component
-  - `wedding_details.html` - Main details page content
-- **Pages**: Top-level `.html` files are pages (e.g., `index.html`, `celebrations.html`, `people.html`)
+- **Pages**: Top-level `.html` or `.md` files are pages (e.g., `index.html`)
 - **Assets**: Static files in `css/`, `js/`, `img/` directories
 - **Config**: `_config.yml` contains all wedding data and site settings
 
@@ -32,116 +29,7 @@ This is a Jekyll-based wedding website built with Bootstrap 3, designed to be ea
 
 ### 1. Wedding Information (`_config.yml`)
 
-This is the PRIMARY file for customization. All wedding-specific data lives here:
-
-#### Site Settings
-
-```yaml
-title: Your Names
-email: your.email@example.com
-url: https://yourwedding.example.com
-description: "We're getting married and can't wait to celebrate with you!"
-```
-
-#### Locations
-
-Define venues with YAML anchors for reuse:
-
-```yaml
-locations:
-  ceremony_venue: &ceremony_location
-    location_name: Venue Name
-    address1: Street Address
-    address2: City, State ZIP
-    coordinates: lat,long # For Google Maps
-    google_maps_url: https://www.google.com/maps/...
-```
-
-#### Events
-
-Array of wedding events (rehearsal, ceremony, reception, etc.):
-
-```yaml
-events:
-  - name: Wedding Ceremony
-    date: Saturday, Month Day, Year
-    time: 3:00 PM
-    attire: Formal
-    description: Event description paragraph
-    transportation: Parking/shuttle details
-    <<: *ceremony_location  # Inherits location data
-```
-
-#### Hotels
-
-Accommodation options for guests:
-
-```yaml
-hotels:
-  - name: Hotel Name
-    phone: +1-555-123-4567
-    reserve_url: https://booking-link.com
-    rate: $XXX/night
-    description: Hotel description
-    location_name: Hotel Name
-    address1: Street
-    address2: City, State ZIP
-    coordinates: lat,long
-    google_maps_url: https://maps.google.com/...
-```
-
-#### Wedding Party (`people:`)
-
-- `families:` - Parents and families (with images)
-- `kids:` - Flower girls, ring bearers
-- `her_side:` - Bridesmaids and maid of honor
-- `his_side:` - Groomsmen and best man
-
-#### FAQ & City Guide
-
-- `faq:` - Array of `question:` and `answer:` pairs
-- `guide:` - Nested sections (explore, food, drinks) with arrays of recommendations
-
-#### Google Services
-
-```yaml
-google:
-  key: YOUR_GOOGLE_API_KEY_HERE # For Maps API
-
-calendar:
-  ical: https://calendar-url/basic.ics
-  google_id: calendar-id@group.calendar.google.com
-```
-
-### 2. Template Syntax (Liquid)
-
-#### Accessing Config Data
-
-```liquid
-{{ site.title }}                    # Simple value
-{{ site.events[0].name }}          # Array access
-{% for event in site.events %}     # Loop through arrays
-  {{ event.name }}
-  {{ event.date }}
-{% endfor %}
-```
-
-#### Conditionals
-
-```liquid
-{% if event.transportation %}
-  <p>{{ event.transportation }}</p>
-{% endif %}
-```
-
-#### Includes with Parameters
-
-```liquid
-{% include google_map.html
-   link=event.google_maps_url
-   size="600x300"
-   coordinates=event.coordinates %}
-```
+This contains the jekyll config and might later be used to store wedding-specific data, but isn't really used for this right now.
 
 ### 3. Page Customization
 
@@ -153,20 +41,8 @@ Each page starts with YAML front matter:
 ---
 layout: info # Layout to use
 title: Page Title # Browser title
-billboard_class: billboard-xyz # CSS class for header image
 ---
 ```
-
-#### Billboard Images
-
-Background images for section headers are CSS classes in `css/main.css`:
-
-- `.billboard-stairs` - Staircase image
-- `.billboard-wall` - Wall image
-- `.billboard-bridge-walk` - Bridge walking image
-- `.billboard-ramp-walk` - Ramp walking image
-
-To customize: Replace images in `img/` directory and update CSS classes.
 
 ### 4. Bootstrap 3 Grid System
 
@@ -190,30 +66,6 @@ The site uses Bootstrap 3's 12-column responsive grid:
 - Numbers add up to 12 per row
 
 ### 5. Common Customization Tasks
-
-#### Change Couple Names
-
-1. Update `title:` in `_config.yml`
-2. Edit `index.html` - change `<h1 class="brand-heading">`
-3. Update navigation brand: `_includes/nav.html` - change `C & N`
-
-#### Add/Remove Events
-
-1. Add/remove items in `events:` array in `_config.yml`
-2. Define location with anchor (`&location_name`) in `locations:`
-3. Reference location with `<<: *location_name` in event
-
-#### Change Colors/Styling
-
-- Primary stylesheet: `css/main.css`
-- Bootstrap theme: `css/bootstrap.min.css`
-- Gold accent color used throughout: `#AFA63D`
-
-#### Add Wedding Party Members
-
-1. Add photos to `img/people/squares/` (square crop)
-2. Add entry to `people.her_side` or `people.his_side` in `_config.yml`
-3. Format: `name:`, `pic:` (filename), `role:`, `description:`
 
 #### Modify Navigation
 
