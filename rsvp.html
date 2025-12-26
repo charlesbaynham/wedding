@@ -3,3 +3,103 @@ layout: default
 background_image: /img/volcanic.jpg
 invisible_nav: true
 ---
+
+<section id="rsvp" class="container">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <h1>
+        <span class="label-en">RSVP</span>
+        <span class="label-es" lang="es">Confirmación de asistencia</span>
+      </h1>
+
+      <form
+        action="https://formspree.io/f/xvzognwp"
+        method="post"
+        class="rsvp-form"
+      >
+        <div class="form-group mb-3">
+          <label for="names">
+            <span class="label-en">Names of all guests</span>
+            <span class="label-es" lang="es"
+              >Nombres de todos los invitados</span
+            >
+          </label>
+          <textarea
+            class="form-control"
+            id="names"
+            name="names"
+            rows="2"
+            placeholder="Enter names of all guests attending"
+            data-ph-en="Enter names of all guests attending"
+            data-ph-es="Escribe los nombres de todos los invitados que asistirán"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="attending">
+            <span class="label-en">Can you come?</span>
+            <span class="label-es" lang="es">¿Puedes venir?</span>
+          </label>
+
+          <select class="form-control" id="attending" name="attending" required>
+            <option value="yes" data-label-en="Yes" data-label-es="Sí">
+              Yes / Sí
+            </option>
+            <option value="no" data-label-en="No" data-label-es="No">No</option>
+          </select>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="transport">
+            <span class="label-en"
+              >Would you like transport to / from Puerto Morelos on the day of
+              the wedding?</span
+            >
+            <span class="label-es" lang="es"
+              >¿Te gustaría transporte hacia / desde Puerto Morelos el día de la
+              boda?</span
+            >
+          </label>
+          <select class="form-control" id="transport" name="transport" required>
+            <option value="" disabled selected>
+              <span>Please select / Por favor selecciona</span>
+            </option>
+            <option value="yes" data-label-en="Yes" data-label-es="Sí">
+              Yes / Sí
+            </option>
+            <option value="no" data-label-en="No" data-label-es="No">No</option>
+            <option
+              value="dont-know"
+              data-label-en="Don't know"
+              data-label-es="No lo sé"
+            >
+              Don't know / No lo sé
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="comments">
+            <span class="label-en">Comments</span>
+            <span class="label-es" lang="es">Comentarios</span>
+          </label>
+          <textarea
+            class="form-control"
+            id="comments"
+            name="comments"
+            rows="4"
+            placeholder="Any additional comments or dietary requirements"
+            data-ph-en="Any additional comments or dietary requirements"
+            data-ph-es="Cualquier comentario adicional o requisitos dietéticos"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+          <span class="label-en">Submit RSVP</span>
+          <span class="label-es" lang="es">Enviar confirmación</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
