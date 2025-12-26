@@ -169,7 +169,7 @@ a:focus {
   }
 }
 
-.intro {
+.billboard {
   display: table;
   width: 100%;
   height: 100vh;
@@ -194,7 +194,7 @@ a:focus {
   }
 }
 
-.intro .intro-body {
+.billboard .billboard-body {
   display: table-cell;
   vertical-align: middle;
 }
