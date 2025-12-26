@@ -49,6 +49,8 @@ navigation:
     url: "/ceremony/"
   - title: "Activities"
     url: "/activities/"
+  - title: RSVP
+    url: "/rsvp/"
 # calendar:
 #   ical: https://www.google.com/calendar/ical/YOUR_CALENDAR_ID/public/basic.ics
 #   google_id: YOUR_CALENDAR_ID@group.calendar.google.com
