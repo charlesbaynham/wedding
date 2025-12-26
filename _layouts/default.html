@@ -4,7 +4,7 @@
   <body data-target=".navbar-fixed-top">
     {% include nav.html %} 
     
-    <header class="billboard" style="background-image: url('{{ site.baseurl }}/{{ page.background_image | default: site.default_background_image }}');">
+    <header class="billboard" style="background-image: url('{% if page.background_image contains "://" %}{{ page.background_image }}{% else %}{{ site.baseurl }}/{{ page.background_image | default: site.default_background_image }}{% endif %}');">
     <div class="intro-body">
         <div class="container">
             <div class="row">
