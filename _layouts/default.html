@@ -5,7 +5,7 @@
     {% include nav.html %} 
     
     <header class="billboard" style="background-image: url('{% if page.background_image contains "://" %}{{ page.background_image }}{% else %}{{ page.background_image | default: site.default_background_image | relative_url  }}{% endif %}');">
-    <div class="intro-body">
+    <div class="main-body">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">

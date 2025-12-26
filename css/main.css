@@ -195,6 +195,10 @@ a:focus {
   font-size: 19px;
 }
 
+.main-body {
+  margin-top: 2cm;
+}
+
 @media (min-width: 767px) {
   .intro {
     padding: 0;
