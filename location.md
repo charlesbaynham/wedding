@@ -1,6 +1,6 @@
 ---
 layout: default
-background_image: https://picsum.photos/2048/1024
+background_image: /img/beach.jpg
 invisible_nav: true
 ---
 
