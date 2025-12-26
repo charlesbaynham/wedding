@@ -12,4 +12,4 @@ The ceremony and reception will be in the same place and will be relaxed and inf
 
 ## Gifts
 
-Absolutely none please. You have all travelled very far to be here with us - we are already favoured to our hearts' content.
+Absolutely none please. You have all travelled very far to be here with us - we are already favoured with the greatest gift we could wish for.
