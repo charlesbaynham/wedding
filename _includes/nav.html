@@ -11,7 +11,10 @@
         class="navbar-brand{% if nav.url == page.url %} active{% endif %}"
         href="{{ nav.url }}"
       >
-        {{ nav.title }}
+        {% if nav.title_en and nav.title_es %}
+        <span class="label-en">{{ nav.title_en }}</span>
+        <span class="label-es" lang="es">{{ nav.title_es }}</span>
+        {% else %} {{ nav.title }} {% endif %}
       </a>
       {% endfor %}
 

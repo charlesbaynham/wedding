@@ -43,13 +43,17 @@ default_background_image: img/header.jpg
 navigation:
   - title: "C & G"
     url: "/"
-  - title: "Location"
+  - title_en: "Location"
+    title_es: "Ubicación"
     url: "/location/"
-  - title: "Ceremony"
+  - title_en: "Ceremony"
+    title_es: "Ceremonia"
     url: "/ceremony/"
-  - title: "Activities"
+  - title_en: "Activities"
+    title_es: "Actividades"
     url: "/activities/"
-  - title: RSVP
+  - title_en: "RSVP"
+    title_es: "Confirmación"
     url: "/rsvp/"
 # calendar:
 #   ical: https://www.google.com/calendar/ical/YOUR_CALENDAR_ID/public/basic.ics

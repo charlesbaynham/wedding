@@ -66,8 +66,6 @@ ul {
 a {
   color: #efdd17;
   text-decoration: underline;
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 
@@ -76,8 +74,6 @@ a:focus {
   text-decoration: none;
   color: #11505d;
 }
-
-/* removed unused .light */
 
 .navbar-custom {
   margin-bottom: 0;
@@ -106,10 +102,6 @@ a:focus {
   outline: 0;
 }
 
-/* removed outdated nested brand-togglers */
-
-/* removed unused .navbar-toggler overrides */
-
 .navbar-custom a {
   color: #404040;
   /*text-shadow: 0px 0px 1px #B38C00;*/
@@ -120,8 +112,6 @@ a:focus {
 }
 
 .navbar-custom .nav li a {
-  -webkit-transition: background 0.3s ease-in-out;
-  -moz-transition: background 0.3s ease-in-out;
   transition: background 0.3s ease-in-out;
 }
 
@@ -141,8 +131,6 @@ a:focus {
   box-shadow: none;
   letter-spacing: 1px;
   background: 0 0;
-  -webkit-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
-  -moz-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
   transition: background 0.5s ease-in-out, padding 0.5s ease-in-out,
     border-bottom 0.5s ease-in-out;
 }
@@ -212,10 +200,6 @@ a:focus {
     font-size: 26px;
   }
 }
-
-/* removed unused btn-circle and pulse keyframes */
-
-/* removed unused .download-section */
 
 .map {
   width: 100%;
@@ -310,10 +294,7 @@ dd {
   background-color: #000000;
   background-repeat: no-repeat;
   background-position: center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
   background-size: cover;
-  -o-background-size: cover;
   position: relative;
 }
 
