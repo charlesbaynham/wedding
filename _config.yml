@@ -1,6 +1,6 @@
 # Site settings
 title: Charles and Gaby
-email: charles.baynham@gmail.com
+email: wedding@houseabsolute.co.uk
 url: https://wedding.houseabsolute.co.uk
 baseurl: ""
 description: "We're getting married and can't wait to celebrate with you!"
@@ -39,14 +39,12 @@ default_background_image: img/header.jpg
 #     answer: |
 #       We love your little ones, but we've decided to make our wedding an adults-only celebration. We hope this gives you a chance to relax and enjoy the evening!
 
-
 # Navigation links for the main nav bar
 navigation:
   - title: "C & G"
     url: "/"
   - title: "Location"
     url: "/location/"
-
 # calendar:
 #   ical: https://www.google.com/calendar/ical/YOUR_CALENDAR_ID/public/basic.ics
 #   google_id: YOUR_CALENDAR_ID@group.calendar.google.com
