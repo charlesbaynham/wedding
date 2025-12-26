@@ -1,9 +1,10 @@
 ---
 layout: default
 background_image: https://picsum.photos/2048/1024
+invisible_nav: true
 ---
 
-# Hello
+# Location
 
 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam quasi
 perferendis sed in, autem mollitia illum vero earum? Impedit velit nulla ullam

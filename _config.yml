@@ -39,8 +39,13 @@ default_background_image: img/header.jpg
 #     answer: |
 #       We love your little ones, but we've decided to make our wedding an adults-only celebration. We hope this gives you a chance to relax and enjoy the evening!
 
-# google:
-#   key: YOUR_GOOGLE_API_KEY_HERE
+
+# Navigation links for the main nav bar
+navigation:
+  - title: "C & G"
+    url: "/"
+  - title: "Location"
+    url: "/location/"
 
 # calendar:
 #   ical: https://www.google.com/calendar/ical/YOUR_CALENDAR_ID/public/basic.ics

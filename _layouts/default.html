@@ -9,13 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
-                  <div class="hero-box text-left">
-                    <h1 class="brand-heading">{{ site.title }}</h1>
-                    <h2>25th October 2026 - Cancún, México</h2>
-                    <p class="intro-text">
-                      <i class="fa fa-heart"></i>
-                    </p>
-
+                  <div class="hero-box{% if page.centred %} centred-text{% endif %}">
                     {{ content }}                    
                   </div>
                 </div>

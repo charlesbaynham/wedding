@@ -5,8 +5,17 @@
 >
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/"> C & G </a>
-      <a class="navbar-brand" href="/location"> Location </a>
+      <!-- Nav items -->
+      {% for nav in site.navigation %}
+      <a
+        class="navbar-brand{% if nav.url == page.url %} active{% endif %}"
+        href="{{ nav.url }}"
+      >
+        {{ nav.title }}
+      </a>
+      {% endfor %}
+
+      <!-- Language Toggle -->
       <div class="navbar-lang-toggle">
         <span class="lang-option" data-lang="en">🇬🇧</span>
         <input
