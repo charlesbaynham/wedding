@@ -2,6 +2,23 @@
 <html>
   {% include head.html %}
   <body data-target=".navbar-fixed-top">
-    {% include nav.html %} {{ content }} {% include js.html %}
+    {% include nav.html %} 
+    
+    <header class="intro">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                  <div class="hero-box text-center">
+                    {{ content }}                    
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% include js.html %}
   </body>
 </html>
