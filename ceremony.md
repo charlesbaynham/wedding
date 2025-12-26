@@ -1,6 +1,6 @@
 ---
 layout: default
-background_image: /img/nepal.jpg
+background_image: /img/rainbow.jpg
 invisible_nav: true
 ---
 

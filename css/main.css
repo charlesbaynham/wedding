@@ -305,7 +305,7 @@ dd {
   text-shadow: black 2px 2px 10px;
   background-color: #000000;
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
