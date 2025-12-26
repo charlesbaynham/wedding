@@ -14,6 +14,10 @@ We will be staying in **Puerto Morelos** before the wedding which is a 20 minute
 
 The wedding itself will be in **Cenote Zapote Ecopark**, a half-hour drive from Puerto Morelos into the jungle. We will organise shared transport closer to the time, and there are also hotels close to the park.
 
+## Accommodation
+
+We'll suggest some accommodation options later, but see below. This is a generally touristy area of Mexico so you'll find plenty of options that range from local AirBnB to gigantic all-inclusive if that's your thing.
+
 ## Booking accommodation and transport
 
 Our wedding planner is happy to organise both accommodation and transport for anyone who wants it. We'll be in touch about transport later, but if you would like her to organise your hotel for you then please [email us at {{site.email}}](mailto:{{site.email}}).
