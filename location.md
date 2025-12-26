@@ -26,4 +26,4 @@ invisible_nav: true
 
 <span class="label-en">Our wedding planner is happy to organise both accommodation and transport for anyone who wants it. We'll be in touch about transport later, but if you would like her to organise your hotel for you then please [email us at {{site.email}}](mailto:{{site.email}}).</span>
 
-s<span class="label-es" lang="es">Nuestra organizadora de bodas va a ayudarnos a coordinar hospedaje y transporte para quien lo desee. Nos pondremos en contacto sobre el transporte más adelante, pero si deseas que ella organice tu hotel, por favor [envíanos un correo a {{site.email}}](mailto:{{site.email}}).</span>
+<span class="label-es" lang="es">Nuestra organizadora de bodas va a ayudarnos a coordinar hospedaje y transporte para quien lo desee. Nos pondremos en contacto sobre el transporte más adelante, pero si deseas que ella organice tu hotel, por favor [envíanos un correo a {{site.email}}](mailto:{{site.email}}).</span>
