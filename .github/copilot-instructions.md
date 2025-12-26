@@ -35,6 +35,23 @@ Welcome to the wedding website repository! This project uses [Jekyll](https://je
 - Update `README.md` with any major changes to structure or setup.
 - Document any new includes, layouts, or custom scripts.
 
+## Localization (English/Spanish)
+
+To provide English and Spanish content, use the following convention:
+
+- Wrap English text in a `<span>` with class `label-en`.
+- Wrap Spanish text in a `<span>` with class `label-es` and add `lang="es"`.
+- Place both language spans together in the markup, so users and scripts can toggle or style them as needed.
+
+**Example:**
+
+```html
+<span class="label-en">This is the first page</span>
+<span class="label-es" lang="es">Esta es la primera página</span>
+```
+
+For inline or block content, repeat this pattern. For links or interactive elements, localize the text inside each span as shown in `index.html`.
+
 ## Security & Performance
 
 - Avoid inline styles and scripts for better security and maintainability.
