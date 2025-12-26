@@ -13,6 +13,9 @@ markdown: kramdown
 permalink: pretty
 exclude:
   - vendor/
+
+# Background image
+default_background_image: img/header.jpg
 # faq:
 #   - question: What should I wear?
 #     answer: |
