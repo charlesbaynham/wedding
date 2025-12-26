@@ -64,7 +64,7 @@ ul {
 }
 
 a {
-  color: #afa63d;
+  color: #efdd17;
   text-decoration: underline;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
@@ -329,8 +329,7 @@ dd {
   }
 }
 
-/* removed unused .billboard-skyline */
-
-/* removed unused floating-info and floating-button */
-
-/* removed unused notification-link styles */
+.email-us {
+  margin-top: 30px;
+  text-align: center;
+}
