@@ -13,7 +13,6 @@ This is a Jekyll-based wedding website built with Bootstrap 3, designed to be ea
   - `nav.html` - Navigation bar
   - `head.html` - HTML head with meta tags and CSS
   - `js.html` - JavaScript includes at bottom of page
-  - `email_form.html` - Email subscription modal
   - `google_map.html` - Google Maps static image component
   - `hotel_thumbnail.html` - Hotel display component
   - `wedding_details.html` - Main details page content
