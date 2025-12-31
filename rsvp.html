@@ -12,11 +12,7 @@ invisible_nav: true
         <span class="label-es" lang="es">Confirmación de asistencia</span>
       </h1>
 
-      <form
-        action="https://formspree.io/f/xvzognwp"
-        method="post"
-        class="rsvp-form"
-      >
+      <form id="rsvp-form" class="rsvp-form">
         <div class="form-group mb-3">
           <label for="names">
             <span class="label-en">Names of all guests</span>
@@ -35,6 +31,40 @@ invisible_nav: true
             data-ph-es="Escribe los nombres de todos los invitados que asistirán"
             required
           ></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="email">
+            <span class="label-en">Email</span>
+            <span class="label-es" lang="es">Correo electrónico</span>
+          </label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="your.email@example.com"
+            data-ph-en="your.email@example.com"
+            data-ph-es="tu.correo@ejemplo.com"
+            required
+          />
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="phone">
+            <span class="label-en">Phone number</span>
+            <span class="label-es" lang="es">Número de teléfono</span>
+          </label>
+          <input
+            type="tel"
+            class="form-control"
+            id="phone"
+            name="phone"
+            placeholder="+1 234 567 8900"
+            data-ph-en="+1 234 567 8900"
+            data-ph-es="+52 123 456 7890"
+            required
+          />
         </div>
 
         <div class="form-group mb-3">
