@@ -216,4 +216,136 @@ $(function () {
       applyLanguageToBlocks(savedOnly === "es");
     } catch (e) {}
   }
+
+  // RSVP Form Submission Handler (FormEasy)
+  var $rsvpForm = $("#rsvp-form");
+  if ($rsvpForm.length) {
+    var $submitBtn = $rsvpForm.find('button[type="submit"]');
+    var originalBtnTextEN = "Submit RSVP";
+    var originalBtnTextES = "Enviar confirmación";
+    var loadingTextEN = "Submitting...";
+    var loadingTextES = "Enviando...";
+
+    // Replace this with your actual Google Apps Script Web App URL
+    var FORM_ENDPOINT =
+      "https://script.google.com/macros/s/AKfycbxD3Nd2hRkMnC7Bqu3odO_AVOzgpLMRkl_0NCjafhgV1PiWwPKzVmEiwdt2qahWggfm/exec";
+
+    $rsvpForm.on("submit", function (e) {
+      e.preventDefault();
+
+      // Get current language
+      var isES = $langSlider.length
+        ? parseFloat($langSlider.val()) >= 0.5
+        : localStorage.getItem(LANG_KEY) === "es";
+
+      // Basic client-side validation for required fields
+      var names = $("#names").val().trim();
+      var email = $("#email").val().trim();
+      var phone = $("#phone").val().trim();
+      var attending = $("#attending").val();
+      var transport = $("#transport").val();
+      var recaptchaResponse = $("#g-recaptcha-response").val();
+
+      if (!names) {
+        alert(
+          isES
+            ? "Por favor ingresa los nombres de todos los invitados."
+            : "Please enter the names of all guests."
+        );
+        return;
+      }
+
+      if (!email) {
+        alert(
+          isES
+            ? "Por favor ingresa tu correo electrónico."
+            : "Please enter your email."
+        );
+        return;
+      }
+
+      if (!phone) {
+        alert(
+          isES
+            ? "Por favor ingresa tu número de teléfono."
+            : "Please enter your phone number."
+        );
+        return;
+      }
+
+      if (!attending) {
+        alert(
+          isES
+            ? "Por favor indica si puedes asistir."
+            : "Please indicate if you can attend."
+        );
+        return;
+      }
+
+      if (!transport) {
+        alert(
+          isES
+            ? "Por favor selecciona una opción de transporte."
+            : "Please select a transport option."
+        );
+        return;
+      }
+
+      if (!recaptchaResponse) {
+        alert(
+          isES
+            ? "Por favor completa la verificación reCAPTCHA."
+            : "Please complete the reCAPTCHA verification."
+        );
+        return;
+      }
+
+      // Disable submit button and show loading state
+      $submitBtn.prop("disabled", true);
+      $submitBtn.find(".label-en").text(loadingTextEN);
+      $submitBtn.find(".label-es").text(loadingTextES);
+
+      // Collect form data
+      var formData = {
+        names: names,
+        email: email,
+        phone: phone,
+        attending: attending,
+        transport: transport,
+        dietary: $("#dietary").val().trim(),
+        comments: $("#comments").val().trim(),
+        gCaptchaResponse: recaptchaResponse,
+      };
+
+      // Submit to FormEasy endpoint
+      fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          // Success - redirect to thank you page
+          window.location.href = "/rsvp-success.html";
+        })
+        .catch(function (error) {
+          // Error - show alert and re-enable form
+          console.error("Form submission error:", error);
+          alert(
+            isES
+              ? "Hubo un error al enviar el formulario. Por favor intenta de nuevo."
+              : "There was an error submitting the form. Please try again."
+          );
+
+          // Re-enable submit button
+          $submitBtn.prop("disabled", false);
+          $submitBtn.find(".label-en").text(originalBtnTextEN);
+          $submitBtn.find(".label-es").text(originalBtnTextES);
+        });
+    });
+  }
 });
