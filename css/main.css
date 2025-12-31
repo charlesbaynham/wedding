@@ -318,3 +318,10 @@ dd {
   margin-top: 30px;
   text-align: center;
 }
+
+.email-us .qr-code {
+  width: 80vw;
+  max-width: 150px;
+  height: auto;
+  margin-top: 1em;
+}
