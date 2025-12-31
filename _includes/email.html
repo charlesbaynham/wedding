@@ -1,24 +1,33 @@
 <div class="email-us">
-  <p>
+  <p style="text-align: center">
     <i class="fa fa-heart"></i>
   </p>
-  <p class="label-en">
-    Questions?
-    <a href="mailto:{{ site.email }}">Email us</a>
-  </p>
-  <p class="label-es" lang="es">
-    ¿Preguntas?
-    <a href="mailto:{{ site.email }}">Escríbenos</a>
-  </p>
 
-  <p>
-    <img
-      class="qr-code"
-      src="/img/qr-to-whatsapp.svg"
-      alt="QR code to WhatsApp chat"
-    />
-  </p>
+  <div class="row align-items-center">
+    <!-- Email Section -->
+    <div class="col-md-6 col-sm-12" style="text-align: center">
+      <p class="label-en">
+        Questions? Email us at<br />
+        <a href="mailto:{{ site.email }}">{{ site.email }} </a>
+      </p>
+      <p class="label-es" lang="es">
+        ¿Preguntas? Envíanos un correo a<br />
+        <a href="mailto:{{ site.email }}">{{ site.email }} </a>
+      </p>
+    </div>
 
-  <p class="label-en">...and join the WhatsApp group!</p>
-  <p class="label-es" lang="es">...¡y únete al grupo de WhatsApp!</p>
+    <!-- WhatsApp Section -->
+    <div class="col-md-6 col-sm-12" style="text-align: center">
+      <p>
+        <img
+          class="qr-code"
+          src="/img/qr-to-whatsapp.svg"
+          alt="QR code to WhatsApp chat"
+        />
+      </p>
+
+      <p class="label-en">...and join the WhatsApp group!</p>
+      <p class="label-es" lang="es">...¡y únete al grupo de WhatsApp!</p>
+    </div>
+  </div>
 </div>
