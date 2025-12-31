@@ -230,6 +230,9 @@ $(function () {
     var FORM_ENDPOINT =
       "https://script.google.com/macros/s/AKfycbxD3Nd2hRkMnC7Bqu3odO_AVOzgpLMRkl_0NCjafhgV1PiWwPKzVmEiwdt2qahWggfm/exec";
 
+    // Replace this with your reCAPTCHA v3 site key
+    var RECAPTCHA_SITE_KEY = "YOUR_RECAPTCHA_V3_SITE_KEY_HERE";
+
     $rsvpForm.on("submit", function (e) {
       e.preventDefault();
 
@@ -244,7 +247,6 @@ $(function () {
       var phone = $("#phone").val().trim();
       var attending = $("#attending").val();
       var transport = $("#transport").val();
-      var recaptchaResponse = $("#g-recaptcha-response").val();
 
       if (!names) {
         alert(
@@ -291,61 +293,59 @@ $(function () {
         return;
       }
 
-      if (!recaptchaResponse) {
-        alert(
-          isES
-            ? "Por favor completa la verificación reCAPTCHA."
-            : "Please complete the reCAPTCHA verification."
-        );
-        return;
-      }
-
       // Disable submit button and show loading state
       $submitBtn.prop("disabled", true);
       $submitBtn.find(".label-en").text(loadingTextEN);
       $submitBtn.find(".label-es").text(loadingTextES);
 
-      // Collect form data
-      var formData = {
-        names: names,
-        email: email,
-        phone: phone,
-        attending: attending,
-        transport: transport,
-        dietary: $("#dietary").val().trim(),
-        comments: $("#comments").val().trim(),
-        gCaptchaResponse: recaptchaResponse,
-      };
+      // Execute reCAPTCHA v3 and submit form
+      grecaptcha.ready(function () {
+        grecaptcha
+          .execute(RECAPTCHA_SITE_KEY, { action: "submit" })
+          .then(function (token) {
+            // Collect form data with reCAPTCHA token
+            var formData = {
+              names: names,
+              email: email,
+              phone: phone,
+              attending: attending,
+              transport: transport,
+              dietary: $("#dietary").val().trim(),
+              comments: $("#comments").val().trim(),
+              gCaptchaResponse: token,
+            };
 
-      // Submit to FormEasy endpoint
-      fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8",
-        },
-        body: JSON.stringify(formData),
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          // Success - redirect to thank you page
-          window.location.href = "/rsvp-success.html";
-        })
-        .catch(function (error) {
-          // Error - show alert and re-enable form
-          console.error("Form submission error:", error);
-          alert(
-            isES
-              ? "Hubo un error al enviar el formulario. Por favor intenta de nuevo."
-              : "There was an error submitting the form. Please try again."
-          );
+            // Submit to FormEasy endpoint
+            return fetch(FORM_ENDPOINT, {
+              method: "POST",
+              headers: {
+                "Content-Type": "text/plain;charset=utf-8",
+              },
+              body: JSON.stringify(formData),
+            });
+          })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            // Success - redirect to thank you page
+            window.location.href = "/rsvp-success.html";
+          })
+          .catch(function (error) {
+            // Error - show alert and re-enable form
+            console.error("Form submission error:", error);
+            alert(
+              isES
+                ? "Hubo un error al enviar el formulario. Por favor intenta de nuevo."
+                : "There was an error submitting the form. Please try again."
+            );
 
-          // Re-enable submit button
-          $submitBtn.prop("disabled", false);
-          $submitBtn.find(".label-en").text(originalBtnTextEN);
-          $submitBtn.find(".label-es").text(originalBtnTextES);
-        });
+            // Re-enable submit button
+            $submitBtn.prop("disabled", false);
+            $submitBtn.find(".label-en").text(originalBtnTextEN);
+            $submitBtn.find(".label-es").text(originalBtnTextES);
+          });
+      });
     });
   }
 });
