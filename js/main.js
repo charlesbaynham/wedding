@@ -231,7 +231,7 @@ $(function () {
       "https://script.google.com/macros/s/AKfycbxD3Nd2hRkMnC7Bqu3odO_AVOzgpLMRkl_0NCjafhgV1PiWwPKzVmEiwdt2qahWggfm/exec";
 
     // Replace this with your reCAPTCHA v3 site key
-    var RECAPTCHA_SITE_KEY = "YOUR_RECAPTCHA_V3_SITE_KEY_HERE";
+    var RECAPTCHA_SITE_KEY = "6LcGajwsAAAAAId2rBkCEIPZO5qhVmbi9i_NkQQf";
 
     $rsvpForm.on("submit", function (e) {
       e.preventDefault();
