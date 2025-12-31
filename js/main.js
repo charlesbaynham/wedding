@@ -329,7 +329,7 @@ $(function () {
           })
           .then(function (data) {
             // Success - redirect to thank you page
-            window.location.href = "/rsvp-success.html";
+            window.location.href = "/rsvp-success";
           })
           .catch(function (error) {
             // Error - show alert and re-enable form
