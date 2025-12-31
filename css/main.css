@@ -152,7 +152,7 @@ a:focus {
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(4px);
   padding: 60px 40px;
-  padding-bottom: 0px;
+  padding-bottom: 5mm;
   border-radius: 10px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   border: 5px solid rgba(255, 255, 255, 0.1);
@@ -185,6 +185,10 @@ a:focus {
 
 .main-body {
   margin-top: 2cm;
+}
+
+.main-body > .container {
+  padding-bottom: 5mm;
 }
 
 @media (min-width: 767px) {
