@@ -217,6 +217,36 @@ $(function () {
     } catch (e) {}
   }
 
+  // Language toggle first-visit popup
+  var LANG_POPUP_KEY = "langPopupSeen";
+  var $langPopup = $("#langTogglePopup");
+  
+  if ($langPopup.length) {
+    try {
+      var popupSeen = localStorage.getItem(LANG_POPUP_KEY);
+      
+      if (!popupSeen) {
+        // Show popup on first visit
+        $langPopup.css("display", "block");
+        
+        // Hide and mark as seen after 3 seconds
+        setTimeout(function() {
+          $langPopup.addClass("fade-out");
+          
+          // Remove from DOM after fade animation completes
+          setTimeout(function() {
+            $langPopup.css("display", "none");
+          }, 500); // Match CSS transition duration
+          
+          // Mark as seen in localStorage
+          localStorage.setItem(LANG_POPUP_KEY, "1");
+        }, 3000);
+      }
+    } catch (e) {
+      // If localStorage is not available, don't show popup
+    }
+  }
+
   // RSVP Form Submission Handler (FormEasy)
   var $rsvpForm = $("#rsvp-form");
   if ($rsvpForm.length) {
