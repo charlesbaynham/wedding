@@ -44,7 +44,27 @@ Triggered on pushes to master:
 
 ## Requirements
 
-This setup uses GitHub Pages with the `peaceiris/actions-gh-pages` action. No additional secrets are required beyond the built-in `GITHUB_TOKEN`.
+This setup uses GitHub Pages with the `peaceiris/actions-gh-pages` action. 
+
+### Critical Setup Step
+
+**You MUST change the GitHub Pages source branch:**
+
+1. Go to **Settings** → **Pages** in your GitHub repository
+2. Under "Build and deployment" → "Source", select **Deploy from a branch**
+3. Select the **`gh-pages`** branch (instead of `master`)
+4. Click **Save**
+
+This is required because:
+- `master` branch contains the Jekyll source code
+- `gh-pages` branch contains the built static site
+- Review apps deploy to subdirectories of `gh-pages`
+
+**Note:** The first time you enable this, you may need to push to master (or manually trigger the production workflow) to populate the `gh-pages` branch before the site will work.
+
+### No Additional Secrets Required
+
+Only the built-in `GITHUB_TOKEN` is needed — no external services or API keys.
 
 ## Usage
 
