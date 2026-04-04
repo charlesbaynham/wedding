@@ -27,7 +27,8 @@ jobs:
       - name: Configure baseurl for PR preview
         run: |
           PR_NUMBER=${{ github.event.number }}
-          sed -i "s|baseurl: \"\"|baseurl: \"/pr/${PR_NUMBER}\"|" _config.yml
+          # Handle both "baseurl: \"\"" and "baseurl: \"\"" formats
+          sed -i "s|baseurl:[[:space:]]*\"\"|baseurl: \"/pr/${PR_NUMBER}\"|" _config.yml
           echo "Updated baseurl to /pr/${PR_NUMBER}"
           cat _config.yml | grep baseurl
 
