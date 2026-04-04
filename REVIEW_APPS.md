@@ -1,90 +1,91 @@
 # Review Apps Setup
 
-This document explains how review apps (PR previews) are configured for the wedding website.
+This document explains how review apps (PR previews) are configured for the wedding website using a **subdirectory approach** on GitHub Pages.
 
 ## Overview
 
-Review apps allow you to preview changes from pull requests before merging them to master. Each PR gets its own unique URL where the site is deployed.
+Review apps allow you to preview changes from pull requests before merging them to master. Each PR gets its own unique URL where the site is deployed as a subdirectory of the main site.
 
 ## How It Works
 
-1. **Pull Request Created** → GitHub Actions builds the Jekyll site
-2. **Cloudflare Pages Deploy** → Site is deployed to a unique preview URL
-3. **Comment Posted** → Bot comments on the PR with the preview link
-4. **Updates on Push** → Every new commit to the PR updates the preview
+The subdirectory approach works by:
 
-## Setup Required
+1. **Modifying `baseurl`** → When a PR is opened, the workflow updates `_config.yml` to set `baseurl: "/pr/NUMBER"`
+2. **Building with subdirectory** → Jekyll builds all links and assets to use the subdirectory path
+3. **Deploying to subdirectory** → The built site is pushed to the `pr/NUMBER/` folder on the `gh-pages` branch
+4. **Cleanup on close** → When the PR is closed/merged, the subdirectory is automatically removed
 
-To enable review apps, you need to configure Cloudflare Pages:
+### Example URLs
 
-### 1. Create Cloudflare Pages Project
+- Production: `https://wedding.houseabsolute.co.uk/`
+- PR #42 Preview: `https://wedding.houseabsolute.co.uk/pr/42/`
 
-1. Log in to [Cloudflare Dashboard](https://dash.cloudflare.com)
-2. Go to **Pages** → **Create a project**
-3. Choose **Upload assets** (not Git integration)
-4. Name the project: `wedding-website`
-5. Note the **Account ID** from the right sidebar
+## Workflows
 
-### 2. Create API Token
+### 1. Deploy PR Preview (`.github/workflows/deploy-preview.yml`)
 
-1. Go to **My Profile** → **API Tokens**
-2. Click **Create Token**
-3. Use the **Custom token** template:
-   - **Token name**: `GitHub Actions - Wedding Site`
-   - **Permissions**:
-     - `Cloudflare Pages:Edit`
-     - `Zone:Read` (if using custom domain)
-   - **Account Resources**: Include your account
-   - **Zone Resources**: Include your domain (if applicable)
+Triggered when a PR is opened or updated:
+- Modifies `_config.yml` to set the correct `baseurl` for the PR number
+- Builds the Jekyll site
+- Deploys to `pr/{number}/` subdirectory on gh-pages branch
+- Posts/updates a comment on the PR with the preview URL
 
-### 3. Add Secrets to GitHub
+### 2. Cleanup PR Preview (`.github/workflows/cleanup-preview.yml`)
 
-In the repository, go to **Settings** → **Secrets and variables** → **Actions**, then add:
+Triggered when a PR is closed:
+- Removes the `pr/{number}/` directory from gh-pages branch
+- Keeps the gh-pages branch clean
 
-| Secret Name | Value |
-|-------------|-------|
-| `CLOUDFLARE_API_TOKEN` | The API token created above |
-| `CLOUDFLARE_ACCOUNT_ID` | Your Cloudflare account ID |
+### 3. Deploy Production (`.github/workflows/deploy-production.yml`)
 
-### 4. Enable Branch Protection (Recommended)
+Triggered on pushes to master:
+- Builds Jekyll with `baseurl: ""` (root)
+- Deploys to the root of gh-pages branch
 
-To enforce PR-only changes to master:
+## Requirements
 
-1. Go to **Settings** → **Branches**
-2. Add rule for `master`:
-   - ✅ Require a pull request before merging
-   - ⬜ Require approvals (optional)
-   - ✅ Require status checks to pass (optional - can add the Jekyll build check)
+This setup uses GitHub Pages with the `peaceiris/actions-gh-pages` action. No additional secrets are required beyond the built-in `GITHUB_TOKEN`.
 
 ## Usage
-
-Once configured:
 
 1. Create a new branch: `git checkout -b my-feature`
 2. Make your changes
 3. Push and create a PR
-4. Wait for the GitHub Action to complete
-5. Click the preview URL in the PR comments
+4. Wait for the GitHub Action to complete (check the Actions tab)
+5. A comment will appear on the PR with the preview link
 
-## Current Limitations
+## Key Differences from Cloudflare Approach
 
-- **Custom Domain**: PR previews use Cloudflare's `*.pages.dev` subdomain, not your custom domain
-- **Form Submissions**: RSVP form submissions won't work on previews (no backend)
-- **Assets**: Some absolute URLs might reference the production site
+| Feature | Subdirectory (GitHub Pages) | Cloudflare Pages |
+|---------|----------------------------|------------------|
+| **URL** | Subdirectory of main domain | Separate subdomain |
+| **Setup** | Simpler (no extra accounts) | Requires Cloudflare account |
+| **Cleanup** | Automatic via workflow | Manual or time-based |
+| **Domain** | Same as production | `*.pages.dev` subdomain |
 
 ## Troubleshooting
 
 ### Preview Not Deploying
 
 Check the GitHub Actions tab for the failed workflow. Common issues:
-- Missing Cloudflare secrets
-- Cloudflare Pages project doesn't exist
-- API token lacks correct permissions
+- Jekyll build errors (check `_config.yml` syntax)
+- Permission issues (ensure `GITHUB_TOKEN` has write access)
 
 ### Preview URL 404
 
-Cloudflare Pages may take 30-60 seconds to fully deploy. Wait a moment and refresh.
+The GitHub Pages deployment may take 1-2 minutes to propagate. Refresh after a short wait.
 
-### Want to Disable?
+### Assets Not Loading
 
-Simply delete the `.github/workflows/pr-preview.yml` file or disable the workflow in GitHub Actions settings.
+If CSS/images don't load on the preview, check that:
+1. The `baseurl` was correctly modified in the workflow
+2. The Jekyll build completed successfully
+3. Links in templates use `{{ site.baseurl }}` correctly
+
+## Disabling Review Apps
+
+To disable review apps:
+1. Delete `.github/workflows/deploy-preview.yml`
+2. Delete `.github/workflows/cleanup-preview.yml`
+
+Or disable the workflows in the GitHub Actions settings.
