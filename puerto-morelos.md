@@ -36,6 +36,12 @@ Casa Brisa y Mar está ubicada directamente en la mejor playa de Puerto Morelos.
 [Visita el sitio web de Casa Brisa y Mar](https://www.casabrisaymar.com/) para más fotos y detalles.
 </span>
 
+## <span class="label-en">Photos</span><span class="label-es" lang="es">Fotos</span>
+
+![Puerto Morelos beach](/img/beach.jpg)
+
+![Ocean view](/img/header.jpg)
+
 ## <span class="label-en">Location</span><span class="label-es" lang="es">Ubicación</span>
 
 <span class="label-en">
@@ -53,6 +59,16 @@ The wedding venue at Cenote Zapote Ecopark is about a **20-minute taxi ride** fr
 <span class="label-es" lang="es">
 El lugar de la boda en Cenote Zapote Ecopark está a unos **20 minutos en taxi** de la casa. Organizaremos transporte compartido más cerca de la fecha para quienes se queden con nosotros.
 </span>
+
+<iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.297938929497!2d-87.0167!3d20.8533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4e5c5c5c5c5c5c%3A0x5c5c5c5c5c5c5c5c!2sPuerto%20Morelos%2C%20Quintana%20Roo%2C%20Mexico!5e0!3m2!1sen!2sus!4v1234567890"
+  width="100%"
+  height="450"
+  style="border:0; margin-top: 20px;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
 
 ## <span class="label-en">Join Us</span><span class="label-es" lang="es">Únete a Nosotros</span>
 
