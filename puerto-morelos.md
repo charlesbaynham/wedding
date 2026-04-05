@@ -54,16 +54,6 @@ The wedding venue at Cenote Zapote Ecopark is about a **20-minute taxi ride** fr
 El lugar de la boda en Cenote Zapote Ecopark está a unos **20 minutos en taxi** de la casa. Organizaremos transporte compartido más cerca de la fecha para quienes se queden con nosotros.
 </span>
 
-<iframe 
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.297938929497!2d-87.0167!3d20.8533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4e5c5c5c5c5c5c%3A0x5c5c5c5c5c5c5c5c!2sPuerto%20Morelos%2C%20Quintana%20Roo%2C%20Mexico!5e0!3m2!1sen!2sus!4v1234567890"
-  width="100%" 
-  height="450" 
-  style="border:0;" 
-  allowfullscreen="" 
-  loading="lazy" 
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
-
 ## <span class="label-en">Join Us</span><span class="label-es" lang="es">Únete a Nosotros</span>
 
 <span class="label-en">
@@ -80,19 +70,4 @@ If you're interested in staying with us, please let us know soon so we can coord
 
 <span class="label-es" lang="es">
 Si te interesa quedarte con nosotros, por favor avísanos pronto para que podamos coordinar la asignación de habitaciones. Puedes [enviarnos un correo a {{site.email}}](mailto:{{site.email}}).
-</span>
-
-## <span class="label-en">The Area</span><span class="label-es" lang="es">La Zona</span>
-
-<div class="photo-grid">
-  <img src="/img/beach.jpg" alt="Puerto Morelos beach" />
-  <img src="/img/header.jpg" alt="Ocean view" />
-</div>
-
-<span class="label-en">
-Puerto Morelos offers white sand beaches, turquoise waters, and a relaxed vibe. Whether you want to lounge by the sea, snorkel on the reef, or explore local restaurants, it's the ideal spot to start the celebrations.
-</span>
-
-<span class="label-es" lang="es">
-Puerto Morelos ofrece playas de arena blanca, aguas turquesas y un ambiente relajado. Ya sea que quieras descansar junto al mar, hacer snorkel en el arrecife o explorar restaurantes locales, es el lugar ideal para comenzar las celebraciones.
 </span>
