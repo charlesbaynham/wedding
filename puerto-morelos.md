@@ -38,9 +38,9 @@ Casa Brisa y Mar está ubicada directamente en la mejor playa de Puerto Morelos.
 
 ## <span class="label-en">Photos</span><span class="label-es" lang="es">Fotos</span>
 
-![Puerto Morelos beach](/img/beach.jpg)
+{% responsive_image path: img/beach.jpg alt: "Puerto Morelos beach" %}
 
-![Ocean view](/img/header.jpg)
+{% responsive_image path: img/header.jpg alt: "Ocean view" %}
 
 ## <span class="label-en">Location</span><span class="label-es" lang="es">Ubicación</span>
 
