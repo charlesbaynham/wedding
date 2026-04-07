@@ -52,6 +52,12 @@ ul {
   margin: 0 0 25px;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 @media (min-width: 767px) {
   p {
     margin: 0 0 35px;
