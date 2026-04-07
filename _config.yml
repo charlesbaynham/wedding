@@ -7,19 +7,6 @@ description: "We're getting married and can't wait to celebrate with you!"
 host: 0.0.0.0 # listen to LAN connections
 plugins:
   - jekyll-sitemap
-  - jekyll-responsive-image
-
-responsive_image:
-  template: _includes/responsive-image.html
-  default_quality: 80
-  sizes:
-    - width: 480
-    - width: 800
-    - width: 1200
-    - width: 1600
-  base_path: img
-  save_to_source: false
-  cache: true
 
 # Build settings
 markdown: kramdown
@@ -59,9 +46,6 @@ navigation:
   - title_en: "Location"
     title_es: "Ubicación"
     url: "/location/"
-  - title_en: "Puerto Morelos"
-    title_es: "Puerto Morelos"
-    url: "/puerto-morelos/"
   - title_en: "Ceremony"
     title_es: "Ceremonia"
     url: "/ceremony/"
