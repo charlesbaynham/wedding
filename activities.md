@@ -6,130 +6,105 @@ invisible_nav: true
 
 # <span class="label-en">Activities</span><span class="label-es" lang="es">Actividades</span>
 
-<span class="label-en">
-We'll be in Puerto Morelos from Wednesday to Friday before the wedding, and we've planned a few fun things. You're very welcome to come to all or none of these — no pressure!
-</span>
+<div class="lang-en">
+  <p><strong>Please fill out the form below to let us know which activities you're interested in.</strong> This helps us organise transport and group bookings. No commitment yet. We'll confirm details and costs closer to the date.</p>
+</div>
+<div class="lang-es">
+  <p><strong>Por favor completa el formulario a continuación para indicarnos en qué actividades te interesa participar.</strong> Esto nos ayuda a organizar transporte y reservas grupales. Sin compromiso aún. Confirmaremos detalles y costos más cerca de la fecha.</p>
+</div>
 
-<span class="label-es" lang="es">
-Estaremos en Puerto Morelos de miércoles a viernes antes de la boda y hemos planeado algunas cosas divertidas. Pueden unirse a todas o a ninguna — ¡sin presión!
-</span>
+<form id="activities-form" class="rsvp-form">
+  <div class="form-group mb-3">
+    <label for="names">
+      <span class="label-en">Names of all guests</span>
+      <span class="label-es" lang="es">Nombres de todos los invitados</span>
+    </label>
+    <textarea class="form-control" id="names" name="names" rows="2" placeholder="Enter names of all guests" data-ph-en="Enter names of all guests" data-ph-es="Escribe los nombres de todos los invitados" required></textarea>
+  </div>
 
----
+  <div class="form-group mb-3">
+    <label for="email">
+      <span class="label-en">Email</span>
+      <span class="label-es" lang="es">Correo electrónico</span>
+    </label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="your.email@example.com" data-ph-en="your.email@example.com" data-ph-es="tu.correo@ejemplo.com" required />
+  </div>
 
-## Wednesday 21st October
+  <div class="form-group mb-3">
+    <label>
+      <span class="label-en">Which activities are you interested in?</span>
+      <span class="label-es" lang="es">¿En qué actividades te interesa participar?</span>
+    </label>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="act-wed" name="activities" value="wednesday">
+      <label class="form-check-label" for="act-wed">
+        <span class="label-en">Wednesday — Early birds luau</span>
+        <span class="label-es" lang="es">Miércoles — Luau para los que llegan temprano</span>
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="act-thu" name="activities" value="thursday">
+      <label class="form-check-label" for="act-thu">
+        <span class="label-en">Thursday — Xel-Há</span>
+        <span class="label-es" lang="es">Jueves — Xel-Há</span>
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="act-fri-am" name="activities" value="friday-am">
+      <label class="form-check-label" for="act-fri-am">
+        <span class="label-en">Friday AM — Scuba diving</span>
+        <span class="label-es" lang="es">Viernes AM — Buceo</span>
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="act-fri-pm" name="activities" value="friday-pm">
+      <label class="form-check-label" for="act-fri-pm">
+        <span class="label-en">Friday PM — Snorkelling</span>
+        <span class="label-es" lang="es">Viernes PM — Snorkel</span>
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="act-sat" name="activities" value="saturday">
+      <label class="form-check-label" for="act-sat">
+        <span class="label-en">Saturday — Chichén Itzá</span>
+        <span class="label-es" lang="es">Sábado — Chichén Itzá</span>
+      </label>
+    </div>
+  </div>
 
-### <span class="label-en">Beach Day</span><span class="label-es" lang="es">Día de Playa</span>
+  <div class="form-group mb-3">
+    <label for="comments">
+      <span class="label-en">Comments / questions</span>
+      <span class="label-es" lang="es">Comentarios / preguntas</span>
+    </label>
+    <textarea class="form-control" id="comments" name="comments" rows="3" placeholder="Any questions or dietary requirements for the activities?" data-ph-en="Any questions or dietary requirements for the activities?" data-ph-es="¿Alguna pregunta o requisito alimentario para las actividades?"></textarea>
+  </div>
 
-<span class="label-en">
-**Day:** Chill out on Puerto Morelos beach. No formal plan — just show up and relax.
-</span>
-
-<span class="label-es" lang="es">
-**Día:** Relájense en la playa de Puerto Morelos. Sin plan formal — simplemente aparezcan y disfruten.
-</span>
-
-### <span class="label-en">Evening: Drinks at Our Hotel</span><span class="label-es" lang="es">Noche: Bebidas en Nuestro Hotel</span>
-
-<span class="label-en">
-**Evening:** Low-key cocktails, beers and drinks at Casa Brisa y Mar. Very relaxed — come by if you're around.
-</span>
-
-<span class="label-es" lang="es">
-**Noche:** Cócteles, cervezas y bebidas tranquilas en Casa Brisa y Mar. Muy relajado — pásense si están cerca.
-</span>
-
----
-
-## Thursday 22nd October
-
-### <span class="label-en">Scuba & Snorkel Trip</span><span class="label-es" lang="es">Excursión de Buceo y Snorkel</span>
-
-<span class="label-en">
-**Day:** organised scuba diving and snorkelling trip in the Puerto Morelos area. **You'll need to sign up in advance if you want to join** — we'll share a sign-up link and price soon.
-</span>
-
-<span class="label-es" lang="es">
-**Día:** Excursión organizada de buceo y snorkel en el área de Puerto Morelos. **Deberán inscribirse con anticipación si quieren unirse** — pronto compartiremos un enlace de registro y el precio.
-</span>
-
-### <span class="label-en">Evening: Welcome Party</span><span class="label-es" lang="es">Noche: Fiesta de Bienvenida</span>
-
-<span class="label-en">
-**Evening:** Welcome party in Puerto Morelos! This will be a bigger night — location to be confirmed. Expect drinks, music and a great time.
-</span>
-
-<span class="label-es" lang="es">
-**Noche:** ¡Fiesta de bienvenida en Puerto Morelos! Será una noche más animada — ubicación por confirmar. Esperen bebidas, música y un gran momento.
-</span>
-
----
-
-## Friday 23rd October
-
-### <span class="label-en">Xel-Há Water Park</span><span class="label-es" lang="es">Parque Acuático Xel-Há</span>
-
-<span class="label-en">
-**Day:** Bus trip to Xel-Há, a beautiful natural water park. Perfect for curing Thursday night's hangover! We'll organise transport — details and sign-up coming soon.
-</span>
-
-<span class="label-es" lang="es">
-**Día:** Viaje en autobús a Xel-Há, un hermoso parque acuático natural. ¡Perfecto para curar la resaca del jueves! Organizaremos transporte — detalles e inscripción próximamente.
-</span>
-
-### <span class="label-en">Evening: Free / Wedding Party Moves to the Jungle</span><span class="label-es" lang="es">Noche: Libre / La Fiesta de la Boda se Mueve a la Selva</span>
-
-<span class="label-en">
-**Evening:** Everyone's free to sort their own dinner. The wedding party will be heading to the jungle venue to get ready for the big day.
-</span>
-
-<span class="label-es" lang="es">
-**Noche:** Todos son libres para organizar su propia cena. La fiesta de la boda se dirigirá al lugar en la selva para prepararse para el gran día.
-</span>
-
----
-
-## Saturday 24th October
-
-### <span class="label-en">Chichén Itzá Trip</span><span class="label-es" lang="es">Excursión a Chichén Itzá</span>
-
-<span class="label-en">
-**Day:** organised trip to Chichén Itzá, the famous Mayan ruins. Charles and Gaby won't be on this one (they'll be busy with wedding prep!), but everyone else is very welcome. Sign-up details coming soon.
-</span>
-
-<span class="label-es" lang="es">
-**Día:** Excursión organizada a Chichén Itzá, las famosas ruinas mayas. Charles y Gaby no estarán en esta (¡estarán ocupados con los preparativos de la boda!), pero todos los demás son bienvenidos. Detalles de inscripción próximamente.
-</span>
+  <div class="d-grid gap-2 col-9-md mx-auto">
+    <button type="submit" class="btn btn-primary">
+      <span class="label-en">Submit</span>
+      <span class="label-es" lang="es">Enviar</span>
+    </button>
+  </div>
+</form>
 
 ---
 
-## Sunday 25th October — Wedding Day!
+## <span class="label-en">Schedule</span><span class="label-es" lang="es">Calendario</span>
 
-### <span class="label-en">The Wedding</span><span class="label-es" lang="es">¡La Boda!</span>
+| Date | Time | Activity | Details | Cost |
+|------|------|----------|---------|------|
+| <span class="label-en">Wed 21 Oct</span><span class="label-es" lang="es">Mié 21 oct</span> | 17:00 | <span class="label-en">Early birds luau</span><span class="label-es" lang="es">Luau para los que llegan temprano</span> | <span class="label-en">Casa Brisa y Mar, Puerto Morelos beach. Casual drinks.</span><span class="label-es" lang="es">Casa Brisa y Mar, playa de Puerto Morelos. Bebidas casuales.</span> | Free |
+| <span class="label-en">Thu 22 Oct</span><span class="label-es" lang="es">Jue 22 oct</span> | All day | <span class="label-en">Xel-Há</span><span class="label-es" lang="es">Xel-Há</span> | <span class="label-en">Natural water park near Tulum. All-inclusive: food, drinks, attractions. Book your own ticket.</span><span class="label-es" lang="es">Parque acuático natural cerca de Tulum. Todo incluido: comida, bebidas, atracciones. Reserva tu propio boleto.</span> | £85–100 |
+| <span class="label-en">Fri 23 Oct</span><span class="label-es" lang="es">Vie 23 oct</span> | AM | <span class="label-en">Scuba diving</span><span class="label-es" lang="es">Buceo</span> | <span class="label-en">Puerto Morelos reef and shipwreck. Sign up via the form above.</span><span class="label-es" lang="es">Arrecife de Puerto Morelos y naufragio. Inscríbete en el formulario arriba.</span> | $2,500 MXN |
+| <span class="label-en">Fri 23 Oct</span><span class="label-es" lang="es">Vie 23 oct</span> | PM | <span class="label-en">Snorkelling</span><span class="label-es" lang="es">Snorkel</span> | <span class="label-en">Puerto Morelos reef. Sign up via the form above.</span><span class="label-es" lang="es">Arrecife de Puerto Morelos. Inscríbete en el formulario arriba.</span> | $700 MXN |
+| <span class="label-en">Sat 24 Oct</span><span class="label-es" lang="es">Sáb 24 oct</span> | All day | <span class="label-en">Chichén Itzá</span><span class="label-es" lang="es">Chichén Itzá</span> | <span class="label-en">Mayan ruins. Charles and Gaby won't be there (wedding prep). Sign up via the form above.</span><span class="label-es" lang="es">Ruinas mayas. Charles y Gaby no estarán (preparativos). Inscríbete en el formulario arriba.</span> | ~£37 |
+| <span class="label-en">Sun 25 Oct</span><span class="label-es" lang="es">Dom 25 oct</span> | 16:00 | <span class="label-en">Wedding ceremony</span><span class="label-es" lang="es">Ceremonia de boda</span> | <span class="label-en">Cenote Verde (Casa Tattva), Ruta de los Cenotes Km 32.7. Mayan ceremony.</span><span class="label-es" lang="es">Cenote Verde (Casa Tattva), Ruta de los Cenotes Km 32.7. Ceremonia maya.</span> | — |
+| <span class="label-en">Sun 25 Oct</span><span class="label-es" lang="es">Dom 25 oct</span> | 19:00–01:00 | <span class="label-en">Reception</span><span class="label-es" lang="es">Recepción</span> | <span class="label-en">Casa Tattva. Tacos, antojitos, bar, DJ, dancing. Dress code: white / cream / linen.</span><span class="label-es" lang="es">Casa Tattva. Tacos, antojitos, bar, DJ, baile. Código de vestimenta: blanco / crema / lino.</span> | — |
 
-<span class="label-en">
-**4:00 PM:** Wedding ceremony at Cenote Verde (Casa Tattva), in the jungle near Puerto Morelos.
-
-**7:00 PM:** Reception at Casa Tattva — tacos, antojitos, bar, DJ and dancing until 1:00 AM.
-
-We'll organise transport to and from Puerto Morelos for all guests. More details to come!
-</span>
-
-<span class="label-es" lang="es">
-**16:00:** Ceremonia de boda en Cenote Verde (Casa Tattva), en la selva cerca de Puerto Morelos.
-
-**19:00:** Recepción en Casa Tattva — tacos, antojitos, bar, DJ y baile hasta la 1:00 AM.
-
-Organizaremos transporte de ida y vuelta desde Puerto Morelos para todos los invitados. ¡Más detalles próximamente!
-</span>
-
----
-
-## Monday 26th October
-
-<span class="label-en">
-Free day! Explore Yucatán, relax on the beach, or start your journey home. We'll be off on our mini-honeymoon 🌴
-</span>
-
-<span class="label-es" lang="es">
-¡Día libre! Exploren Yucatán, relájense en la playa, o comiencen su viaje de regreso. Nosotros nos iremos a nuestra mini luna de miel 🌴
-</span>
+<div class="lang-en">
+  <p><strong>Xel-Há booking links:</strong> <a href="https://www.xelha.com/en/">xelha.com</a> (15% off advance booking) | <a href="https://www.govisitcancun.com/tours/xel-ha/">govisitcancun.com</a> (sometimes 30% off)</p>
+</div>
+<div class="lang-es">
+  <p><strong>Enlaces para reservar Xel-Há:</strong> <a href="https://www.xelha.com/en/">xelha.com</a> (15% de descuento por reserva anticipada) | <a href="https://www.govisitcancun.com/tours/xel-ha/">govisitcancun.com</a> (a veces 30% de descuento)</p>
+</div>
