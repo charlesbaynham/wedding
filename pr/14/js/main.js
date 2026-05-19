@@ -378,4 +378,98 @@ $(function () {
       });
     });
   }
+
+  // Activities Form Submission Handler (FormEasy)
+  var $activitiesForm = $("#activities-form");
+  if ($activitiesForm.length) {
+    var $actSubmitBtn = $activitiesForm.find('button[type="submit"]');
+    var actOriginalBtnTextEN = "Submit";
+    var actOriginalBtnTextES = "Enviar";
+    var actLoadingTextEN = "Submitting...";
+    var actLoadingTextES = "Enviando...";
+
+    // Replace this with your actual Google Apps Script Web App URL for activities
+    var ACTIVITIES_FORM_ENDPOINT =
+      "https://script.google.com/macros/s/AKfycbxD3Nd2hRkMnC7Bqu3odO_AVOzgpLMRkl_0NCjafhgV1PiWwPKzVmEiwdt2qahWggfm/exec";
+
+    $activitiesForm.on("submit", function (e) {
+      e.preventDefault();
+
+      var isES = $langSlider.length
+        ? parseFloat($langSlider.val()) >= 0.5
+        : localStorage.getItem(LANG_KEY) === "es";
+
+      var names = $("#names").val().trim();
+      var email = $("#email").val().trim();
+
+      if (!names) {
+        alert(
+          isES
+            ? "Por favor ingresa los nombres de todos los invitados."
+            : "Please enter the names of all guests."
+        );
+        return;
+      }
+
+      if (!email) {
+        alert(
+          isES
+            ? "Por favor ingresa tu correo electrónico."
+            : "Please enter your email."
+        );
+        return;
+      }
+
+      // Collect selected activities
+      var activities = [];
+      $activitiesForm.find('input[name="activities"]:checked').each(function () {
+        activities.push($(this).val());
+      });
+
+      $actSubmitBtn.prop("disabled", true);
+      $actSubmitBtn.find(".label-en").text(actLoadingTextEN);
+      $actSubmitBtn.find(".label-es").text(actLoadingTextES);
+
+      grecaptcha.ready(function () {
+        grecaptcha
+          .execute(RECAPTCHA_SITE_KEY, { action: "submit" })
+          .then(function (token) {
+            var formData = {
+              names: names,
+              email: email,
+              activities: activities.join(", "),
+              comments: $("#comments").val().trim(),
+              formType: "activities",
+              gCaptchaResponse: token,
+            };
+
+            return fetch(ACTIVITIES_FORM_ENDPOINT, {
+              method: "POST",
+              headers: {
+                "Content-Type": "text/plain;charset=utf-8",
+              },
+              body: JSON.stringify(formData),
+            });
+          })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            window.location.href = "/activities-success";
+          })
+          .catch(function (error) {
+            console.error("Activities form submission error:", error);
+            alert(
+              isES
+                ? "Hubo un error al enviar el formulario. Por favor intenta de nuevo."
+                : "There was an error submitting the form. Please try again."
+            );
+
+            $actSubmitBtn.prop("disabled", false);
+            $actSubmitBtn.find(".label-en").text(actOriginalBtnTextEN);
+            $actSubmitBtn.find(".label-es").text(actOriginalBtnTextES);
+          });
+      });
+    });
+  }
 });
