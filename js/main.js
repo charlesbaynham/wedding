@@ -359,7 +359,12 @@ $(function () {
           })
           .then(function (data) {
             // Success - redirect to thank you page
-            window.location.href = "/rsvp-success";
+            var successPath = "/rsvp-success";
+            var basePath = "";
+            try {
+              basePath = document.querySelector('base') ? document.querySelector('base').getAttribute('href') : "";
+            } catch(e) {}
+            window.location.href = basePath + successPath;
           })
           .catch(function (error) {
             // Error - show alert and re-enable form
@@ -455,7 +460,12 @@ $(function () {
             return response.json();
           })
           .then(function (data) {
-            window.location.href = "/activities-success";
+            var successPath = "/activities-success";
+            var basePath = "";
+            try {
+              basePath = document.querySelector('base') ? document.querySelector('base').getAttribute('href') : "";
+            } catch(e) {}
+            window.location.href = basePath + successPath;
           })
           .catch(function (error) {
             console.error("Activities form submission error:", error);

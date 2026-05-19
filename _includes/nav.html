@@ -9,7 +9,7 @@
       {% for nav in site.navigation %}
       <a
         class="navbar-brand{% if nav.url == page.url %} active{% endif %}"
-        href="{{ nav.url }}"
+        href="{{ nav.url | relative_url }}"
       >
         {% if nav.title_en and nav.title_es %}
         <span class="label-en">{{ nav.title_en }}</span>
