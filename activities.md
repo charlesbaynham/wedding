@@ -21,6 +21,7 @@ invisible_nav: true
 |------|------|----------|---------|------|
 | <span class="label-en">Wed 21 Oct</span><span class="label-es" lang="es">Mié 21 oct</span> | 17:00 | <span class="label-en">Early birds luau</span><span class="label-es" lang="es">Luau para los que llegan temprano</span> | <span class="label-en">Casa Brisa y Mar, Puerto Morelos beach. Casual drinks.</span><span class="label-es" lang="es">Casa Brisa y Mar, playa de Puerto Morelos. Bebidas casuales.</span> | Free |
 | <span class="label-en">Thu 22 Oct</span><span class="label-es" lang="es">Jue 22 oct</span> | All day | <span class="label-en">Xel-Há</span><span class="label-es" lang="es">Xel-Há</span> | <span class="label-en">Natural water park near Tulum. All-inclusive: food, drinks, attractions. Book your own ticket.</span><span class="label-es" lang="es">Parque acuático natural cerca de Tulum. Todo incluido: comida, bebidas, atracciones. Reserva tu propio boleto.</span> | £85–100 |
+| <span class="label-en">Fri 23 Oct</span><span class="label-es" lang="es">Vie 23 oct</span> | Evening | <span class="label-en">Welcome drinks</span><span class="label-es" lang="es">Bebidas de bienvenida</span> | <span class="label-en">Puerto Morelos. Location to be confirmed.</span><span class="label-es" lang="es">Puerto Morelos. Ubicación por confirmar.</span> | Free |
 | <span class="label-en">Fri 23 Oct</span><span class="label-es" lang="es">Vie 23 oct</span> | AM | <span class="label-en">Scuba diving</span><span class="label-es" lang="es">Buceo</span> | <span class="label-en">Puerto Morelos reef and shipwreck. Sign up via the form below.</span><span class="label-es" lang="es">Arrecife de Puerto Morelos y naufragio. Inscríbete en el formulario abajo.</span> | $2,500 MXN |
 | <span class="label-en">Fri 23 Oct</span><span class="label-es" lang="es">Vie 23 oct</span> | PM | <span class="label-en">Snorkelling</span><span class="label-es" lang="es">Snorkel</span> | <span class="label-en">Puerto Morelos reef. Sign up via the form below.</span><span class="label-es" lang="es">Arrecife de Puerto Morelos. Inscríbete en el formulario abajo.</span> | $700 MXN |
 | <span class="label-en">Sat 24 Oct</span><span class="label-es" lang="es">Sáb 24 oct</span> | All day | <span class="label-en">Chichén Itzá</span><span class="label-es" lang="es">Chichén Itzá</span> | <span class="label-en">Mayan ruins. Charles and Gaby won't be there (wedding prep). Sign up via the form below.</span><span class="label-es" lang="es">Ruinas mayas. Charles y Gaby no estarán (preparativos). Inscríbete en el formulario abajo.</span> | ~£37 |
@@ -79,6 +80,13 @@ invisible_nav: true
       <label class="form-check-label" for="act-thu">
         <span class="label-en">Thursday — Xel-Há</span>
         <span class="label-es" lang="es">Jueves — Xel-Há</span>
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="act-fri-eve" name="activities" value="friday-eve">
+      <label class="form-check-label" for="act-fri-eve">
+        <span class="label-en">Friday evening — Welcome drinks</span>
+        <span class="label-es" lang="es">Viernes por la noche — Bebidas de bienvenida</span>
       </label>
     </div>
     <div class="form-check">
