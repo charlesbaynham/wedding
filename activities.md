@@ -22,16 +22,19 @@ invisible_nav: true
 | <span class="label-en">Wed 21 Oct</span><span class="label-es" lang="es">Mié 21 oct</span> | 17:00 | <span class="label-en">Early birds luau</span><span class="label-es" lang="es">Luau para los que llegan temprano</span> | <span class="label-en">Casa Brisa y Mar, Puerto Morelos beach. Casual drinks.</span><span class="label-es" lang="es">Casa Brisa y Mar, playa de Puerto Morelos. Bebidas casuales.</span> | Free |
 | <span class="label-en">Thu 22 Oct</span><span class="label-es" lang="es">Jue 22 oct</span> | All day | <span class="label-en">Xel-Há</span><span class="label-es" lang="es">Xel-Há</span> | <span class="label-en">Natural water park near Tulum. All-inclusive: food, drinks, attractions. Book your own ticket.</span><span class="label-es" lang="es">Parque acuático natural cerca de Tulum. Todo incluido: comida, bebidas, atracciones. Reserva tu propio boleto.</span> | £85–100 |
 | <span class="label-en">Fri 23 Oct</span><span class="label-es" lang="es">Vie 23 oct</span> | Evening | <span class="label-en">Welcome drinks</span><span class="label-es" lang="es">Bebidas de bienvenida</span> | <span class="label-en">Puerto Morelos. Location to be confirmed.</span><span class="label-es" lang="es">Puerto Morelos. Ubicación por confirmar.</span> | Free |
-| <span class="label-en">Fri 23 Oct</span><span class="label-es" lang="es">Vie 23 oct</span> | AM | <span class="label-en">Scuba diving</span><span class="label-es" lang="es">Buceo</span> | <span class="label-en">Puerto Morelos reef and shipwreck. Sign up via the form below.</span><span class="label-es" lang="es">Arrecife de Puerto Morelos y naufragio. Inscríbete en el formulario abajo.</span> | $2,500 MXN |
-| <span class="label-en">Fri 23 Oct</span><span class="label-es" lang="es">Vie 23 oct</span> | PM | <span class="label-en">Snorkelling</span><span class="label-es" lang="es">Snorkel</span> | <span class="label-en">Puerto Morelos reef. Sign up via the form below.</span><span class="label-es" lang="es">Arrecife de Puerto Morelos. Inscríbete en el formulario abajo.</span> | $700 MXN |
+| <span class="label-en">Fri 23 Oct</span><span class="label-es" lang="es">Vie 23 oct</span> | AM | <span class="label-en">Scuba diving (certified)</span><span class="label-es" lang="es">Buceo (certificados)</span> | <span class="label-en">Puerto Morelos reef. Double tank dive. Sign up via the form below.</span><span class="label-es" lang="es">Arrecife de Puerto Morelos. Doble tanque. Inscríbete en el formulario abajo.</span> | $2,200 MXN |
+| <span class="label-en">Fri 23 Oct</span><span class="label-es" lang="es">Vie 23 oct</span> | AM | <span class="label-en">Scuba diving (beginner)</span><span class="label-es" lang="es">Buceo (sin certificación)</span> | <span class="label-en">Theory class, pool training, then 2 ocean dives. Can join certified group.</span><span class="label-es" lang="es">Clase teórica, entrenamiento en piscina, luego 2 buceos en el mar. Pueden salir con el grupo certificado.</span> | $2,800 MXN |
+| <span class="label-en">Fri 23 Oct</span><span class="label-es" lang="es">Vie 23 oct</span> | PM | <span class="label-en">Snorkelling</span><span class="label-es" lang="es">Snorkel</span> | <span class="label-en">Puerto Morelos reef, 2 locations. Sign up via the form below.</span><span class="label-es" lang="es">Arrecife de Puerto Morelos, 2 lugares. Inscríbete en el formulario abajo.</span> | $700 MXN |
 | <span class="label-en">Sat 24 Oct</span><span class="label-es" lang="es">Sáb 24 oct</span> | All day | <span class="label-en">Chichén Itzá</span><span class="label-es" lang="es">Chichén Itzá</span> | <span class="label-en">Mayan ruins. Charles and Gaby won't be there (wedding prep). Sign up via the form below.</span><span class="label-es" lang="es">Ruinas mayas. Charles y Gaby no estarán (preparativos). Inscríbete en el formulario abajo.</span> | ~£37 |
 | <span class="label-en">Sun 25 Oct</span><span class="label-es" lang="es">Dom 25 oct</span> | 16:00 | <span class="label-en">Wedding ceremony</span><span class="label-es" lang="es">Ceremonia de boda</span> | <span class="label-en">Cenote Verde (Casa Tattva), Ruta de los Cenotes Km 32.7. Mayan ceremony.</span><span class="label-es" lang="es">Cenote Verde (Casa Tattva), Ruta de los Cenotes Km 32.7. Ceremonia maya.</span> | — |
 | <span class="label-en">Sun 25 Oct</span><span class="label-es" lang="es">Dom 25 oct</span> | 19:00–01:00 | <span class="label-en">Reception</span><span class="label-es" lang="es">Recepción</span> | <span class="label-en">Casa Tattva. Tacos, antojitos, bar, DJ, dancing. Dress code: white / cream / linen.</span><span class="label-es" lang="es">Casa Tattva. Tacos, antojitos, bar, DJ, baile. Código de vestimenta: blanco / crema / lino.</span> | — |
 
 <div class="lang-en">
+  <p><strong>Group discounts:</strong> If we get 10+ people for scuba or snorkel, prices drop to: Snorkel $400 MXN | Certified scuba $1,700 MXN | Beginner scuba $2,100 MXN</p>
   <p><strong>Xel-Há booking links:</strong> <a href="https://www.xelha.com/en/">xelha.com</a> (15% off advance booking) | <a href="https://www.govisitcancun.com/tours/xel-ha/">govisitcancun.com</a> (sometimes 30% off)</p>
 </div>
 <div class="lang-es">
+  <p><strong>Descuentos grupales:</strong> Si llegamos a 10+ personas para buceo o snorkel, los precios bajan a: Snorkel $400 MXN | Buceo certificado $1,700 MXN | Buceo principiante $2,100 MXN</p>
   <p><strong>Enlaces para reservar Xel-Há:</strong> <a href="https://www.xelha.com/en/">xelha.com</a> (15% de descuento por reserva anticipada) | <a href="https://www.govisitcancun.com/tours/xel-ha/">govisitcancun.com</a> (a veces 30% de descuento)</p>
 </div>
 
@@ -90,10 +93,17 @@ invisible_nav: true
       </label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="act-fri-am" name="activities" value="friday-am">
-      <label class="form-check-label" for="act-fri-am">
-        <span class="label-en">Friday AM — Scuba diving</span>
-        <span class="label-es" lang="es">Viernes AM — Buceo</span>
+      <input class="form-check-input" type="checkbox" id="act-fri-am-cert" name="activities" value="friday-am-certified">
+      <label class="form-check-label" for="act-fri-am-cert">
+        <span class="label-en">Friday AM — Scuba diving (certified)</span>
+        <span class="label-es" lang="es">Viernes AM — Buceo (certificados)</span>
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="act-fri-am-beginner" name="activities" value="friday-am-beginner">
+      <label class="form-check-label" for="act-fri-am-beginner">
+        <span class="label-en">Friday AM — Scuba diving (beginner — theory + pool + 2 dives)</span>
+        <span class="label-es" lang="es">Viernes AM — Buceo (sin certificación — clase + piscina + 2 buceos)</span>
       </label>
     </div>
     <div class="form-check">
