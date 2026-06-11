@@ -1,0 +1,364 @@
+/*!
+ * Start Bootstrap - Grayscale Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: Cardo, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #404040;
+  background-color: #fff;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 35px;
+  font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-style: italic;
+}
+
+p {
+  margin: 0 0 25px;
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+ul {
+  font-size: 19px;
+  margin: 0 0 25px;
+}
+
+@media (min-width: 767px) {
+  p {
+    margin: 0 0 35px;
+    line-height: 1.6;
+  }
+}
+
+.centred-text {
+  text-align: center;
+}
+
+a {
+  color: #efdd17;
+  text-decoration: underline;
+  transition: all 0.2s ease-in-out;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+  color: #11505d;
+}
+
+.navbar-custom {
+  margin-bottom: 0;
+  text-transform: uppercase;
+  font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #fff;
+  backdrop-filter: blur(4px) brightness(50%);
+  border-bottom: 3px solid #afa63d;
+  box-shadow: #888 0px 1px 10px;
+}
+
+.navbar-custom .navbar-brand {
+  font-weight: 700;
+}
+
+/* Highlight the active nav link */
+.navbar-custom .navbar-brand.active {
+  color: #afa63d;
+  background-color: rgba(175, 166, 61, 0.08);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(175, 166, 61, 0.08);
+  text-decoration: none;
+}
+
+.navbar-custom .navbar-brand:focus {
+  outline: 0;
+}
+
+.navbar-custom a {
+  color: #404040;
+  /*text-shadow: 0px 0px 1px #B38C00;*/
+}
+
+.navbar-custom ul {
+  font-size: 14px;
+}
+
+.navbar-custom .nav li a {
+  transition: background 0.3s ease-in-out;
+}
+
+.navbar-custom .nav li a:hover,
+.navbar-custom .nav li a:focus {
+  outline: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.navbar-custom.top-nav-collapse .nav li a:hover,
+.navbar-custom.top-nav-collapse .nav li a:focus {
+  outline: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+  box-shadow: none;
+  letter-spacing: 1px;
+  background: 0 0;
+  transition: background 0.5s ease-in-out, padding 0.5s ease-in-out,
+    border-bottom 0.5s ease-in-out;
+}
+
+.top-nav-collapse {
+  padding: 0;
+  background-color: #fff;
+}
+
+.navbar-custom.top-nav-collapse a {
+  color: #404040;
+}
+
+.navbar a {
+  color: #fff;
+}
+
+.hero-box {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+  padding: 60px 40px;
+  padding-bottom: 5mm;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 5px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 767px) {
+  .hero-box {
+    padding: 80px 60px;
+  }
+}
+
+@media (min-width: 992px) {
+  /*
+    Only allow background-attachment: fixed for desktop-ish sizes
+    https://twitter.com/paul_irish/status/306818591196602368
+  */
+  .intro {
+    background-attachment: fixed;
+  }
+}
+
+.brand-heading {
+  font-size: 40px;
+  letter-spacing: 0.025em;
+}
+
+.intro-text {
+  font-size: 19px;
+}
+
+.main-body {
+  margin-top: 2cm;
+}
+
+.main-body > .container {
+  padding-bottom: 5mm;
+}
+
+@media (min-width: 767px) {
+  .intro {
+    padding: 0;
+  }
+
+  .brand-heading {
+    font-size: 100px;
+  }
+
+  .intro-text {
+    font-size: 26px;
+  }
+}
+
+.map {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 50px;
+}
+
+@media (min-width: 767px) {
+  .map {
+    height: 600px;
+  }
+}
+
+footer {
+  padding: 50px 0;
+}
+
+footer p {
+  margin: 0;
+}
+
+body {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-header {
+  width: 100%;
+}
+
+.navbar-lang-toggle,
+.navbar-lang-toggle * {
+  cursor: pointer;
+}
+
+.navbar-lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  margin-left: 10px;
+  border-radius: 20px;
+  background: white;
+  float: right; /* Push toggler to the right */
+  margin-right: 0; /* Ensure it hugs the right edge */
+}
+
+.navbar-lang-toggle .lang-option {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #000;
+}
+
+.navbar-lang-toggle .lang-slider {
+  width: 55px;
+  background-color: transparent;
+}
+
+.navbar-lang-toggle .lang-slider::-webkit-slider-thumb {
+  background: #afa63d;
+}
+
+.navbar-lang-toggle .lang-slider::-moz-range-thumb {
+  background: #afa63d;
+}
+
+.label-en {
+  display: inline;
+}
+.label-es {
+  display: none; /* hidden by default, shown when ES selected */
+  font-size: inherit;
+  font-style: inherit;
+  color: inherit;
+}
+
+/* Generic language block helpers */
+
+/* Author: cbaclig */
+
+dd {
+  white-space: pre-line;
+}
+
+.billboard {
+  display: table;
+  width: 100%;
+  height: 100vh;
+  min-height: 100%;
+  color: #fff;
+  text-shadow: black 2px 2px 10px;
+  background-color: #000000;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+}
+
+@media (min-width: 767px) {
+  .billboard {
+    height: 400px;
+  }
+}
+
+@media (min-width: 992px) {
+  /*
+    Only allow background-attachment: fixed for desktop-ish sizes
+    https://twitter.com/paul_irish/status/306818591196602368
+  */
+  .billboard {
+    background-attachment: fixed;
+  }
+}
+
+.email-us {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.email-us .qr-code {
+  width: 80vw;
+  max-width: 150px;
+  height: auto;
+  margin-top: 1em;
+}
+
+/* Language toggle first-visit popup */
+.lang-toggle-popup {
+  position: absolute;
+  top: 100%;
+  right: -10px;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #afa63d;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+  z-index: 1100;
+  pointer-events: none;
+}
+
+.lang-toggle-popup::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  right: 20px;
+  border: 8px solid transparent;
+  border-bottom-color: #afa63d;
+}
+
+.lang-toggle-popup.fade-out {
+  opacity: 0;
+}
