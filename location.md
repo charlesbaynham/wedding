@@ -12,7 +12,7 @@ invisible_nav: true
 
 ## <span class="label-en">The locale</span><span class="label-es" lang="es">El lugar</span>
 
-<span class="label-en">We will be staying in **Puerto Morelos** before the wedding which is a 20 minute drive from the airport. This is a beautiful town of white sand and beaches that's not too overrun by tourists. From here, we'll head out to [various activities](/timetable/) which you are very welcome to join if you're looking for something to do.</span>
+<span class="label-en">We will be staying in **Puerto Morelos** before the wedding which is a 20 minute drive from the airport. This is a beautiful town of white sand and beaches that's not too overrun by tourists. From here, we'll head out to [various activities]({{ '/timetable/' | relative_url }}) which you are very welcome to join if you're looking for something to do.</span>
 
 <span class="label-es" lang="es">Nos quedaremos en **Puerto Morelos** antes de la boda, que está a 20 minutos en auto del aeropuerto. Este es un hermoso pueblo de arena blanca y playas que no está demasiado saturado de turistas. Desde aquí, saldremos a [varias actividades opcionales](/timetable/).</span>
 
