@@ -1,0 +1,31 @@
+---
+layout: default
+background_image: /img/flowers.jpg
+invisible_nav: true
+title: Activities
+---
+
+<div id="activities-wizard">
+  <div id="wiz-progress-wrap" style="display:none; margin-bottom:28px;">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div style="flex:1; height:7px; border-radius:99px; background:rgba(255,255,255,0.2); overflow:hidden;">
+        <div id="wiz-progress-fill" style="height:100%; background:#afa63d; border-radius:99px; transition:width 0.35s ease;"></div>
+      </div>
+      <div id="wiz-progress-text" style="font-family:Raleway,'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px; color:rgba(255,255,255,0.75); white-space:nowrap; min-width:36px; text-align:right;"></div>
+    </div>
+  </div>
+
+  <div id="wiz-content"></div>
+
+  <div id="wiz-back-wrap" style="display:none; margin-top:20px;">
+    <button type="button" id="wiz-back-btn" style="background:none; border:none; color:rgba(255,255,255,0.7); font-family:Raleway,'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; cursor:pointer; padding:8px 2px;">
+      <span class="label-en">← Back</span><span class="label-es" lang="es">← Atrás</span>
+    </button>
+  </div>
+</div>
+
+<div id="activities-thanks" style="display:none; text-align:center;">
+  <h1><span class="label-en">Thank you!</span><span class="label-es" lang="es">¡Gracias!</span></h1>
+  <p><span class="label-en">We've got your details — we'll be in touch about bookings and transport closer to the time.</span><span class="label-es" lang="es">Hemos recibido tus datos — nos pondremos en contacto sobre reservas y transporte más cerca de la fecha.</span></p>
+  <a href="/" style="display:inline-block; margin-top:12px; padding:13px 28px; background:#afa63d; color:#1c1a17; font-family:Raleway,'Helvetica Neue',Helvetica,Arial,sans-serif; text-transform:uppercase; letter-spacing:1.5px; font-size:14px; font-weight:700; text-decoration:none; border-radius:8px;"><span class="label-en">Back to home</span><span class="label-es" lang="es">Volver al inicio</span></a>
+</div>
