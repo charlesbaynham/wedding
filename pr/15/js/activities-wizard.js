@@ -48,7 +48,6 @@
       whenEn: 'Wed 21 Oct · 5:00 PM · Puerto Morelos beach', whenEs: 'Mié 21 oct · 17:00 · playa de Puerto Morelos',
       descEn: 'A relaxed evening on the sand at Casa Brisa y Mar to kick things off and meet everyone before the big day.',
       descEs: 'Una velada relajada en la arena en Casa Brisa y Mar para arrancar y conocernos antes del gran día.',
-      costEn: 'Free — on us', costEs: 'Gratis — invitamos nosotros', costTone: 'free',
       yesEn: 'Yes, I\'ll be there', yesEs: 'Sí, estaré ahí',
       noEn: 'Not this one', noEs: 'Me la salto',
     },
@@ -58,7 +57,6 @@
       whenEn: 'Thu 22 Oct · full day', whenEs: 'Jue 22 oct · día completo',
       descEn: 'A full day at the natural water park — snorkel the inlet, float the lazy river and swim in cenotes. Food and drinks are included in the ticket.',
       descEs: 'Un día completo en el parque acuático natural — snorkel en la caleta, río flotante y cenotes. Comida y bebidas incluidas en el boleto.',
-      costEn: 'Book your own at xelha.com — cheaper in advance', costEs: 'Tú reservas en xelha.com — más barato con anticipación', costTone: 'own',
       yesEn: 'Yes, count me in', yesEs: 'Sí, apúntame',
       noEn: 'Not this one', noEs: 'Me la salto',
     },
@@ -68,7 +66,6 @@
       whenEn: 'Fri 23 Oct · morning or afternoon', whenEs: 'Vie 23 oct · mañana o tarde',
       descEn: 'Head out over the Puerto Morelos reef — part of the second-largest barrier reef in the world. Certified dives, beginner dives and snorkel trips all on offer.',
       descEs: 'Salimos sobre el arrecife de Puerto Morelos — parte del segundo arrecife más grande del mundo. Hay buceo certificado, para principiantes y snorkel.',
-      costEn: 'From $700 MXN — you\'ll pick your option next', costEs: 'Desde $700 MXN — elegirás tu opción en el siguiente paso', costTone: 'price',
       yesEn: 'Yes, I\'m in', yesEs: 'Sí, me apunto',
       noEn: 'Not this one', noEs: 'Me lo salto',
     },
@@ -78,7 +75,6 @@
       whenEn: 'Fri 23 Oct · 5:00 PM · Puerto Morelos beach', whenEs: 'Vie 23 oct · 17:00 · playa de Puerto Morelos',
       descEn: 'The official start of the celebrations — cocktails on the beach as the sun goes down. This is the one not to miss!',
       descEs: 'El inicio oficial de la celebración — cócteles en la playa mientras se pone el sol. ¡Esta es la que no te puedes perder!',
-      costEn: 'Free — on us', costEs: 'Gratis — invitamos nosotros', costTone: 'free',
       yesEn: 'Yes, I\'ll be there', yesEs: 'Sí, estaré ahí',
       noEn: 'Not this one', noEs: 'Me la salto',
     },
@@ -88,7 +84,6 @@
       whenEn: 'Sat 24 Oct · full day', whenEs: 'Sáb 24 oct · día completo',
       descEn: 'A trip to the great Mayan pyramid, one of the New Seven Wonders. Charles & Gaby won\'t make this one (wedding prep!) but we\'ll help the group organise it.',
       descEs: 'Una excursión a la gran pirámide maya, una de las Nuevas Siete Maravillas. Charles y Gaby no irán a esta (¡preparativos!) pero ayudaremos al grupo a organizarla.',
-      costEn: 'We\'ll coordinate transport & entry — cost shared by the group', costEs: 'Coordinamos transporte y entrada — costo compartido por el grupo', costTone: 'own',
       yesEn: 'Yes, count me in', yesEs: 'Sí, apúntame',
       noEn: 'Not this one', noEs: 'Me la salto',
     },
@@ -172,9 +167,6 @@
   var BTN_NO   = 'display:block; width:100%; padding:17px 18px; border-radius:11px; border:2px solid rgba(255,255,255,0.5); background:transparent; color:#fff; font-family:Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:15px; cursor:pointer;';
   var BTN_NEXT = 'display:inline-block; padding:14px 32px; border-radius:9px; border:2px solid #afa63d; background:#afa63d; color:#1c1a17; font-family:Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:1px; font-size:14px; cursor:pointer;';
   var INPUT    = 'display:block; width:100%; padding:14px 16px; border-radius:8px; border:2px solid rgba(255,255,255,0.3); background:rgba(0,0,0,0.3); color:#fff; font-family:Cardo,"Helvetica Neue",Helvetica,Arial,sans-serif; font-size:18px; outline:none; margin-bottom:20px; -webkit-appearance:none;';
-  var COST_FREE  = 'display:inline-block; margin-top:10px; padding:5px 12px; background:rgba(175,166,61,0.25); border:1px solid rgba(175,166,61,0.6); border-radius:99px; color:#afa63d; font-family:Raleway,sans-serif; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;';
-  var COST_PRICE = 'display:inline-block; margin-top:10px; padding:5px 12px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.3); border-radius:99px; color:#fff; font-family:Raleway,sans-serif; font-size:12px; font-weight:700;';
-  var COST_OWN   = 'display:inline-block; margin-top:10px; padding:5px 12px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); border-radius:99px; color:rgba(255,255,255,0.8); font-family:Raleway,sans-serif; font-size:12px;';
 
   function renderStep(id) {
     var $c = $('#wiz-content');
@@ -269,14 +261,12 @@
   function renderActivity($c, step) {
     var a = ACT[step.id];
     if (!a) return;
-    var costStyle = a.costTone === 'free' ? COST_FREE : (a.costTone === 'price' ? COST_PRICE : COST_OWN);
     $c.html(
       '<div style="text-align:center; padding:0 4px; margin-bottom:28px;">' +
         '<div style="font-size:52px; line-height:1.1; margin-bottom:14px;">' + a.emoji + '</div>' +
         '<h2 style="font-size:clamp(18px,4vw,24px); margin-bottom:6px;">' + t(a.en, a.es) + '</h2>' +
         '<p style="font-size:14px; color:rgba(255,255,255,0.65); margin-bottom:12px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:0.5px;">' + t(a.whenEn, a.whenEs) + '</p>' +
         '<p style="font-size:16px; line-height:1.55; color:rgba(255,255,255,0.9); margin-bottom:4px;">' + t(a.descEn, a.descEs) + '</p>' +
-        '<span style="' + costStyle + '">' + t(a.costEn, a.costEs) + '</span>' +
       '</div>' +
       '<button type="button" id="wiz-yes-btn" style="' + BTN_YES + '">' + t(a.yesEn, a.yesEs) + '</button>' +
       '<button type="button" id="wiz-no-btn" style="' + BTN_NO + '">' + t(a.noEn, a.noEs) + '</button>'
@@ -439,5 +429,15 @@
   // ── Boot ──────────────────────────────────────────────────────────────────────
   $('#wiz-back-btn').on('click', goBack);
   renderStep('intro');
+
+  // Re-render the current step when the site language is toggled so that
+  // dynamically-injected text switches immediately (no .label-en/.label-es here).
+  $('#langSlider').on('input change', function () {
+    var sid = currentStep();
+    // Preserve any partially-typed field value before wiping the DOM.
+    var $field = $('#wiz-field');
+    if ($field.length) { answers[sid] = $field.val(); }
+    renderStep(sid);
+  });
 
 }(jQuery));
