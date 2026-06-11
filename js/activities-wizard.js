@@ -430,4 +430,14 @@
   $('#wiz-back-btn').on('click', goBack);
   renderStep('intro');
 
+  // Re-render the current step when the site language is toggled so that
+  // dynamically-injected text switches immediately (no .label-en/.label-es here).
+  $('#langSlider').on('input change', function () {
+    var sid = currentStep();
+    // Preserve any partially-typed field value before wiping the DOM.
+    var $field = $('#wiz-field');
+    if ($field.length) { answers[sid] = $field.val(); }
+    renderStep(sid);
+  });
+
 }(jQuery));
