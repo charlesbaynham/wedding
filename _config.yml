@@ -49,12 +49,12 @@ navigation:
   - title_en: "Ceremony"
     title_es: "Ceremonia"
     url: "/ceremony/"
+  - title_en: "Timetable"
+    title_es: "Cronograma"
+    url: "/timetable/"
   - title_en: "Activities"
     title_es: "Actividades"
     url: "/activities/"
-  - title_en: "RSVP"
-    title_es: "Confirmación"
-    url: "/rsvp/"
 # calendar:
 #   ical: https://www.google.com/calendar/ical/YOUR_CALENDAR_ID/public/basic.ics
 #   google_id: YOUR_CALENDAR_ID@group.calendar.google.com
