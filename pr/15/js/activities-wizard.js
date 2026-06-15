@@ -124,6 +124,12 @@
     return m ? m[3] + '/' + m[2] + '/' + m[1] : (iso || '');
   }
 
+  // DD/MM/YYYY → YYYY-MM-DD, for seeding the native date picker.
+  function ukToISO(uk) {
+    var m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(uk || '');
+    return m ? m[3] + '-' + m[2] + '-' + m[1] : '';
+  }
+
   function visibleSteps() {
     return STEPS.filter(function (s) { return !s.showIf || s.showIf(answers); });
   }
@@ -230,10 +236,19 @@
     var inputHtml;
     if (f.area) {
       inputHtml = '<textarea id="wiz-field" rows="3" style="' + INPUT + 'resize:vertical;" placeholder="' + ph + '">' + $('<div>').text(val).html() + '</textarea>';
+    } else if (f.dateUK) {
+      // Masked UK-format text box plus a calendar button that opens the native
+      // picker. The native input is read for its value only, so its locale display
+      // is irrelevant — we always write DD/MM/YYYY back into the visible box.
+      inputHtml =
+        '<div style="position:relative; margin-bottom:20px;">' +
+          '<input id="wiz-field" type="text" inputmode="numeric" maxlength="10" style="' + INPUT + 'margin-bottom:0; padding-right:52px;" placeholder="' + ph + '" value="' + $('<div>').text(val).html() + '" />' +
+          '<input id="wiz-date-native" type="date" value="' + ukToISO(val) + '" tabindex="-1" aria-hidden="true" style="position:absolute; right:14px; top:50%; transform:translateY(-50%); width:24px; height:24px; opacity:0; border:0; padding:0; pointer-events:none;" />' +
+          '<button type="button" id="wiz-date-btn" aria-label="' + t('Open calendar', 'Abrir calendario') + '" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:none; border:0; font-size:22px; line-height:1; cursor:pointer; padding:6px;">📅</button>' +
+        '</div>';
     } else {
       var type = f.type || 'text';
-      var extra = f.dateUK ? ' inputmode="numeric" maxlength="10"' : '';
-      inputHtml = '<input id="wiz-field" type="' + type + '"' + extra + ' style="' + INPUT + '" placeholder="' + ph + '" value="' + $('<div>').text(val).html() + '" />';
+      inputHtml = '<input id="wiz-field" type="' + type + '" style="' + INPUT + '" placeholder="' + ph + '" value="' + $('<div>').text(val).html() + '" />';
     }
     $c.html(
       '<h2 style="font-size:22px; margin-bottom:8px;">' + label + '</h2>' +
@@ -256,6 +271,18 @@
         if (d.length > 4) { this.value = d.slice(0, 2) + '/' + d.slice(2, 4) + '/' + d.slice(4); }
         else if (d.length > 2) { this.value = d.slice(0, 2) + '/' + d.slice(2); }
         else { this.value = d; }
+      });
+      // Calendar button opens the native picker; its choice is reflected back in UK format.
+      var native = document.getElementById('wiz-date-native');
+      $('#wiz-date-btn').on('click', function () {
+        if (!native) return;
+        try { if (typeof native.showPicker === 'function') { native.showPicker(); return; } } catch (e) {}
+        native.focus();
+        native.click();
+      });
+      $(native).on('change', function () {
+        var uk = formatDateUK(this.value);
+        if (uk) { $('#wiz-field').val(uk); }
       });
     }
     $('#wiz-next-btn').on('click', function () { doNext(step); });
