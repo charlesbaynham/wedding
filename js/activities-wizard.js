@@ -35,7 +35,7 @@
                phEn: 'you@example.com', phEs: 'tu@ejemplo.com', type: 'email' },
     arrival: { en: 'When do you land in México?', es: '¿Cuándo llegas a México?',
                helpEn: 'Roughly is fine — helps us plan the early activities.', helpEs: 'Aproximado está bien — nos ayuda a planear las primeras actividades.',
-               phEn: 'DD/MM/YYYY', phEs: 'DD/MM/AAAA', dateUK: true },
+               date: true },
     staying: { en: 'Where are you staying?', es: '¿Dónde te hospedas?',
                helpEn: 'Hotel, AirBnB, or town — so we can plan pick-ups.', helpEs: 'Hotel, AirBnB o pueblo — para planear el transporte.',
                phEn: 'Hotel, AirBnB, town…', phEs: 'Hotel, AirBnB, pueblo…' },
@@ -118,16 +118,14 @@
 
   function t(enStr, esStr) { return isES() ? esStr : enStr; }
 
-  // Native date inputs store their value as YYYY-MM-DD; show/send UK style DD/MM/YYYY.
-  function formatDateUK(iso) {
+  // Native date inputs store their value as YYYY-MM-DD. Render that for humans
+  // in the viewer's own locale (UK sees DD/MM/YYYY, US sees MM/DD/YYYY, etc.) —
+  // the same default the native picker uses to display the field.
+  function formatDateLocale(iso) {
     var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
-    return m ? m[3] + '/' + m[2] + '/' + m[1] : (iso || '');
-  }
-
-  // DD/MM/YYYY → YYYY-MM-DD, for seeding the native date picker.
-  function ukToISO(uk) {
-    var m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(uk || '');
-    return m ? m[3] + '-' + m[2] + '-' + m[1] : '';
+    if (!m) return iso || '';
+    var d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+    try { return d.toLocaleDateString(); } catch (e) { return iso; }
   }
 
   function visibleSteps() {
@@ -236,16 +234,10 @@
     var inputHtml;
     if (f.area) {
       inputHtml = '<textarea id="wiz-field" rows="3" style="' + INPUT + 'resize:vertical;" placeholder="' + ph + '">' + $('<div>').text(val).html() + '</textarea>';
-    } else if (f.dateUK) {
-      // Masked UK-format text box plus a calendar button that opens the native
-      // picker. The native input is read for its value only, so its locale display
-      // is irrelevant — we always write DD/MM/YYYY back into the visible box.
-      inputHtml =
-        '<div style="position:relative; margin-bottom:20px;">' +
-          '<input id="wiz-field" type="text" inputmode="numeric" maxlength="10" style="' + INPUT + 'margin-bottom:0; padding-right:52px;" placeholder="' + ph + '" value="' + $('<div>').text(val).html() + '" />' +
-          '<input id="wiz-date-native" type="date" value="' + ukToISO(val) + '" tabindex="-1" aria-hidden="true" style="position:absolute; right:14px; top:50%; transform:translateY(-50%); width:24px; height:24px; opacity:0; border:0; padding:0; pointer-events:none;" />' +
-          '<button type="button" id="wiz-date-btn" aria-label="' + t('Open calendar', 'Abrir calendario') + '" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:none; border:0; font-size:22px; line-height:1; cursor:pointer; padding:6px;">📅</button>' +
-        '</div>';
+    } else if (f.date) {
+      // Plain native date input: the browser displays and parses it in the
+      // viewer's own locale automatically. The value is stored as YYYY-MM-DD.
+      inputHtml = '<input id="wiz-field" type="date" style="' + INPUT + '" value="' + $('<div>').text(val).html() + '" />';
     } else {
       var type = f.type || 'text';
       inputHtml = '<input id="wiz-field" type="' + type + '" style="' + INPUT + '" placeholder="' + ph + '" value="' + $('<div>').text(val).html() + '" />';
@@ -264,27 +256,6 @@
         if (e.key === 'Enter') { e.preventDefault(); doNext(step); }
       });
     }
-    // UK date mask: keep only digits and auto-insert slashes → DD/MM/YYYY.
-    if (f.dateUK) {
-      $('#wiz-field').on('input', function () {
-        var d = this.value.replace(/\D/g, '').slice(0, 8);
-        if (d.length > 4) { this.value = d.slice(0, 2) + '/' + d.slice(2, 4) + '/' + d.slice(4); }
-        else if (d.length > 2) { this.value = d.slice(0, 2) + '/' + d.slice(2); }
-        else { this.value = d; }
-      });
-      // Calendar button opens the native picker; its choice is reflected back in UK format.
-      var native = document.getElementById('wiz-date-native');
-      $('#wiz-date-btn').on('click', function () {
-        if (!native) return;
-        try { if (typeof native.showPicker === 'function') { native.showPicker(); return; } } catch (e) {}
-        native.focus();
-        native.click();
-      });
-      $(native).on('change', function () {
-        var uk = formatDateUK(this.value);
-        if (uk) { $('#wiz-field').val(uk); }
-      });
-    }
     $('#wiz-next-btn').on('click', function () { doNext(step); });
   }
 
@@ -295,11 +266,6 @@
         ? t('Please enter your email.', 'Por favor ingresa tu correo electrónico.')
         : t('Please enter the names of everyone in your party.', 'Por favor ingresa los nombres de todos en tu grupo.');
       alert(msg);
-      return;
-    }
-    var f = FIELDS[step.id];
-    if (f && f.dateUK && val && !/^\d{2}\/\d{2}\/\d{4}$/.test(val)) {
-      alert(t('Please enter the date as DD/MM/YYYY.', 'Por favor ingresa la fecha como DD/MM/AAAA.'));
       return;
     }
     answers[step.id] = val;
@@ -371,7 +337,7 @@
       if (step.kind === 'text' || step.kind === 'date') {
         var f = FIELDS[step.id];
         label = f ? t(f.en, f.es) : step.id;
-        if (step.kind === 'date' && answers[step.id]) val = formatDateUK(answers[step.id]);
+        if (step.kind === 'date' && answers[step.id]) val = formatDateLocale(answers[step.id]);
       } else if (step.kind === 'activity') {
         var a = ACT[step.id];
         label = a ? t(a.en, a.es) : step.id;
@@ -438,7 +404,8 @@
     // scubaType is only asked when scuba === 'yes'. FormEasy rejects submissions
     // that omit a configured field, so always send it (blank when not asked).
     if (payload.scubaType === undefined) payload.scubaType = '';
-    if (payload.arrival) payload.arrival = formatDateUK(payload.arrival);
+    // arrival is already stored as ISO YYYY-MM-DD — unambiguous for the backend,
+    // regardless of the viewer's locale.
 
     function doSubmit(token) {
       if (token) payload.gCaptchaResponse = token;
