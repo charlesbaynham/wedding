@@ -413,8 +413,20 @@
         body: JSON.stringify(payload),
       })
         .then(function (r) { return r.json(); })
-        .then(function () { showThanks(); })
-        .catch(function () {
+        .then(function (data) {
+          // FormEasy replies { result: 'success' } or { result: 'error', error/message: '…' }.
+          // Only treat an explicit success as success, otherwise surface the real reason.
+          if (data && data.result === 'success') {
+            showThanks();
+            return;
+          }
+          var serverMsg = data && (data.error || data.message);
+          console.error('Activities form rejected by server:', data);
+          $btn.prop('disabled', false).text(t('Submit →', 'Enviar →'));
+          $err.text(serverMsg || t('Something went wrong — please try again.', 'Algo salió mal — por favor intenta de nuevo.')).show();
+        })
+        .catch(function (err) {
+          console.error('Activities form submission error:', err);
           $btn.prop('disabled', false).text(t('Submit →', 'Enviar →'));
           $err.text(t('Something went wrong — please try again.', 'Algo salió mal — por favor intenta de nuevo.')).show();
         });
