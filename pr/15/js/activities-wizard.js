@@ -414,9 +414,10 @@
       })
         .then(function (r) { return r.json(); })
         .then(function (data) {
-          // FormEasy replies { result: 'success' } or { result: 'error', error/message: '…' }.
-          // Only treat an explicit success as success, otherwise surface the real reason.
-          if (data && data.result === 'success') {
+          // FormEasy replies { status: 'OK', message: 'Data logged successfully' } on
+          // success, or an error object otherwise. Treat a success status as success and
+          // surface the real reason for anything else.
+          if (data && (data.status === 'OK' || data.result === 'success')) {
             showThanks();
             return;
           }
