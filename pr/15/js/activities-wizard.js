@@ -118,6 +118,12 @@
 
   function t(enStr, esStr) { return isES() ? esStr : enStr; }
 
+  // Native date inputs store their value as YYYY-MM-DD; show/send UK style DD/MM/YYYY.
+  function formatDateUK(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    return m ? m[3] + '/' + m[2] + '/' + m[1] : (iso || '');
+  }
+
   function visibleSteps() {
     return STEPS.filter(function (s) { return !s.showIf || s.showIf(answers); });
   }
@@ -323,6 +329,7 @@
       if (step.kind === 'text' || step.kind === 'date') {
         var f = FIELDS[step.id];
         label = f ? t(f.en, f.es) : step.id;
+        if (step.kind === 'date' && answers[step.id]) val = formatDateUK(answers[step.id]);
       } else if (step.kind === 'activity') {
         var a = ACT[step.id];
         label = a ? t(a.en, a.es) : step.id;
@@ -389,6 +396,7 @@
     // scubaType is only asked when scuba === 'yes'. FormEasy rejects submissions
     // that omit a configured field, so always send it (blank when not asked).
     if (payload.scubaType === undefined) payload.scubaType = '';
+    if (payload.arrival) payload.arrival = formatDateUK(payload.arrival);
 
     function doSubmit(token) {
       if (token) payload.gCaptchaResponse = token;
