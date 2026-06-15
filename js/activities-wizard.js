@@ -4,7 +4,7 @@
   if (!$('#activities-wizard').length) return;
 
   // ── Replace this with your Google Apps Script endpoint for the activities form ──
-  var ACTIVITIES_ENDPOINT = '';
+  var ACTIVITIES_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz6LfmACs2rzJSugkVec1RCWtwV1unlVmbTYCESk_lVH07o97tjDyN-BaHq9sPtbuvRQQ/exec';
   var RECAPTCHA_SITE_KEY = '6LcGajwsAAAAAId2rBkCEIPZO5qhVmbi9i_NkQQf';
 
   // ── Step definitions ──────────────────────────────────────────────────────────
@@ -386,6 +386,9 @@
     $err.hide();
 
     var payload = $.extend({}, answers);
+    // scubaType is only asked when scuba === 'yes'. FormEasy rejects submissions
+    // that omit a configured field, so always send it (blank when not asked).
+    if (payload.scubaType === undefined) payload.scubaType = '';
 
     function doSubmit(token) {
       if (token) payload.gCaptchaResponse = token;
