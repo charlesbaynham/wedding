@@ -35,7 +35,7 @@
                phEn: 'you@example.com', phEs: 'tu@ejemplo.com', type: 'email' },
     arrival: { en: 'When do you land in México?', es: '¿Cuándo llegas a México?',
                helpEn: 'Roughly is fine — helps us plan the early activities.', helpEs: 'Aproximado está bien — nos ayuda a planear las primeras actividades.',
-               type: 'date' },
+               phEn: 'DD/MM/YYYY', phEs: 'DD/MM/AAAA', dateUK: true },
     staying: { en: 'Where are you staying?', es: '¿Dónde te hospedas?',
                helpEn: 'Hotel, AirBnB, or town — so we can plan pick-ups.', helpEs: 'Hotel, AirBnB o pueblo — para planear el transporte.',
                phEn: 'Hotel, AirBnB, town…', phEs: 'Hotel, AirBnB, pueblo…' },
@@ -232,7 +232,8 @@
       inputHtml = '<textarea id="wiz-field" rows="3" style="' + INPUT + 'resize:vertical;" placeholder="' + ph + '">' + $('<div>').text(val).html() + '</textarea>';
     } else {
       var type = f.type || 'text';
-      inputHtml = '<input id="wiz-field" type="' + type + '" style="' + INPUT + '" placeholder="' + ph + '" value="' + $('<div>').text(val).html() + '" />';
+      var extra = f.dateUK ? ' inputmode="numeric" maxlength="10"' : '';
+      inputHtml = '<input id="wiz-field" type="' + type + '"' + extra + ' style="' + INPUT + '" placeholder="' + ph + '" value="' + $('<div>').text(val).html() + '" />';
     }
     $c.html(
       '<h2 style="font-size:22px; margin-bottom:8px;">' + label + '</h2>' +
@@ -248,6 +249,15 @@
         if (e.key === 'Enter') { e.preventDefault(); doNext(step); }
       });
     }
+    // UK date mask: keep only digits and auto-insert slashes → DD/MM/YYYY.
+    if (f.dateUK) {
+      $('#wiz-field').on('input', function () {
+        var d = this.value.replace(/\D/g, '').slice(0, 8);
+        if (d.length > 4) { this.value = d.slice(0, 2) + '/' + d.slice(2, 4) + '/' + d.slice(4); }
+        else if (d.length > 2) { this.value = d.slice(0, 2) + '/' + d.slice(2); }
+        else { this.value = d; }
+      });
+    }
     $('#wiz-next-btn').on('click', function () { doNext(step); });
   }
 
@@ -258,6 +268,11 @@
         ? t('Please enter your email.', 'Por favor ingresa tu correo electrónico.')
         : t('Please enter the names of everyone in your party.', 'Por favor ingresa los nombres de todos en tu grupo.');
       alert(msg);
+      return;
+    }
+    var f = FIELDS[step.id];
+    if (f && f.dateUK && val && !/^\d{2}\/\d{2}\/\d{4}$/.test(val)) {
+      alert(t('Please enter the date as DD/MM/YYYY.', 'Por favor ingresa la fecha como DD/MM/AAAA.'));
       return;
     }
     answers[step.id] = val;
