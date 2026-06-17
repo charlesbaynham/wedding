@@ -10,14 +10,15 @@
   // ── Step definitions ──────────────────────────────────────────────────────────
   var STEPS = [
     { id: 'intro' },
-    { id: 'names',         kind: 'text' },
+    { id: 'peopleCount',   kind: 'count' },
+    { id: 'people',        kind: 'people' },
     { id: 'email',         kind: 'text' },
     { id: 'arrival',       kind: 'date' },
     { id: 'staying',       kind: 'text' },
     { id: 'welcomeDrinks', kind: 'activity' },
     { id: 'xelha',         kind: 'activity' },
     { id: 'scuba',         kind: 'activity' },
-    { id: 'scubaType',     kind: 'subchoice', showIf: function (a) { return a.scuba === 'yes'; } },
+    { id: 'scubaType',     kind: 'subchoice', showIf: function () { return attendees('scuba').length > 0; } },
     { id: 'cocktails',     kind: 'activity' },
     { id: 'chichen',       kind: 'activity' },
     { id: 'rideCeremony',  kind: 'transport' },
@@ -26,10 +27,10 @@
     { id: 'review' },
   ];
 
+  // Activity steps record per-person attendance; these are the activity ids.
+  var ACTIVITY_IDS = ['welcomeDrinks', 'xelha', 'scuba', 'cocktails', 'chichen'];
+
   var FIELDS = {
-    names:   { en: 'Who\'s coming?', es: '¿Quiénes vienen?',
-               helpEn: 'List the full names of everyone in your party.', helpEs: 'Escribe los nombres completos de todos en tu grupo.',
-               phEn: 'e.g. Jane Smith, John Smith', phEs: 'p. ej. Jane Smith, John Smith', area: true },
     email:   { en: 'What\'s your email?', es: '¿Tu correo electrónico?',
                helpEn: 'So we can reach you about bookings and transport.', helpEs: 'Para poder contactarte sobre reservas y transporte.',
                phEn: 'you@example.com', phEs: 'tu@ejemplo.com', type: 'email' },
@@ -113,10 +114,22 @@
   };
 
   // ── State ─────────────────────────────────────────────────────────────────────
+  // answers.peopleCount → number, answers.people → array of name strings.
+  // Each activity id in answers holds an array of selected person indices.
   var answers = {};
   var history = ['intro'];  // stack of step ids visited
 
   // ── Helpers ───────────────────────────────────────────────────────────────────
+  // Names of the people attending a given activity. Reconciles stored indices
+  // against the current people list so removing a person can't dangle.
+  function attendees(stepId) {
+    var people = answers.people || [];
+    var sel = answers[stepId] || [];
+    var out = [];
+    sel.forEach(function (i) { if (people[i]) out.push(people[i]); });
+    return out;
+  }
+
   function isES() {
     try { return (localStorage.getItem('siteLang') || 'en') === 'es'; } catch (e) { return false; }
   }
@@ -218,7 +231,11 @@
     var step = STEPS.find(function (s) { return s.id === id; });
     if (!step) return;
 
-    if (step.kind === 'text' || step.kind === 'date') {
+    if (step.kind === 'count') {
+      renderCount($c);
+    } else if (step.kind === 'people') {
+      renderPeople($c);
+    } else if (step.kind === 'text' || step.kind === 'date') {
       renderTextField($c, step);
     } else if (step.kind === 'activity') {
       renderActivity($c, step);
@@ -227,6 +244,104 @@
     } else if (step.kind === 'transport') {
       renderTransport($c, step);
     }
+  }
+
+  function renderCount($c) {
+    var val = answers.peopleCount || 1;
+    var btnStep = 'width:52px; height:52px; border-radius:10px; border:2px solid rgba(255,255,255,0.4); background:rgba(0,0,0,0.3); color:#fff; font-size:26px; font-weight:700; line-height:1; cursor:pointer;';
+    $c.html(
+      '<h2 style="font-size:22px; margin-bottom:8px;">' +
+        t('How many people are you responding for?', '¿Para cuántas personas respondes?') + '</h2>' +
+      '<p style="font-size:15px; color:rgba(255,255,255,0.75); margin-bottom:24px;">' +
+        t('Including yourself — you\'ll enter everyone\'s name on the next step.',
+          'Incluyéndote a ti — escribirás el nombre de cada persona en el siguiente paso.') + '</p>' +
+      '<div style="display:flex; align-items:center; justify-content:center; gap:18px; margin-bottom:26px;">' +
+        '<button type="button" id="wiz-count-minus" style="' + btnStep + '">−</button>' +
+        '<input id="wiz-count" type="number" min="1" inputmode="numeric" value="' + val + '" style="' + INPUT + 'width:90px; text-align:center; margin-bottom:0; font-size:28px; font-weight:700;" />' +
+        '<button type="button" id="wiz-count-plus" style="' + btnStep + '">+</button>' +
+      '</div>' +
+      '<button type="button" id="wiz-next-btn" style="' + BTN_NEXT + '">' + t('Next →', 'Siguiente →') + '</button>'
+    );
+    function clampVal() {
+      var n = parseInt($('#wiz-count').val(), 10);
+      if (isNaN(n) || n < 1) n = 1;
+      return n;
+    }
+    $('#wiz-count-minus').on('click', function () { $('#wiz-count').val(Math.max(1, clampVal() - 1)); });
+    $('#wiz-count-plus').on('click', function () { $('#wiz-count').val(clampVal() + 1); });
+    $('#wiz-count').on('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); $('#wiz-next-btn').click(); }
+    });
+    $('#wiz-next-btn').on('click', function () {
+      answers.peopleCount = clampVal();
+      advance('peopleCount');
+    });
+  }
+
+  function renderPeople($c) {
+    var count = answers.peopleCount || 1;
+    var people = answers.people || [];
+    var rowsHtml = '';
+    for (var i = 0; i < count; i++) {
+      var v = people[i] || '';
+      rowsHtml += peopleRow(i, v);
+    }
+    $c.html(
+      '<h2 style="font-size:22px; margin-bottom:8px;">' +
+        t('Who\'s coming?', '¿Quiénes vienen?') + '</h2>' +
+      '<p style="font-size:15px; color:rgba(255,255,255,0.75); margin-bottom:20px;">' +
+        t('Enter the full name of everyone in your party.', 'Escribe el nombre completo de cada persona de tu grupo.') + '</p>' +
+      '<div id="wiz-people-rows">' + rowsHtml + '</div>' +
+      '<button type="button" id="wiz-add-person" style="background:none; border:none; color:#afa63d; font-family:Raleway,sans-serif; font-size:14px; font-weight:700; cursor:pointer; padding:4px 2px; margin-bottom:18px;">' +
+        t('+ Add another person', '+ Agregar otra persona') + '</button>' +
+      '<button type="button" id="wiz-next-btn" style="' + BTN_NEXT + ' display:block;">' + t('Next →', 'Siguiente →') + '</button>'
+    );
+
+    function reindex() {
+      $('#wiz-people-rows .wiz-person').each(function (idx) {
+        $(this).attr('data-idx', idx);
+        $(this).find('input').attr('placeholder', t('Person ', 'Persona ') + (idx + 1));
+      });
+    }
+    // Delegate on the freshly-created container (not #wiz-content, which
+    // persists across renders and would accumulate handlers).
+    $('#wiz-people-rows').on('click', '.wiz-person-remove', function () {
+      if ($('#wiz-people-rows .wiz-person').length <= 1) return;
+      $(this).closest('.wiz-person').remove();
+      reindex();
+    });
+    $('#wiz-add-person').on('click', function () {
+      var idx = $('#wiz-people-rows .wiz-person').length;
+      $('#wiz-people-rows').append(peopleRow(idx, ''));
+    });
+    setTimeout(function () { $('#wiz-people-rows input').first().focus(); }, 80);
+    $('#wiz-next-btn').on('click', function () {
+      var names = collectPeople();
+      if (!names.length) {
+        alert(t('Please enter at least one name.', 'Por favor ingresa al menos un nombre.'));
+        return;
+      }
+      answers.people = names;
+      answers.peopleCount = names.length;
+      advance('people');
+    });
+  }
+
+  function peopleRow(idx, val) {
+    return '<div class="wiz-person" data-idx="' + idx + '" style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">' +
+      '<input type="text" style="' + INPUT + 'margin-bottom:0; flex:1;" placeholder="' + t('Person ', 'Persona ') + (idx + 1) + '" value="' + $('<div>').text(val).html() + '" />' +
+      '<button type="button" class="wiz-person-remove" title="' + t('Remove', 'Quitar') + '" style="background:none; border:none; color:rgba(255,255,255,0.55); font-size:22px; line-height:1; cursor:pointer; padding:6px 8px;">✕</button>' +
+      '</div>';
+  }
+
+  // Read the people-name inputs currently in the DOM (trimmed, non-empty).
+  function collectPeople() {
+    var names = [];
+    $('#wiz-people-rows .wiz-person input').each(function () {
+      var v = $.trim($(this).val());
+      if (v) names.push(v);
+    });
+    return names;
   }
 
   function renderTextField($c, step) {
@@ -266,11 +381,8 @@
 
   function doNext(step) {
     var val = $.trim($('#wiz-field').val());
-    if (!val && (step.id === 'names' || step.id === 'email')) {
-      var msg = step.id === 'email'
-        ? t('Please enter your email.', 'Por favor ingresa tu correo electrónico.')
-        : t('Please enter the names of everyone in your party.', 'Por favor ingresa los nombres de todos en tu grupo.');
-      alert(msg);
+    if (!val && step.id === 'email') {
+      alert(t('Please enter your email.', 'Por favor ingresa tu correo electrónico.'));
       return;
     }
     answers[step.id] = val;
@@ -280,19 +392,62 @@
   function renderActivity($c, step) {
     var a = ACT[step.id];
     if (!a) return;
+    var people = answers.people || [];
+    // Default everyone "coming" the first time this activity is seen.
+    var selected = answers[step.id];
+    if (!selected) { selected = people.map(function (_, i) { return i; }); }
+    var selSet = {};
+    selected.forEach(function (i) { selSet[i] = true; });
+
+    var rowsHtml = '';
+    people.forEach(function (name, i) {
+      rowsHtml += personToggle(i, name, !!selSet[i]);
+    });
+    var single = people.length === 1;
+
     $c.html(
-      '<div style="text-align:center; padding:0 4px; margin-bottom:28px;">' +
+      '<div style="text-align:center; padding:0 4px; margin-bottom:24px;">' +
         '<div style="font-size:52px; line-height:1.1; margin-bottom:14px;">' + a.emoji + '</div>' +
         '<h2 style="font-size:clamp(18px,4vw,24px); margin-bottom:6px;">' + t(a.en, a.es) + '</h2>' +
         '<p style="font-size:14px; color:rgba(255,255,255,0.65); margin-bottom:12px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:0.5px;">' + t(a.whenEn, a.whenEs) + '</p>' +
         '<p style="font-size:16px; line-height:1.55; color:rgba(255,255,255,0.9); margin-bottom:4px;">' + t(a.descEn, a.descEs) + '</p>' +
         (a.priceEn ? '<p style="font-size:13px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:1px; font-weight:700; color:#afa63d; margin:14px 0 0;">' + t(a.priceEn, a.priceEs) + '</p>' : '') +
       '</div>' +
-      '<button type="button" id="wiz-yes-btn" style="' + BTN_YES + '">' + t(a.yesEn, a.yesEs) + '</button>' +
-      '<button type="button" id="wiz-no-btn" style="' + BTN_NO + '">' + t(a.noEn, a.noEs) + '</button>'
+      (single ? '' :
+        '<p style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:10px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:0.5px;">' +
+          t('Tap each person who\'s joining', 'Toca a cada persona que se apunta') + '</p>') +
+      '<div id="wiz-people-toggles">' + rowsHtml + '</div>' +
+      '<button type="button" id="wiz-next-btn" style="' + BTN_NEXT + ' display:block; margin-top:8px;">' + t('Next →', 'Siguiente →') + '</button>'
     );
-    $('#wiz-yes-btn').on('click', function () { answers[step.id] = 'yes'; advance(step.id); });
-    $('#wiz-no-btn').on('click', function () { answers[step.id] = 'no'; advance(step.id); });
+
+    // Delegate on the freshly-created container, not #wiz-content (persistent).
+    $('#wiz-people-toggles').on('click', '.wiz-toggle', function () {
+      var on = $(this).attr('data-on') === '1';
+      setToggle($(this), !on);
+    });
+    $('#wiz-next-btn').on('click', function () {
+      var chosen = [];
+      $('#wiz-people-toggles .wiz-toggle').each(function () {
+        if ($(this).attr('data-on') === '1') chosen.push(parseInt($(this).attr('data-idx'), 10));
+      });
+      answers[step.id] = chosen;
+      advance(step.id);
+    });
+  }
+
+  function personToggle(idx, name, on) {
+    var el = '<button type="button" class="wiz-toggle" data-idx="' + idx + '" data-on="' + (on ? '1' : '0') + '" style="' + (on ? BTN_YES : BTN_NO) + ' display:flex; align-items:center; justify-content:space-between; text-transform:none; letter-spacing:0; text-align:left;">' +
+      '<span class="wiz-toggle-name">' + $('<div>').text(name).html() + '</span>' +
+      '<span class="wiz-toggle-state" style="font-size:13px; opacity:0.85;">' + (on ? t('Coming', 'Va') : t('Not this one', 'Se la salta')) + '</span>' +
+      '</button>';
+    return el;
+  }
+
+  // Flip a person toggle button between "coming" and "not this one" styling.
+  function setToggle($btn, on) {
+    $btn.attr('data-on', on ? '1' : '0');
+    $btn.attr('style', (on ? BTN_YES : BTN_NO) + ' display:flex; align-items:center; justify-content:space-between; text-transform:none; letter-spacing:0; text-align:left;');
+    $btn.find('.wiz-toggle-state').text(on ? t('Coming', 'Va') : t('Not this one', 'Se la salta'));
   }
 
   function renderScubaType($c) {
@@ -341,14 +496,20 @@
     vs.forEach(function (step) {
       var label = '';
       var val   = answers[step.id] || '—';
-      if (step.kind === 'text' || step.kind === 'date') {
+      if (step.kind === 'count') {
+        return; // count is implied by the people list; don't show a separate row
+      } else if (step.kind === 'people') {
+        label = t('Who\'s coming?', '¿Quiénes vienen?');
+        val = (answers.people || []).join(', ') || '—';
+      } else if (step.kind === 'text' || step.kind === 'date') {
         var f = FIELDS[step.id];
         label = f ? t(f.en, f.es) : step.id;
         if (step.kind === 'date' && answers[step.id]) val = formatDateLocale(answers[step.id]);
       } else if (step.kind === 'activity') {
         var a = ACT[step.id];
         label = a ? t(a.en, a.es) : step.id;
-        val = val === 'yes' ? t('Yes', 'Sí') : val === 'no' ? t('No', 'No') : val;
+        var who = attendees(step.id);
+        val = who.length ? who.join(', ') : t('No one', 'Nadie');
       } else if (step.kind === 'subchoice') {
         label = t('Scuba type', 'Tipo de buceo');
         var st = SCUBA_TYPES.find(function (x) { return x.value === val; });
@@ -407,9 +568,18 @@
     $btn.prop('disabled', true).text(t('Submitting…', 'Enviando…'));
     $err.hide();
 
+    // Build a flat payload matching the existing FormEasy columns. Per-person
+    // activity choices collapse to a comma-separated list of attending names
+    // (empty when no one is going); names holds the full party list.
     var payload = $.extend({}, answers);
-    // scubaType is only asked when scuba === 'yes'. FormEasy rejects submissions
-    // that omit a configured field, so always send it (blank when not asked).
+    payload.names = (answers.people || []).join(', ');
+    ACTIVITY_IDS.forEach(function (id) { payload[id] = attendees(id).join(', '); });
+    // Internal-only state — not FormEasy columns.
+    delete payload.people;
+    delete payload.peopleCount;
+    // scubaType is only asked when someone is doing scuba. FormEasy rejects
+    // submissions that omit a configured field, so always send it (blank when
+    // not asked).
     if (payload.scubaType === undefined) payload.scubaType = '';
     // arrival is already stored as ISO YYYY-MM-DD — unambiguous for the backend,
     // regardless of the viewer's locale.
@@ -474,9 +644,16 @@
   // dynamically-injected text switches immediately (no .label-en/.label-es here).
   $('#langSlider').on('input change', function () {
     var sid = currentStep();
-    // Preserve any partially-typed field value before wiping the DOM.
+    // Preserve any partially-typed input before wiping the DOM.
     var $field = $('#wiz-field');
     if ($field.length) { answers[sid] = $field.val(); }
+    if (sid === 'peopleCount' && $('#wiz-count').length) {
+      var n = parseInt($('#wiz-count').val(), 10);
+      if (!isNaN(n) && n >= 1) answers.peopleCount = n;
+    }
+    if (sid === 'people' && $('#wiz-people-rows').length) {
+      answers.people = collectPeople();
+    }
     renderStep(sid);
   });
 
