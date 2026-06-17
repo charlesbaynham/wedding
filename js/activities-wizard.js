@@ -115,9 +115,12 @@
 
   // ── State ─────────────────────────────────────────────────────────────────────
   // answers.peopleCount → number, answers.people → array of name strings.
-  // Each activity id in answers holds an array of selected person indices.
+  // Each activity id in answers holds an array of attending person indices.
   var answers = {};
   var history = ['intro'];  // stack of step ids visited
+  // Transient per-person activity states ('1'|'0'|'' undecided) preserved across
+  // an in-place re-render (e.g. language toggle) before the step is completed.
+  var activityDraft = null;  // { id: stepId, states: [...] }
 
   // ── Helpers ───────────────────────────────────────────────────────────────────
   // Names of the people attending a given activity. Reconciles stored indices
@@ -397,15 +400,23 @@
     var a = ACT[step.id];
     if (!a) return;
     var people = answers.people || [];
-    // Default everyone attending the first time this activity is seen.
-    var selected = answers[step.id];
-    if (!selected) { selected = people.map(function (_, i) { return i; }); }
-    var selSet = {};
-    selected.forEach(function (i) { selSet[i] = true; });
+    // Per-person state: '1' attending, '0' not attending, '' undecided. No
+    // default — the respondent must choose for everyone (validated on Next).
+    var states;
+    if (activityDraft && activityDraft.id === step.id) {
+      states = activityDraft.states;          // restore an in-progress edit
+      activityDraft = null;
+    } else if (answers[step.id] !== undefined) {
+      var selSet = {};                         // step already completed: rebuild
+      answers[step.id].forEach(function (i) { selSet[i] = true; });
+      states = people.map(function (_, i) { return selSet[i] ? '1' : '0'; });
+    } else {
+      states = people.map(function () { return ''; });  // first visit: undecided
+    }
 
     var rowsHtml = '';
     people.forEach(function (name, i) {
-      rowsHtml += personChoiceRow(i, name, !!selSet[i]);
+      rowsHtml += personChoiceRow(i, name, states[i] || '');
     });
 
     $c.html(
@@ -430,29 +441,38 @@
     });
     $('#wiz-next-btn').on('click', function () {
       var chosen = [];
+      var undecided = false;
       $('#wiz-people-toggles .wiz-person-choice').each(function () {
-        if ($(this).attr('data-attending') === '1') chosen.push(parseInt($(this).attr('data-idx'), 10));
+        var st = $(this).attr('data-attending');
+        if (st === '1') chosen.push(parseInt($(this).attr('data-idx'), 10));
+        else if (st !== '0') undecided = true;
       });
+      if (undecided) {
+        alert(t('Please choose Attending or Not attending for everyone.',
+                'Por favor elige Asiste o No asiste para cada persona.'));
+        return;
+      }
       answers[step.id] = chosen;
       advance(step.id);
     });
   }
 
-  function personChoiceRow(idx, name, attending) {
-    return '<div class="wiz-person-choice" data-idx="' + idx + '" data-attending="' + (attending ? '1' : '0') + '" style="margin-bottom:18px;">' +
+  // state: '1' attending, '0' not attending, '' undecided (neither highlighted).
+  function personChoiceRow(idx, name, state) {
+    return '<div class="wiz-person-choice" data-idx="' + idx + '" data-attending="' + state + '" style="margin-bottom:18px;">' +
       '<p style="font-size:17px; font-weight:600; color:#fff; margin:0 0 8px;">' + $('<div>').text(name).html() + '</p>' +
       '<div style="display:flex; gap:10px;">' +
-        '<button type="button" class="wiz-choice" data-choice="yes" style="' + (attending ? CHOICE_ON : CHOICE_OFF) + '">' + t('Attending', 'Asiste') + '</button>' +
-        '<button type="button" class="wiz-choice" data-choice="no" style="' + (attending ? CHOICE_OFF : CHOICE_ON) + '">' + t('Not attending', 'No asiste') + '</button>' +
+        '<button type="button" class="wiz-choice" data-choice="yes" style="' + (state === '1' ? CHOICE_ON : CHOICE_OFF) + '">' + t('Attending', 'Asiste') + '</button>' +
+        '<button type="button" class="wiz-choice" data-choice="no" style="' + (state === '0' ? CHOICE_ON : CHOICE_OFF) + '">' + t('Not attending', 'No asiste') + '</button>' +
       '</div>' +
     '</div>';
   }
 
   // Restyle a person's two buttons to reflect its current data-attending state.
   function styleChoice($block) {
-    var attending = $block.attr('data-attending') === '1';
-    $block.find('.wiz-choice[data-choice="yes"]').attr('style', attending ? CHOICE_ON : CHOICE_OFF);
-    $block.find('.wiz-choice[data-choice="no"]').attr('style', attending ? CHOICE_OFF : CHOICE_ON);
+    var st = $block.attr('data-attending');
+    $block.find('.wiz-choice[data-choice="yes"]').attr('style', st === '1' ? CHOICE_ON : CHOICE_OFF);
+    $block.find('.wiz-choice[data-choice="no"]').attr('style', st === '0' ? CHOICE_ON : CHOICE_OFF);
   }
 
   function renderScubaType($c) {
@@ -659,14 +679,15 @@
     if (sid === 'people' && $('#wiz-people-rows').length) {
       answers.people = collectPeople();
     }
-    // Activity selections only persist to `answers` on Next, so capture the
-    // current per-person choices before the DOM is wiped and re-rendered.
+    // Activity selections only persist to `answers` on Next. Capture the current
+    // three-state per-person choices (including undecided) into a transient draft
+    // so re-rendering after the language switch restores them exactly.
     if ($('#wiz-people-toggles .wiz-person-choice').length) {
-      var chosen = [];
+      var states = [];
       $('#wiz-people-toggles .wiz-person-choice').each(function () {
-        if ($(this).attr('data-attending') === '1') chosen.push(parseInt($(this).attr('data-idx'), 10));
+        states[parseInt($(this).attr('data-idx'), 10)] = $(this).attr('data-attending') || '';
       });
-      answers[sid] = chosen;
+      activityDraft = { id: sid, states: states };
     }
     renderStep(sid);
   });
