@@ -326,6 +326,7 @@
         '<h2 style="font-size:clamp(18px,4vw,22px); margin-bottom:8px;">' + t(tr.legEn, tr.legEs) + '</h2>' +
         '<p style="font-size:14px; font-weight:700; color:#afa63d; font-family:Raleway,sans-serif; letter-spacing:0.5px; margin-bottom:12px;">' + t(tr.routeEn, tr.routeEs) + '</p>' +
         '<p style="font-size:16px; line-height:1.55; color:rgba(255,255,255,0.85); margin-bottom:0;">' + t(tr.descEn, tr.descEs) + '</p>' +
+        '<p style="font-size:13px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:1px; font-weight:700; color:#afa63d; margin:14px 0 0;">' + t('We\'ll keep this as cheap as we can (price to be confirmed)', 'Lo haremos lo más económico posible (precio por confirmar)') + '</p>' +
       '</div>' +
       '<button type="button" id="wiz-yes-btn" style="' + BTN_YES + '">' + t('Yes, I\'d love a lift', 'Sí, me vendría bien') + '</button>' +
       '<button type="button" id="wiz-no-btn" style="' + BTN_NO + '">' + t('No thanks, I\'ll sort my own', 'No gracias, me las arreglo') + '</button>'
