@@ -389,11 +389,15 @@
     advance(step.id);
   }
 
+  // Segmented Attending / Not-attending buttons, sized to sit side by side.
+  var CHOICE_ON  = 'flex:1; padding:13px 10px; border-radius:9px; border:2px solid #afa63d; background:#afa63d; color:#1c1a17; font-family:Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:800; font-size:14px; cursor:pointer; text-align:center;';
+  var CHOICE_OFF = 'flex:1; padding:13px 10px; border-radius:9px; border:2px solid rgba(255,255,255,0.4); background:transparent; color:#fff; font-family:Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:700; font-size:14px; cursor:pointer; text-align:center;';
+
   function renderActivity($c, step) {
     var a = ACT[step.id];
     if (!a) return;
     var people = answers.people || [];
-    // Default everyone "coming" the first time this activity is seen.
+    // Default everyone attending the first time this activity is seen.
     var selected = answers[step.id];
     if (!selected) { selected = people.map(function (_, i) { return i; }); }
     var selSet = {};
@@ -401,9 +405,8 @@
 
     var rowsHtml = '';
     people.forEach(function (name, i) {
-      rowsHtml += personToggle(i, name, !!selSet[i]);
+      rowsHtml += personChoiceRow(i, name, !!selSet[i]);
     });
-    var single = people.length === 1;
 
     $c.html(
       '<div style="text-align:center; padding:0 4px; margin-bottom:24px;">' +
@@ -413,41 +416,43 @@
         '<p style="font-size:16px; line-height:1.55; color:rgba(255,255,255,0.9); margin-bottom:4px;">' + t(a.descEn, a.descEs) + '</p>' +
         (a.priceEn ? '<p style="font-size:13px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:1px; font-weight:700; color:#afa63d; margin:14px 0 0;">' + t(a.priceEn, a.priceEs) + '</p>' : '') +
       '</div>' +
-      (single ? '' :
-        '<p style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:10px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:0.5px;">' +
-          t('Tap each person who\'s joining', 'Toca a cada persona que se apunta') + '</p>') +
+      '<p style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:14px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:0.5px;">' +
+        t('Mark whether each person is attending.', 'Indica si cada persona asiste.') + '</p>' +
       '<div id="wiz-people-toggles">' + rowsHtml + '</div>' +
       '<button type="button" id="wiz-next-btn" style="' + BTN_NEXT + ' display:block; margin-top:8px;">' + t('Next →', 'Siguiente →') + '</button>'
     );
 
     // Delegate on the freshly-created container, not #wiz-content (persistent).
-    $('#wiz-people-toggles').on('click', '.wiz-toggle', function () {
-      var on = $(this).attr('data-on') === '1';
-      setToggle($(this), !on);
+    $('#wiz-people-toggles').on('click', '.wiz-choice', function () {
+      var $block = $(this).closest('.wiz-person-choice');
+      $block.attr('data-attending', $(this).attr('data-choice') === 'yes' ? '1' : '0');
+      styleChoice($block);
     });
     $('#wiz-next-btn').on('click', function () {
       var chosen = [];
-      $('#wiz-people-toggles .wiz-toggle').each(function () {
-        if ($(this).attr('data-on') === '1') chosen.push(parseInt($(this).attr('data-idx'), 10));
+      $('#wiz-people-toggles .wiz-person-choice').each(function () {
+        if ($(this).attr('data-attending') === '1') chosen.push(parseInt($(this).attr('data-idx'), 10));
       });
       answers[step.id] = chosen;
       advance(step.id);
     });
   }
 
-  function personToggle(idx, name, on) {
-    var el = '<button type="button" class="wiz-toggle" data-idx="' + idx + '" data-on="' + (on ? '1' : '0') + '" style="' + (on ? BTN_YES : BTN_NO) + ' display:flex; align-items:center; justify-content:space-between; text-transform:none; letter-spacing:0; text-align:left;">' +
-      '<span class="wiz-toggle-name">' + $('<div>').text(name).html() + '</span>' +
-      '<span class="wiz-toggle-state" style="font-size:13px; opacity:0.85;">' + (on ? t('Coming', 'Va') : t('Not this one', 'Se la salta')) + '</span>' +
-      '</button>';
-    return el;
+  function personChoiceRow(idx, name, attending) {
+    return '<div class="wiz-person-choice" data-idx="' + idx + '" data-attending="' + (attending ? '1' : '0') + '" style="margin-bottom:18px;">' +
+      '<p style="font-size:17px; font-weight:600; color:#fff; margin:0 0 8px;">' + $('<div>').text(name).html() + '</p>' +
+      '<div style="display:flex; gap:10px;">' +
+        '<button type="button" class="wiz-choice" data-choice="yes" style="' + (attending ? CHOICE_ON : CHOICE_OFF) + '">' + t('Attending', 'Asiste') + '</button>' +
+        '<button type="button" class="wiz-choice" data-choice="no" style="' + (attending ? CHOICE_OFF : CHOICE_ON) + '">' + t('Not attending', 'No asiste') + '</button>' +
+      '</div>' +
+    '</div>';
   }
 
-  // Flip a person toggle button between "coming" and "not this one" styling.
-  function setToggle($btn, on) {
-    $btn.attr('data-on', on ? '1' : '0');
-    $btn.attr('style', (on ? BTN_YES : BTN_NO) + ' display:flex; align-items:center; justify-content:space-between; text-transform:none; letter-spacing:0; text-align:left;');
-    $btn.find('.wiz-toggle-state').text(on ? t('Coming', 'Va') : t('Not this one', 'Se la salta'));
+  // Restyle a person's two buttons to reflect its current data-attending state.
+  function styleChoice($block) {
+    var attending = $block.attr('data-attending') === '1';
+    $block.find('.wiz-choice[data-choice="yes"]').attr('style', attending ? CHOICE_ON : CHOICE_OFF);
+    $block.find('.wiz-choice[data-choice="no"]').attr('style', attending ? CHOICE_OFF : CHOICE_ON);
   }
 
   function renderScubaType($c) {
@@ -653,6 +658,15 @@
     }
     if (sid === 'people' && $('#wiz-people-rows').length) {
       answers.people = collectPeople();
+    }
+    // Activity selections only persist to `answers` on Next, so capture the
+    // current per-person choices before the DOM is wiped and re-rendered.
+    if ($('#wiz-people-toggles .wiz-person-choice').length) {
+      var chosen = [];
+      $('#wiz-people-toggles .wiz-person-choice').each(function () {
+        if ($(this).attr('data-attending') === '1') chosen.push(parseInt($(this).attr('data-idx'), 10));
+      });
+      answers[sid] = chosen;
     }
     renderStep(sid);
   });
