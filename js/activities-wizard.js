@@ -48,6 +48,7 @@
       whenEn: 'Wed 21 Oct · 5:00 PM · Puerto Morelos beach', whenEs: 'Mié 21 oct · 17:00 · playa de Puerto Morelos',
       descEn: 'A relaxed evening on the sand at Casa Brisa y Mar to kick things off and meet everyone before the big day.',
       descEs: 'Una velada relajada en la arena en Casa Brisa y Mar para arrancar y conocernos antes del gran día.',
+      priceEn: 'BYOB · bring your own drinks', priceEs: 'BYOB · trae tus propias bebidas',
       yesEn: 'Yes, I\'ll be there', yesEs: 'Sí, estaré ahí',
       noEn: 'Not this one', noEs: 'Me la salto',
     },
@@ -57,6 +58,7 @@
       whenEn: 'Thu 22 Oct · full day', whenEs: 'Jue 22 oct · día completo',
       descEn: 'A full day at the natural water park — snorkel the inlet, float the lazy river and swim in cenotes. Food and drinks are included in the ticket.',
       descEs: 'Un día completo en el parque acuático natural — snorkel en la caleta, río flotante y cenotes. Comida y bebidas incluidas en el boleto.',
+      priceEn: 'Please book your own tickets', priceEs: 'Reserva tus propios boletos',
       yesEn: 'Yes, count me in', yesEs: 'Sí, apúntame',
       noEn: 'Not this one', noEs: 'Me la salto',
     },
@@ -66,6 +68,7 @@
       whenEn: 'Fri 23 Oct · morning or afternoon', whenEs: 'Vie 23 oct · mañana o tarde',
       descEn: 'Head out over the Puerto Morelos reef — part of the second-largest barrier reef in the world. Certified dives, beginner dives and snorkel trips all on offer.',
       descEs: 'Salimos sobre el arrecife de Puerto Morelos — parte del segundo arrecife más grande del mundo. Hay buceo certificado, para principiantes y snorkel.',
+      priceEn: 'Prices on the next step', priceEs: 'Precios en el siguiente paso',
       yesEn: 'Yes, I\'m in', yesEs: 'Sí, me apunto',
       noEn: 'Not this one', noEs: 'Me lo salto',
     },
@@ -75,6 +78,7 @@
       whenEn: 'Fri 23 Oct · 5:00 PM · Puerto Morelos beach', whenEs: 'Vie 23 oct · 17:00 · playa de Puerto Morelos',
       descEn: 'The official start of the celebrations — cocktails on the beach as the sun goes down. This is the one not to miss!',
       descEs: 'El inicio oficial de la celebración — cócteles en la playa mientras se pone el sol. ¡Esta es la que no te puedes perder!',
+      priceEn: 'Free entry · paid bar', priceEs: 'Entrada libre · barra de pago',
       yesEn: 'Yes, I\'ll be there', yesEs: 'Sí, estaré ahí',
       noEn: 'Not this one', noEs: 'Me la salto',
     },
@@ -84,6 +88,7 @@
       whenEn: 'Sat 24 Oct · full day', whenEs: 'Sáb 24 oct · día completo',
       descEn: 'A trip to the great Mayan pyramid, one of the New Seven Wonders. Charles & Gaby won\'t make this one (wedding prep!) but we\'ll help the group organise it.',
       descEs: 'Una excursión a la gran pirámide maya, una de las Nuevas Siete Maravillas. Charles y Gaby no irán a esta (¡preparativos!) pero ayudaremos al grupo a organizarla.',
+      priceEn: '≈ $40 USD per person (to be confirmed)', priceEs: '≈ $40 USD por persona (por confirmar)',
       yesEn: 'Yes, count me in', yesEs: 'Sí, apúntame',
       noEn: 'Not this one', noEs: 'Me la salto',
     },
@@ -281,6 +286,7 @@
         '<h2 style="font-size:clamp(18px,4vw,24px); margin-bottom:6px;">' + t(a.en, a.es) + '</h2>' +
         '<p style="font-size:14px; color:rgba(255,255,255,0.65); margin-bottom:12px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:0.5px;">' + t(a.whenEn, a.whenEs) + '</p>' +
         '<p style="font-size:16px; line-height:1.55; color:rgba(255,255,255,0.9); margin-bottom:4px;">' + t(a.descEn, a.descEs) + '</p>' +
+        (a.priceEn ? '<p style="font-size:13px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:1px; font-weight:700; color:#afa63d; margin:14px 0 0;">' + t(a.priceEn, a.priceEs) + '</p>' : '') +
       '</div>' +
       '<button type="button" id="wiz-yes-btn" style="' + BTN_YES + '">' + t(a.yesEn, a.yesEs) + '</button>' +
       '<button type="button" id="wiz-no-btn" style="' + BTN_NO + '">' + t(a.noEn, a.noEs) + '</button>'
