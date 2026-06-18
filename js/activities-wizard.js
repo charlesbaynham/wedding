@@ -18,7 +18,7 @@
     { id: 'welcomeDrinks', kind: 'activity' },
     { id: 'xelha',         kind: 'activity' },
     { id: 'scuba',         kind: 'activity' },
-    { id: 'scubaType',     kind: 'subchoice', showIf: function () { return attendees('scuba').length > 0; } },
+    { id: 'scubaType',     expand: 'scubaPerPerson' },
     { id: 'cocktails',     kind: 'activity' },
     { id: 'chichen',       kind: 'activity' },
     { id: 'rideCeremony',  kind: 'transport' },
@@ -115,9 +115,12 @@
 
   // ── State ─────────────────────────────────────────────────────────────────────
   // answers.peopleCount → number, answers.people → array of name strings.
-  // Each activity id in answers holds an array of selected person indices.
+  // Each activity id in answers holds an array of attending person indices.
   var answers = {};
   var history = ['intro'];  // stack of step ids visited
+  // Transient per-person activity states ('1'|'0'|'' undecided) preserved across
+  // an in-place re-render (e.g. language toggle) before the step is completed.
+  var activityDraft = null;  // { id: stepId, states: [...] }
 
   // ── Helpers ───────────────────────────────────────────────────────────────────
   // Names of the people attending a given activity. Reconciles stored indices
@@ -146,8 +149,36 @@
     try { return d.toLocaleDateString(); } catch (e) { return iso; }
   }
 
+  // Stable answer-key / step-id for one person's scuba dive type.
+  function scubaStepId(personIdx) { return 'scubaType:' + personIdx; }
+
+  // The full ordered step list. The single `scubaType` placeholder expands into
+  // one dive-type step per person attending scuba (in people order), so each
+  // diver picks their own level. Recomputed from `answers` on every navigation.
+  function allSteps() {
+    var people = answers.people || [];
+    var scubaSel = answers.scuba || [];
+    var out = [];
+    STEPS.forEach(function (s) {
+      if (s.expand === 'scubaPerPerson') {
+        people.forEach(function (name, pIdx) {
+          if (scubaSel.indexOf(pIdx) !== -1) {
+            out.push({ id: scubaStepId(pIdx), kind: 'scubaType', personIdx: pIdx });
+          }
+        });
+      } else {
+        out.push(s);
+      }
+    });
+    return out;
+  }
+
+  function findStep(id) {
+    return allSteps().find(function (s) { return s.id === id; });
+  }
+
   function visibleSteps() {
-    return STEPS.filter(function (s) { return !s.showIf || s.showIf(answers); });
+    return allSteps().filter(function (s) { return !s.showIf || s.showIf(answers); });
   }
 
   function stepIndex(id) {
@@ -172,7 +203,7 @@
 
   function updateProgress() {
     var sid = currentStep();
-    var step = STEPS.find(function (s) { return s.id === sid; });
+    var step = findStep(sid);
     if (!step || sid === 'intro') {
       $('#wiz-progress-wrap').hide();
       return;
@@ -191,10 +222,10 @@
   }
 
   // ── Render ────────────────────────────────────────────────────────────────────
-  var BTN_YES  = 'display:block; width:100%; padding:17px 18px; border-radius:11px; border:2px solid #afa63d; background:#afa63d; color:#1c1a17; font-family:Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:1px; font-size:15px; cursor:pointer; margin-bottom:12px;';
-  var BTN_NO   = 'display:block; width:100%; padding:17px 18px; border-radius:11px; border:2px solid rgba(255,255,255,0.5); background:transparent; color:#fff; font-family:Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:15px; cursor:pointer;';
-  var BTN_NEXT = 'display:inline-block; padding:14px 32px; border-radius:9px; border:2px solid #afa63d; background:#afa63d; color:#1c1a17; font-family:Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:1px; font-size:14px; cursor:pointer;';
-  var INPUT    = 'display:block; width:100%; padding:14px 16px; border-radius:8px; border:2px solid rgba(255,255,255,0.3); background:rgba(0,0,0,0.3); color:#fff; font-family:Cardo,"Helvetica Neue",Helvetica,Arial,sans-serif; font-size:18px; outline:none; margin-bottom:20px; -webkit-appearance:none;';
+  var BTN_YES  = 'display:block; width:100%; padding:17px 18px; border-radius:11px; border:2px solid #afa63d; background:#afa63d; color:#1c1a17; font-family:Raleway,Helvetica,Arial,sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:1px; font-size:15px; cursor:pointer; margin-bottom:12px;';
+  var BTN_NO   = 'display:block; width:100%; padding:17px 18px; border-radius:11px; border:2px solid rgba(255,255,255,0.5); background:transparent; color:#fff; font-family:Raleway,Helvetica,Arial,sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:15px; cursor:pointer;';
+  var BTN_NEXT = 'display:inline-block; padding:14px 32px; border-radius:9px; border:2px solid #afa63d; background:#afa63d; color:#1c1a17; font-family:Raleway,Helvetica,Arial,sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:1px; font-size:14px; cursor:pointer;';
+  var INPUT    = 'display:block; width:100%; max-width:460px; padding:14px 16px; border-radius:8px; border:2px solid rgba(255,255,255,0.3); background:rgba(0,0,0,0.3); color:#fff; font-family:Cardo,Helvetica,Arial,sans-serif; font-size:18px; outline:none; margin-bottom:20px; -webkit-appearance:none;';
 
   function renderStep(id) {
     var $c = $('#wiz-content');
@@ -228,7 +259,7 @@
       return;
     }
 
-    var step = STEPS.find(function (s) { return s.id === id; });
+    var step = findStep(id);
     if (!step) return;
 
     if (step.kind === 'count') {
@@ -239,8 +270,8 @@
       renderTextField($c, step);
     } else if (step.kind === 'activity') {
       renderActivity($c, step);
-    } else if (step.kind === 'subchoice') {
-      renderScubaType($c);
+    } else if (step.kind === 'scubaType') {
+      renderScubaType($c, step);
     } else if (step.kind === 'transport') {
       renderTransport($c, step);
     }
@@ -328,7 +359,7 @@
   }
 
   function peopleRow(idx, val) {
-    return '<div class="wiz-person" data-idx="' + idx + '" style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">' +
+    return '<div class="wiz-person" data-idx="' + idx + '" style="display:flex; align-items:center; gap:8px; margin-bottom:12px; max-width:460px;">' +
       '<input type="text" style="' + INPUT + 'margin-bottom:0; flex:1;" placeholder="' + t('Person ', 'Persona ') + (idx + 1) + '" value="' + $('<div>').text(val).html() + '" />' +
       '<button type="button" class="wiz-person-remove" title="' + t('Remove', 'Quitar') + '" style="background:none; border:none; color:rgba(255,255,255,0.55); font-size:22px; line-height:1; cursor:pointer; padding:6px 8px;">✕</button>' +
       '</div>';
@@ -389,21 +420,55 @@
     advance(step.id);
   }
 
+  // Per-person "sliding switch": one segmented control with both labels always
+  // visible. A pill slides over the chosen side (gold = attending, white = not
+  // attending) and is hidden entirely while undecided. Capped width so it does
+  // not stretch across the column on desktop.
+  // NOTE: font-family is deliberately left unquoted — a quoted "Helvetica Neue"
+  // inside an inline style="" string truncates the attribute when injected via
+  // jQuery .html(), silently dropping every property after it.
+  var SW_MAXW  = 460;
+  var SW_TRACK = 'position:relative; height:54px; border-radius:27px; background:rgba(0,0,0,0.28); border:1px solid rgba(255,255,255,0.18); overflow:hidden;';
+
+  // The sliding highlight, by state ('1' attending | '0' not | '' undecided).
+  function switchPillStyle(state) {
+    var s = 'position:absolute; top:4px; bottom:4px; width:calc(50% - 4px); margin:0 4px; border-radius:23px; transition:left 0.18s ease, background 0.18s ease;';
+    if (state === '1') return s + ' left:50%; background:#afa63d;';
+    if (state === '0') return s + ' left:0; background:#fff;';
+    return s + ' left:0; background:transparent; display:none;';
+  }
+  // A label/half of the switch. which is 'yes' (right) or 'no' (left).
+  function switchLabelStyle(which, state) {
+    var active = (which === 'yes' && state === '1') || (which === 'no' && state === '0');
+    return 'position:absolute; ' + (which === 'no' ? 'left:0;' : 'right:0;') +
+      ' top:0; height:54px; width:50%; z-index:1; border:none; background:transparent; padding:0; margin:0;' +
+      ' font-family:Raleway,Helvetica,Arial,sans-serif; font-weight:800; font-size:13px; line-height:54px;' +
+      ' letter-spacing:0.5px; text-transform:uppercase; text-align:center; cursor:pointer;' +
+      ' color:' + (active ? '#1c1a17' : 'rgba(255,255,255,0.5)') + ';';
+  }
+
   function renderActivity($c, step) {
     var a = ACT[step.id];
     if (!a) return;
     var people = answers.people || [];
-    // Default everyone "coming" the first time this activity is seen.
-    var selected = answers[step.id];
-    if (!selected) { selected = people.map(function (_, i) { return i; }); }
-    var selSet = {};
-    selected.forEach(function (i) { selSet[i] = true; });
+    // Per-person state: '1' attending, '0' not attending, '' undecided. No
+    // default — the respondent must choose for everyone (validated on Next).
+    var states;
+    if (activityDraft && activityDraft.id === step.id) {
+      states = activityDraft.states;          // restore an in-progress edit
+      activityDraft = null;
+    } else if (answers[step.id] !== undefined) {
+      var selSet = {};                         // step already completed: rebuild
+      answers[step.id].forEach(function (i) { selSet[i] = true; });
+      states = people.map(function (_, i) { return selSet[i] ? '1' : '0'; });
+    } else {
+      states = people.map(function () { return ''; });  // first visit: undecided
+    }
 
     var rowsHtml = '';
     people.forEach(function (name, i) {
-      rowsHtml += personToggle(i, name, !!selSet[i]);
+      rowsHtml += personChoiceRow(i, name, states[i] || '');
     });
-    var single = people.length === 1;
 
     $c.html(
       '<div style="text-align:center; padding:0 4px; margin-bottom:24px;">' +
@@ -413,51 +478,71 @@
         '<p style="font-size:16px; line-height:1.55; color:rgba(255,255,255,0.9); margin-bottom:4px;">' + t(a.descEn, a.descEs) + '</p>' +
         (a.priceEn ? '<p style="font-size:13px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:1px; font-weight:700; color:#afa63d; margin:14px 0 0;">' + t(a.priceEn, a.priceEs) + '</p>' : '') +
       '</div>' +
-      (single ? '' :
-        '<p style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:10px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:0.5px;">' +
-          t('Tap each person who\'s joining', 'Toca a cada persona que se apunta') + '</p>') +
+      '<p style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:14px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:0.5px;">' +
+        t('Mark whether each person is attending.', 'Indica si cada persona asiste.') + '</p>' +
       '<div id="wiz-people-toggles">' + rowsHtml + '</div>' +
       '<button type="button" id="wiz-next-btn" style="' + BTN_NEXT + ' display:block; margin-top:8px;">' + t('Next →', 'Siguiente →') + '</button>'
     );
 
     // Delegate on the freshly-created container, not #wiz-content (persistent).
-    $('#wiz-people-toggles').on('click', '.wiz-toggle', function () {
-      var on = $(this).attr('data-on') === '1';
-      setToggle($(this), !on);
+    $('#wiz-people-toggles').on('click', '.wiz-choice', function () {
+      var $block = $(this).closest('.wiz-person-choice');
+      $block.attr('data-attending', $(this).attr('data-choice') === 'yes' ? '1' : '0');
+      styleChoice($block);
     });
     $('#wiz-next-btn').on('click', function () {
       var chosen = [];
-      $('#wiz-people-toggles .wiz-toggle').each(function () {
-        if ($(this).attr('data-on') === '1') chosen.push(parseInt($(this).attr('data-idx'), 10));
+      var undecided = false;
+      $('#wiz-people-toggles .wiz-person-choice').each(function () {
+        var st = $(this).attr('data-attending');
+        if (st === '1') chosen.push(parseInt($(this).attr('data-idx'), 10));
+        else if (st !== '0') undecided = true;
       });
+      if (undecided) {
+        alert(t('Please choose Attending or Not attending for everyone.',
+                'Por favor elige Asiste o No asiste para cada persona.'));
+        return;
+      }
       answers[step.id] = chosen;
       advance(step.id);
     });
   }
 
-  function personToggle(idx, name, on) {
-    var el = '<button type="button" class="wiz-toggle" data-idx="' + idx + '" data-on="' + (on ? '1' : '0') + '" style="' + (on ? BTN_YES : BTN_NO) + ' display:flex; align-items:center; justify-content:space-between; text-transform:none; letter-spacing:0; text-align:left;">' +
-      '<span class="wiz-toggle-name">' + $('<div>').text(name).html() + '</span>' +
-      '<span class="wiz-toggle-state" style="font-size:13px; opacity:0.85;">' + (on ? t('Coming', 'Va') : t('Not this one', 'Se la salta')) + '</span>' +
-      '</button>';
-    return el;
+  // state: '1' attending, '0' not attending, '' undecided (pill hidden).
+  function personChoiceRow(idx, name, state) {
+    return '<div class="wiz-person-choice" data-idx="' + idx + '" data-attending="' + state + '" style="margin-bottom:18px; max-width:' + SW_MAXW + 'px;">' +
+      '<p style="font-size:16px; font-weight:600; color:#fff; margin:0 0 9px 2px;">' + $('<div>').text(name).html() + '</p>' +
+      '<div class="wiz-switch" style="' + SW_TRACK + '">' +
+        '<span class="wiz-switch-pill" style="' + switchPillStyle(state) + '"></span>' +
+        '<button type="button" class="wiz-choice" data-choice="no" style="' + switchLabelStyle('no', state) + '">' + t('Not attending', 'No asiste') + '</button>' +
+        '<button type="button" class="wiz-choice" data-choice="yes" style="' + switchLabelStyle('yes', state) + '">' + t('Attending', 'Asiste') + '</button>' +
+      '</div>' +
+    '</div>';
   }
 
-  // Flip a person toggle button between "coming" and "not this one" styling.
-  function setToggle($btn, on) {
-    $btn.attr('data-on', on ? '1' : '0');
-    $btn.attr('style', (on ? BTN_YES : BTN_NO) + ' display:flex; align-items:center; justify-content:space-between; text-transform:none; letter-spacing:0; text-align:left;');
-    $btn.find('.wiz-toggle-state').text(on ? t('Coming', 'Va') : t('Not this one', 'Se la salta'));
+  // Restyle a person's switch (pill + both labels) for its data-attending state.
+  function styleChoice($block) {
+    var st = $block.attr('data-attending');
+    $block.find('.wiz-switch-pill').attr('style', switchPillStyle(st));
+    $block.find('.wiz-choice[data-choice="no"]').attr('style', switchLabelStyle('no', st));
+    $block.find('.wiz-choice[data-choice="yes"]').attr('style', switchLabelStyle('yes', st));
   }
 
-  function renderScubaType($c) {
-    var html = '<h2 style="font-size:clamp(18px,4vw,22px); margin-bottom:8px;">' +
-      t('Which kind of dive?', '¿Qué tipo de buceo?') + '</h2>' +
-      '<p style="font-size:15px; color:rgba(255,255,255,0.75); margin-bottom:22px;">' +
-        t('Group price applies if 10+ people sign up for the same type.', 'El precio de grupo aplica si 10 o más personas se inscriben al mismo tipo.') +
-      '</p>';
+  // One screen per diver: each attending scuba person picks their own level.
+  function renderScubaType($c, step) {
+    var name = (answers.people || [])[step.personIdx] || '';
+    var current = answers[step.id];
+    var html = '<div style="text-align:center; margin-bottom:14px;">' +
+        '<div style="font-size:48px; line-height:1.1; margin-bottom:12px;">🤿</div>' +
+        '<h2 style="font-size:clamp(18px,4vw,22px); margin-bottom:8px;">' +
+          t('Which dive for ', '¿Qué buceo para ') + $('<div>').text(name).html() + '?</h2>' +
+        '<p style="font-size:14px; color:rgba(255,255,255,0.7); margin:0; font-family:Raleway,sans-serif;">' +
+          t('Group price applies if 10+ people choose the same type.', 'El precio de grupo aplica si 10 o más personas eligen el mismo tipo.') +
+        '</p>' +
+      '</div>';
     SCUBA_TYPES.forEach(function (st) {
-      html += '<button type="button" class="scuba-type-btn" data-val="' + st.value + '" style="display:flex; align-items:center; justify-content:space-between; width:100%; padding:16px 18px; border-radius:11px; border:2px solid rgba(255,255,255,0.3); background:rgba(0,0,0,0.25); color:#fff; font-family:Raleway,sans-serif; cursor:pointer; margin-bottom:10px; text-align:left;">' +
+      var on = current === st.value;
+      html += '<button type="button" class="scuba-type-btn" data-val="' + st.value + '" style="display:flex; align-items:center; justify-content:space-between; width:100%; max-width:460px; padding:16px 18px; border-radius:11px; border:2px solid ' + (on ? '#afa63d' : 'rgba(255,255,255,0.3)') + '; background:' + (on ? 'rgba(175,166,61,0.18)' : 'rgba(0,0,0,0.25)') + '; color:#fff; font-family:Raleway,sans-serif; cursor:pointer; margin-bottom:10px; text-align:left;">' +
         '<span style="font-size:15px; font-weight:700;">' + t(st.en, st.es) + '</span>' +
         '<span style="text-align:right; font-size:13px; line-height:1.5; color:rgba(255,255,255,0.75);">' +
           st.price + '<br />' +
@@ -467,8 +552,8 @@
     });
     $c.html(html);
     $('.scuba-type-btn').on('click', function () {
-      answers.scubaType = $(this).data('val');
-      advance('scubaType');
+      answers[step.id] = $(this).data('val');
+      advance(step.id);
     });
   }
 
@@ -510,10 +595,11 @@
         label = a ? t(a.en, a.es) : step.id;
         var who = attendees(step.id);
         val = who.length ? who.join(', ') : t('No one', 'Nadie');
-      } else if (step.kind === 'subchoice') {
-        label = t('Scuba type', 'Tipo de buceo');
-        var st = SCUBA_TYPES.find(function (x) { return x.value === val; });
-        if (st) val = t(st.en, st.es);
+      } else if (step.kind === 'scubaType') {
+        var diver = (answers.people || [])[step.personIdx] || '';
+        label = t('Scuba — ', 'Buceo — ') + diver;
+        var st = SCUBA_TYPES.find(function (x) { return x.value === answers[step.id]; });
+        val = st ? t(st.en, st.es) : '—';
       } else if (step.kind === 'transport') {
         var tr = TRANSPORT[step.id];
         label = tr ? t(tr.legEn, tr.legEs) : step.id;
@@ -577,10 +663,20 @@
     // Internal-only state — not FormEasy columns.
     delete payload.people;
     delete payload.peopleCount;
-    // scubaType is only asked when someone is doing scuba. FormEasy rejects
-    // submissions that omit a configured field, so always send it (blank when
-    // not asked).
-    if (payload.scubaType === undefined) payload.scubaType = '';
+    // Each diver picks their own level, stored per-person under 'scubaType:<idx>'.
+    // Collapse those into the single scubaType column as a "Name: Type" list (in
+    // people order). FormEasy rejects submissions that omit a configured field,
+    // so always send it (blank when nobody is diving). Drop the internal keys.
+    var scubaParts = [];
+    (answers.people || []).forEach(function (name, pIdx) {
+      if ((answers.scuba || []).indexOf(pIdx) === -1) return;
+      var st = SCUBA_TYPES.find(function (x) { return x.value === answers[scubaStepId(pIdx)]; });
+      scubaParts.push(name + ': ' + (st ? st.en : ''));
+    });
+    payload.scubaType = scubaParts.join(', ');
+    Object.keys(payload).forEach(function (k) {
+      if (k.indexOf('scubaType:') === 0) delete payload[k];
+    });
     // arrival is already stored as ISO YYYY-MM-DD — unambiguous for the backend,
     // regardless of the viewer's locale.
 
@@ -653,6 +749,16 @@
     }
     if (sid === 'people' && $('#wiz-people-rows').length) {
       answers.people = collectPeople();
+    }
+    // Activity selections only persist to `answers` on Next. Capture the current
+    // three-state per-person choices (including undecided) into a transient draft
+    // so re-rendering after the language switch restores them exactly.
+    if ($('#wiz-people-toggles .wiz-person-choice').length) {
+      var states = [];
+      $('#wiz-people-toggles .wiz-person-choice').each(function () {
+        states[parseInt($(this).attr('data-idx'), 10)] = $(this).attr('data-attending') || '';
+      });
+      activityDraft = { id: sid, states: states };
     }
     renderStep(sid);
   });
