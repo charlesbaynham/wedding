@@ -115,9 +115,12 @@
 
   // ── State ─────────────────────────────────────────────────────────────────────
   // answers.peopleCount → number, answers.people → array of name strings.
-  // Each activity id in answers holds an array of selected person indices.
+  // Each activity id in answers holds an array of attending person indices.
   var answers = {};
   var history = ['intro'];  // stack of step ids visited
+  // Transient per-person activity states ('1'|'0'|'' undecided) preserved across
+  // an in-place re-render (e.g. language toggle) before the step is completed.
+  var activityDraft = null;  // { id: stepId, states: [...] }
 
   // ── Helpers ───────────────────────────────────────────────────────────────────
   // Names of the people attending a given activity. Reconciles stored indices
@@ -191,10 +194,10 @@
   }
 
   // ── Render ────────────────────────────────────────────────────────────────────
-  var BTN_YES  = 'display:block; width:100%; padding:17px 18px; border-radius:11px; border:2px solid #afa63d; background:#afa63d; color:#1c1a17; font-family:Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:1px; font-size:15px; cursor:pointer; margin-bottom:12px;';
-  var BTN_NO   = 'display:block; width:100%; padding:17px 18px; border-radius:11px; border:2px solid rgba(255,255,255,0.5); background:transparent; color:#fff; font-family:Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:15px; cursor:pointer;';
-  var BTN_NEXT = 'display:inline-block; padding:14px 32px; border-radius:9px; border:2px solid #afa63d; background:#afa63d; color:#1c1a17; font-family:Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:1px; font-size:14px; cursor:pointer;';
-  var INPUT    = 'display:block; width:100%; padding:14px 16px; border-radius:8px; border:2px solid rgba(255,255,255,0.3); background:rgba(0,0,0,0.3); color:#fff; font-family:Cardo,"Helvetica Neue",Helvetica,Arial,sans-serif; font-size:18px; outline:none; margin-bottom:20px; -webkit-appearance:none;';
+  var BTN_YES  = 'display:block; width:100%; padding:17px 18px; border-radius:11px; border:2px solid #afa63d; background:#afa63d; color:#1c1a17; font-family:Raleway,Helvetica,Arial,sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:1px; font-size:15px; cursor:pointer; margin-bottom:12px;';
+  var BTN_NO   = 'display:block; width:100%; padding:17px 18px; border-radius:11px; border:2px solid rgba(255,255,255,0.5); background:transparent; color:#fff; font-family:Raleway,Helvetica,Arial,sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:15px; cursor:pointer;';
+  var BTN_NEXT = 'display:inline-block; padding:14px 32px; border-radius:9px; border:2px solid #afa63d; background:#afa63d; color:#1c1a17; font-family:Raleway,Helvetica,Arial,sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:1px; font-size:14px; cursor:pointer;';
+  var INPUT    = 'display:block; width:100%; max-width:460px; padding:14px 16px; border-radius:8px; border:2px solid rgba(255,255,255,0.3); background:rgba(0,0,0,0.3); color:#fff; font-family:Cardo,Helvetica,Arial,sans-serif; font-size:18px; outline:none; margin-bottom:20px; -webkit-appearance:none;';
 
   function renderStep(id) {
     var $c = $('#wiz-content');
@@ -328,7 +331,7 @@
   }
 
   function peopleRow(idx, val) {
-    return '<div class="wiz-person" data-idx="' + idx + '" style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">' +
+    return '<div class="wiz-person" data-idx="' + idx + '" style="display:flex; align-items:center; gap:8px; margin-bottom:12px; max-width:460px;">' +
       '<input type="text" style="' + INPUT + 'margin-bottom:0; flex:1;" placeholder="' + t('Person ', 'Persona ') + (idx + 1) + '" value="' + $('<div>').text(val).html() + '" />' +
       '<button type="button" class="wiz-person-remove" title="' + t('Remove', 'Quitar') + '" style="background:none; border:none; color:rgba(255,255,255,0.55); font-size:22px; line-height:1; cursor:pointer; padding:6px 8px;">✕</button>' +
       '</div>';
@@ -389,21 +392,55 @@
     advance(step.id);
   }
 
+  // Per-person "sliding switch": one segmented control with both labels always
+  // visible. A pill slides over the chosen side (gold = attending, white = not
+  // attending) and is hidden entirely while undecided. Capped width so it does
+  // not stretch across the column on desktop.
+  // NOTE: font-family is deliberately left unquoted — a quoted "Helvetica Neue"
+  // inside an inline style="" string truncates the attribute when injected via
+  // jQuery .html(), silently dropping every property after it.
+  var SW_MAXW  = 460;
+  var SW_TRACK = 'position:relative; height:54px; border-radius:27px; background:rgba(0,0,0,0.28); border:1px solid rgba(255,255,255,0.18); overflow:hidden;';
+
+  // The sliding highlight, by state ('1' attending | '0' not | '' undecided).
+  function switchPillStyle(state) {
+    var s = 'position:absolute; top:4px; bottom:4px; width:calc(50% - 4px); margin:0 4px; border-radius:23px; transition:left 0.18s ease, background 0.18s ease;';
+    if (state === '1') return s + ' left:50%; background:#afa63d;';
+    if (state === '0') return s + ' left:0; background:#fff;';
+    return s + ' left:0; background:transparent; display:none;';
+  }
+  // A label/half of the switch. which is 'yes' (right) or 'no' (left).
+  function switchLabelStyle(which, state) {
+    var active = (which === 'yes' && state === '1') || (which === 'no' && state === '0');
+    return 'position:absolute; ' + (which === 'no' ? 'left:0;' : 'right:0;') +
+      ' top:0; height:54px; width:50%; z-index:1; border:none; background:transparent; padding:0; margin:0;' +
+      ' font-family:Raleway,Helvetica,Arial,sans-serif; font-weight:800; font-size:13px; line-height:54px;' +
+      ' letter-spacing:0.5px; text-transform:uppercase; text-align:center; cursor:pointer;' +
+      ' color:' + (active ? '#1c1a17' : 'rgba(255,255,255,0.5)') + ';';
+  }
+
   function renderActivity($c, step) {
     var a = ACT[step.id];
     if (!a) return;
     var people = answers.people || [];
-    // Default everyone "coming" the first time this activity is seen.
-    var selected = answers[step.id];
-    if (!selected) { selected = people.map(function (_, i) { return i; }); }
-    var selSet = {};
-    selected.forEach(function (i) { selSet[i] = true; });
+    // Per-person state: '1' attending, '0' not attending, '' undecided. No
+    // default — the respondent must choose for everyone (validated on Next).
+    var states;
+    if (activityDraft && activityDraft.id === step.id) {
+      states = activityDraft.states;          // restore an in-progress edit
+      activityDraft = null;
+    } else if (answers[step.id] !== undefined) {
+      var selSet = {};                         // step already completed: rebuild
+      answers[step.id].forEach(function (i) { selSet[i] = true; });
+      states = people.map(function (_, i) { return selSet[i] ? '1' : '0'; });
+    } else {
+      states = people.map(function () { return ''; });  // first visit: undecided
+    }
 
     var rowsHtml = '';
     people.forEach(function (name, i) {
-      rowsHtml += personToggle(i, name, !!selSet[i]);
+      rowsHtml += personChoiceRow(i, name, states[i] || '');
     });
-    var single = people.length === 1;
 
     $c.html(
       '<div style="text-align:center; padding:0 4px; margin-bottom:24px;">' +
@@ -413,41 +450,54 @@
         '<p style="font-size:16px; line-height:1.55; color:rgba(255,255,255,0.9); margin-bottom:4px;">' + t(a.descEn, a.descEs) + '</p>' +
         (a.priceEn ? '<p style="font-size:13px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:1px; font-weight:700; color:#afa63d; margin:14px 0 0;">' + t(a.priceEn, a.priceEs) + '</p>' : '') +
       '</div>' +
-      (single ? '' :
-        '<p style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:10px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:0.5px;">' +
-          t('Tap each person who\'s joining', 'Toca a cada persona que se apunta') + '</p>') +
+      '<p style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:14px; font-family:Raleway,sans-serif; text-transform:uppercase; letter-spacing:0.5px;">' +
+        t('Mark whether each person is attending.', 'Indica si cada persona asiste.') + '</p>' +
       '<div id="wiz-people-toggles">' + rowsHtml + '</div>' +
       '<button type="button" id="wiz-next-btn" style="' + BTN_NEXT + ' display:block; margin-top:8px;">' + t('Next →', 'Siguiente →') + '</button>'
     );
 
     // Delegate on the freshly-created container, not #wiz-content (persistent).
-    $('#wiz-people-toggles').on('click', '.wiz-toggle', function () {
-      var on = $(this).attr('data-on') === '1';
-      setToggle($(this), !on);
+    $('#wiz-people-toggles').on('click', '.wiz-choice', function () {
+      var $block = $(this).closest('.wiz-person-choice');
+      $block.attr('data-attending', $(this).attr('data-choice') === 'yes' ? '1' : '0');
+      styleChoice($block);
     });
     $('#wiz-next-btn').on('click', function () {
       var chosen = [];
-      $('#wiz-people-toggles .wiz-toggle').each(function () {
-        if ($(this).attr('data-on') === '1') chosen.push(parseInt($(this).attr('data-idx'), 10));
+      var undecided = false;
+      $('#wiz-people-toggles .wiz-person-choice').each(function () {
+        var st = $(this).attr('data-attending');
+        if (st === '1') chosen.push(parseInt($(this).attr('data-idx'), 10));
+        else if (st !== '0') undecided = true;
       });
+      if (undecided) {
+        alert(t('Please choose Attending or Not attending for everyone.',
+                'Por favor elige Asiste o No asiste para cada persona.'));
+        return;
+      }
       answers[step.id] = chosen;
       advance(step.id);
     });
   }
 
-  function personToggle(idx, name, on) {
-    var el = '<button type="button" class="wiz-toggle" data-idx="' + idx + '" data-on="' + (on ? '1' : '0') + '" style="' + (on ? BTN_YES : BTN_NO) + ' display:flex; align-items:center; justify-content:space-between; text-transform:none; letter-spacing:0; text-align:left;">' +
-      '<span class="wiz-toggle-name">' + $('<div>').text(name).html() + '</span>' +
-      '<span class="wiz-toggle-state" style="font-size:13px; opacity:0.85;">' + (on ? t('Coming', 'Va') : t('Not this one', 'Se la salta')) + '</span>' +
-      '</button>';
-    return el;
+  // state: '1' attending, '0' not attending, '' undecided (pill hidden).
+  function personChoiceRow(idx, name, state) {
+    return '<div class="wiz-person-choice" data-idx="' + idx + '" data-attending="' + state + '" style="margin-bottom:18px; max-width:' + SW_MAXW + 'px;">' +
+      '<p style="font-size:16px; font-weight:600; color:#fff; margin:0 0 9px 2px;">' + $('<div>').text(name).html() + '</p>' +
+      '<div class="wiz-switch" style="' + SW_TRACK + '">' +
+        '<span class="wiz-switch-pill" style="' + switchPillStyle(state) + '"></span>' +
+        '<button type="button" class="wiz-choice" data-choice="no" style="' + switchLabelStyle('no', state) + '">' + t('Not attending', 'No asiste') + '</button>' +
+        '<button type="button" class="wiz-choice" data-choice="yes" style="' + switchLabelStyle('yes', state) + '">' + t('Attending', 'Asiste') + '</button>' +
+      '</div>' +
+    '</div>';
   }
 
-  // Flip a person toggle button between "coming" and "not this one" styling.
-  function setToggle($btn, on) {
-    $btn.attr('data-on', on ? '1' : '0');
-    $btn.attr('style', (on ? BTN_YES : BTN_NO) + ' display:flex; align-items:center; justify-content:space-between; text-transform:none; letter-spacing:0; text-align:left;');
-    $btn.find('.wiz-toggle-state').text(on ? t('Coming', 'Va') : t('Not this one', 'Se la salta'));
+  // Restyle a person's switch (pill + both labels) for its data-attending state.
+  function styleChoice($block) {
+    var st = $block.attr('data-attending');
+    $block.find('.wiz-switch-pill').attr('style', switchPillStyle(st));
+    $block.find('.wiz-choice[data-choice="no"]').attr('style', switchLabelStyle('no', st));
+    $block.find('.wiz-choice[data-choice="yes"]').attr('style', switchLabelStyle('yes', st));
   }
 
   function renderScubaType($c) {
@@ -653,6 +703,16 @@
     }
     if (sid === 'people' && $('#wiz-people-rows').length) {
       answers.people = collectPeople();
+    }
+    // Activity selections only persist to `answers` on Next. Capture the current
+    // three-state per-person choices (including undecided) into a transient draft
+    // so re-rendering after the language switch restores them exactly.
+    if ($('#wiz-people-toggles .wiz-person-choice').length) {
+      var states = [];
+      $('#wiz-people-toggles .wiz-person-choice').each(function () {
+        states[parseInt($(this).attr('data-idx'), 10)] = $(this).attr('data-attending') || '';
+      });
+      activityDraft = { id: sid, states: states };
     }
     renderStep(sid);
   });
