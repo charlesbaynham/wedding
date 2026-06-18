@@ -18,7 +18,7 @@
     { id: 'welcomeDrinks', kind: 'activity' },
     { id: 'xelha',         kind: 'activity' },
     { id: 'scuba',         kind: 'activity' },
-    { id: 'scubaType',     kind: 'subchoice', showIf: function () { return attendees('scuba').length > 0; } },
+    { id: 'scubaType',     expand: 'scubaPerPerson' },
     { id: 'cocktails',     kind: 'activity' },
     { id: 'chichen',       kind: 'activity' },
     { id: 'rideCeremony',  kind: 'transport' },
@@ -149,8 +149,36 @@
     try { return d.toLocaleDateString(); } catch (e) { return iso; }
   }
 
+  // Stable answer-key / step-id for one person's scuba dive type.
+  function scubaStepId(personIdx) { return 'scubaType:' + personIdx; }
+
+  // The full ordered step list. The single `scubaType` placeholder expands into
+  // one dive-type step per person attending scuba (in people order), so each
+  // diver picks their own level. Recomputed from `answers` on every navigation.
+  function allSteps() {
+    var people = answers.people || [];
+    var scubaSel = answers.scuba || [];
+    var out = [];
+    STEPS.forEach(function (s) {
+      if (s.expand === 'scubaPerPerson') {
+        people.forEach(function (name, pIdx) {
+          if (scubaSel.indexOf(pIdx) !== -1) {
+            out.push({ id: scubaStepId(pIdx), kind: 'scubaType', personIdx: pIdx });
+          }
+        });
+      } else {
+        out.push(s);
+      }
+    });
+    return out;
+  }
+
+  function findStep(id) {
+    return allSteps().find(function (s) { return s.id === id; });
+  }
+
   function visibleSteps() {
-    return STEPS.filter(function (s) { return !s.showIf || s.showIf(answers); });
+    return allSteps().filter(function (s) { return !s.showIf || s.showIf(answers); });
   }
 
   function stepIndex(id) {
@@ -175,7 +203,7 @@
 
   function updateProgress() {
     var sid = currentStep();
-    var step = STEPS.find(function (s) { return s.id === sid; });
+    var step = findStep(sid);
     if (!step || sid === 'intro') {
       $('#wiz-progress-wrap').hide();
       return;
@@ -231,7 +259,7 @@
       return;
     }
 
-    var step = STEPS.find(function (s) { return s.id === id; });
+    var step = findStep(id);
     if (!step) return;
 
     if (step.kind === 'count') {
@@ -242,8 +270,8 @@
       renderTextField($c, step);
     } else if (step.kind === 'activity') {
       renderActivity($c, step);
-    } else if (step.kind === 'subchoice') {
-      renderScubaType($c);
+    } else if (step.kind === 'scubaType') {
+      renderScubaType($c, step);
     } else if (step.kind === 'transport') {
       renderTransport($c, step);
     }
@@ -500,14 +528,21 @@
     $block.find('.wiz-choice[data-choice="yes"]').attr('style', switchLabelStyle('yes', st));
   }
 
-  function renderScubaType($c) {
-    var html = '<h2 style="font-size:clamp(18px,4vw,22px); margin-bottom:8px;">' +
-      t('Which kind of dive?', '¿Qué tipo de buceo?') + '</h2>' +
-      '<p style="font-size:15px; color:rgba(255,255,255,0.75); margin-bottom:22px;">' +
-        t('Group price applies if 10+ people sign up for the same type.', 'El precio de grupo aplica si 10 o más personas se inscriben al mismo tipo.') +
-      '</p>';
+  // One screen per diver: each attending scuba person picks their own level.
+  function renderScubaType($c, step) {
+    var name = (answers.people || [])[step.personIdx] || '';
+    var current = answers[step.id];
+    var html = '<div style="text-align:center; margin-bottom:14px;">' +
+        '<div style="font-size:48px; line-height:1.1; margin-bottom:12px;">🤿</div>' +
+        '<h2 style="font-size:clamp(18px,4vw,22px); margin-bottom:8px;">' +
+          t('Which dive for ', '¿Qué buceo para ') + $('<div>').text(name).html() + '?</h2>' +
+        '<p style="font-size:14px; color:rgba(255,255,255,0.7); margin:0; font-family:Raleway,sans-serif;">' +
+          t('Group price applies if 10+ people choose the same type.', 'El precio de grupo aplica si 10 o más personas eligen el mismo tipo.') +
+        '</p>' +
+      '</div>';
     SCUBA_TYPES.forEach(function (st) {
-      html += '<button type="button" class="scuba-type-btn" data-val="' + st.value + '" style="display:flex; align-items:center; justify-content:space-between; width:100%; padding:16px 18px; border-radius:11px; border:2px solid rgba(255,255,255,0.3); background:rgba(0,0,0,0.25); color:#fff; font-family:Raleway,sans-serif; cursor:pointer; margin-bottom:10px; text-align:left;">' +
+      var on = current === st.value;
+      html += '<button type="button" class="scuba-type-btn" data-val="' + st.value + '" style="display:flex; align-items:center; justify-content:space-between; width:100%; max-width:460px; padding:16px 18px; border-radius:11px; border:2px solid ' + (on ? '#afa63d' : 'rgba(255,255,255,0.3)') + '; background:' + (on ? 'rgba(175,166,61,0.18)' : 'rgba(0,0,0,0.25)') + '; color:#fff; font-family:Raleway,sans-serif; cursor:pointer; margin-bottom:10px; text-align:left;">' +
         '<span style="font-size:15px; font-weight:700;">' + t(st.en, st.es) + '</span>' +
         '<span style="text-align:right; font-size:13px; line-height:1.5; color:rgba(255,255,255,0.75);">' +
           st.price + '<br />' +
@@ -517,8 +552,8 @@
     });
     $c.html(html);
     $('.scuba-type-btn').on('click', function () {
-      answers.scubaType = $(this).data('val');
-      advance('scubaType');
+      answers[step.id] = $(this).data('val');
+      advance(step.id);
     });
   }
 
@@ -560,10 +595,11 @@
         label = a ? t(a.en, a.es) : step.id;
         var who = attendees(step.id);
         val = who.length ? who.join(', ') : t('No one', 'Nadie');
-      } else if (step.kind === 'subchoice') {
-        label = t('Scuba type', 'Tipo de buceo');
-        var st = SCUBA_TYPES.find(function (x) { return x.value === val; });
-        if (st) val = t(st.en, st.es);
+      } else if (step.kind === 'scubaType') {
+        var diver = (answers.people || [])[step.personIdx] || '';
+        label = t('Scuba — ', 'Buceo — ') + diver;
+        var st = SCUBA_TYPES.find(function (x) { return x.value === answers[step.id]; });
+        val = st ? t(st.en, st.es) : '—';
       } else if (step.kind === 'transport') {
         var tr = TRANSPORT[step.id];
         label = tr ? t(tr.legEn, tr.legEs) : step.id;
@@ -627,10 +663,20 @@
     // Internal-only state — not FormEasy columns.
     delete payload.people;
     delete payload.peopleCount;
-    // scubaType is only asked when someone is doing scuba. FormEasy rejects
-    // submissions that omit a configured field, so always send it (blank when
-    // not asked).
-    if (payload.scubaType === undefined) payload.scubaType = '';
+    // Each diver picks their own level, stored per-person under 'scubaType:<idx>'.
+    // Collapse those into the single scubaType column as a "Name: Type" list (in
+    // people order). FormEasy rejects submissions that omit a configured field,
+    // so always send it (blank when nobody is diving). Drop the internal keys.
+    var scubaParts = [];
+    (answers.people || []).forEach(function (name, pIdx) {
+      if ((answers.scuba || []).indexOf(pIdx) === -1) return;
+      var st = SCUBA_TYPES.find(function (x) { return x.value === answers[scubaStepId(pIdx)]; });
+      scubaParts.push(name + ': ' + (st ? st.en : ''));
+    });
+    payload.scubaType = scubaParts.join(', ');
+    Object.keys(payload).forEach(function (k) {
+      if (k.indexOf('scubaType:') === 0) delete payload[k];
+    });
     // arrival is already stored as ISO YYYY-MM-DD — unambiguous for the backend,
     // regardless of the viewer's locale.
 
