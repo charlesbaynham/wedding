@@ -392,9 +392,32 @@
     advance(step.id);
   }
 
-  // Segmented Attending / Not-attending buttons, sized to sit side by side.
-  var CHOICE_ON  = 'flex:1; padding:13px 10px; border-radius:9px; border:2px solid #afa63d; background:#afa63d; color:#1c1a17; font-family:Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:800; font-size:14px; cursor:pointer; text-align:center;';
-  var CHOICE_OFF = 'flex:1; padding:13px 10px; border-radius:9px; border:2px solid rgba(255,255,255,0.4); background:transparent; color:#fff; font-family:Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:700; font-size:14px; cursor:pointer; text-align:center;';
+  // Per-person "sliding switch": one segmented control with both labels always
+  // visible. A pill slides over the chosen side (gold = attending, white = not
+  // attending) and is hidden entirely while undecided. Capped width so it does
+  // not stretch across the column on desktop.
+  // NOTE: font-family is deliberately left unquoted — a quoted "Helvetica Neue"
+  // inside an inline style="" string truncates the attribute when injected via
+  // jQuery .html(), silently dropping every property after it.
+  var SW_MAXW  = 460;
+  var SW_TRACK = 'position:relative; height:54px; border-radius:27px; background:rgba(0,0,0,0.28); border:1px solid rgba(255,255,255,0.18); overflow:hidden;';
+
+  // The sliding highlight, by state ('1' attending | '0' not | '' undecided).
+  function switchPillStyle(state) {
+    var s = 'position:absolute; top:4px; bottom:4px; width:calc(50% - 4px); margin:0 4px; border-radius:23px; transition:left 0.18s ease, background 0.18s ease;';
+    if (state === '1') return s + ' left:50%; background:#afa63d;';
+    if (state === '0') return s + ' left:0; background:#fff;';
+    return s + ' left:0; background:transparent; display:none;';
+  }
+  // A label/half of the switch. which is 'yes' (right) or 'no' (left).
+  function switchLabelStyle(which, state) {
+    var active = (which === 'yes' && state === '1') || (which === 'no' && state === '0');
+    return 'position:absolute; ' + (which === 'no' ? 'left:0;' : 'right:0;') +
+      ' top:0; height:54px; width:50%; z-index:1; border:none; background:transparent; padding:0; margin:0;' +
+      ' font-family:Raleway,Helvetica,Arial,sans-serif; font-weight:800; font-size:13px; line-height:54px;' +
+      ' letter-spacing:0.5px; text-transform:uppercase; text-align:center; cursor:pointer;' +
+      ' color:' + (active ? '#1c1a17' : 'rgba(255,255,255,0.5)') + ';';
+  }
 
   function renderActivity($c, step) {
     var a = ACT[step.id];
@@ -457,22 +480,24 @@
     });
   }
 
-  // state: '1' attending, '0' not attending, '' undecided (neither highlighted).
+  // state: '1' attending, '0' not attending, '' undecided (pill hidden).
   function personChoiceRow(idx, name, state) {
-    return '<div class="wiz-person-choice" data-idx="' + idx + '" data-attending="' + state + '" style="margin-bottom:18px;">' +
-      '<p style="font-size:17px; font-weight:600; color:#fff; margin:0 0 8px;">' + $('<div>').text(name).html() + '</p>' +
-      '<div style="display:flex; gap:10px;">' +
-        '<button type="button" class="wiz-choice" data-choice="yes" style="' + (state === '1' ? CHOICE_ON : CHOICE_OFF) + '">' + t('Attending', 'Asiste') + '</button>' +
-        '<button type="button" class="wiz-choice" data-choice="no" style="' + (state === '0' ? CHOICE_ON : CHOICE_OFF) + '">' + t('Not attending', 'No asiste') + '</button>' +
+    return '<div class="wiz-person-choice" data-idx="' + idx + '" data-attending="' + state + '" style="margin-bottom:18px; max-width:' + SW_MAXW + 'px;">' +
+      '<p style="font-size:16px; font-weight:600; color:#fff; margin:0 0 9px 2px;">' + $('<div>').text(name).html() + '</p>' +
+      '<div class="wiz-switch" style="' + SW_TRACK + '">' +
+        '<span class="wiz-switch-pill" style="' + switchPillStyle(state) + '"></span>' +
+        '<button type="button" class="wiz-choice" data-choice="no" style="' + switchLabelStyle('no', state) + '">' + t('Not attending', 'No asiste') + '</button>' +
+        '<button type="button" class="wiz-choice" data-choice="yes" style="' + switchLabelStyle('yes', state) + '">' + t('Attending', 'Asiste') + '</button>' +
       '</div>' +
     '</div>';
   }
 
-  // Restyle a person's two buttons to reflect its current data-attending state.
+  // Restyle a person's switch (pill + both labels) for its data-attending state.
   function styleChoice($block) {
     var st = $block.attr('data-attending');
-    $block.find('.wiz-choice[data-choice="yes"]').attr('style', st === '1' ? CHOICE_ON : CHOICE_OFF);
-    $block.find('.wiz-choice[data-choice="no"]').attr('style', st === '0' ? CHOICE_ON : CHOICE_OFF);
+    $block.find('.wiz-switch-pill').attr('style', switchPillStyle(st));
+    $block.find('.wiz-choice[data-choice="no"]').attr('style', switchLabelStyle('no', st));
+    $block.find('.wiz-choice[data-choice="yes"]').attr('style', switchLabelStyle('yes', st));
   }
 
   function renderScubaType($c) {
