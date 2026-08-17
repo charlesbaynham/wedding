@@ -16,7 +16,7 @@ invisible_nav: true
 
 <span class="label-es" lang="es">Nos quedaremos en **Puerto Morelos** antes de la boda, que está a 20 minutos en auto del aeropuerto. Este es un hermoso pueblo de arena blanca y playas que no está demasiado saturado de turistas. Desde aquí, saldremos a [varias actividades opcionales](/timetable/).</span>
 
-<span class="label-en">The wedding itself will be in **Cenote Zapote Ecopark**, a half-hour drive from Puerto Morelos into the jungle. We will organise shared transport closer to the time, and there are also hotels close to the park.</span><span class="label-es" lang="es">La boda será en **Cenote Zapote Ecopark**, a media hora en auto de Puerto Morelos hacia la selva. Organizaremos transporte compartido más cerca de la fecha, y también hay hoteles cerca del parque.</span>
+<span class="label-en">The ceremony itself will be at **[Cenote Agua Verde](https://maps.app.goo.gl/hvdXQB5dw6k7F5tq5)**, a half-hour drive from Puerto Morelos into the jungle. We will organise shared transport closer to the time, and there are also places to stay nearby.</span><span class="label-es" lang="es">La ceremonia será en **[Cenote Agua Verde](https://maps.app.goo.gl/hvdXQB5dw6k7F5tq5)**, a media hora en auto de Puerto Morelos hacia la selva. Organizaremos transporte compartido más cerca de la fecha, y también hay lugares para hospedarse cerca.</span>
 
 ## <span class="label-en">Accommodation</span><span class="label-es" lang="es">Alojamiento</span>
 
