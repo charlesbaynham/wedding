@@ -1,0 +1,26 @@
+# Location
+
+[Home](/index.md) · HTML version: https://wedding.houseabsolute.co.uk/location/
+
+Our wedding will be in Mexico, in the beautiful Yucatán region. In October, you can expect temperatures in the high 20s °C with sun and the occasional shower. The closest airport is Cancún which has cheap flights from the UK: you should book as soon as possible as prices are low right now. Within the Yucatán peninsula, public transport is fairly sparse — you'll be getting around with taxis or rented cars. Taxis are cheap, and Uber / apps work well. Don't hail a taxi at the airport though, either book in advance or use an app when you get there.
+
+## The locale
+
+We will be staying in **Puerto Morelos** before the wedding which is a 20 minute drive from the airport. This is a beautiful town of white sand and beaches that's not too overrun by tourists. From here, we'll head out to [various activities](/timetable.md) which you are very welcome to join if you're looking for something to do.
+
+The ceremony itself will be at **[Cenote Agua Verde](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583)**, a half-hour drive from Puerto Morelos into the jungle. We will organise shared transport closer to the time, and there are also places to stay nearby.
+
+## Accommodation
+
+We'll suggest some accommodation options later. This is a generally touristy area of Mexico so you'll find plenty of options that range from local AirBnB to gigantic all-inclusive hotels if that's your thing.
+
+## Booking accommodation and transport
+
+Our wedding planner is happy to organise both accommodation and transport for anyone who wants it. We'll be in touch about transport later, but if you would like her to organise your hotel for you then please email us at [wedding@houseabsolute.co.uk](mailto:wedding@houseabsolute.co.uk).
+
+## Contact
+
+Questions? Email us at [wedding@houseabsolute.co.uk](mailto:wedding@houseabsolute.co.uk), and join the [WhatsApp group](https://chat.whatsapp.com/BX2jHsUtUIJHr5njYxUKqY).
+
+Other pages: [Home](/index.md) · [Location](/location.md) · [Ceremony](/ceremony.md) · [Timetable](/timetable.md) · [Activities form](/activities.md) · [Diving](/diving.md) · [Welcome party](/welcome-party.md)
+
