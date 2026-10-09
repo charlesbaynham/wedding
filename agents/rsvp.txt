@@ -1,0 +1,22 @@
+---
+permalink: /rsvp.md
+layout: null
+sitemap: false
+---
+# RSVP
+
+[Home]({{ '/index.md' | relative_url }}) · HTML version: {{ site.url }}{{ site.baseurl }}/rsvp/
+
+The RSVP form must be submitted by a human in a browser at {{ site.url }}{{ site.baseurl }}/rsvp/ (it uses reCAPTCHA). It asks for:
+
+- Names of all guests
+- Email
+- Phone number
+- Can you come? (Yes / No)
+- Would you like transport to / from Puerto Morelos on the day of the wedding? (Yes / No / Don't know)
+- Dietary requirements or allergies
+- Any other comments
+
+Guests planning to come should also fill in the [activities form]({{ '/activities.md' | relative_url }}).
+
+{% include contact.md %}

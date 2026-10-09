@@ -178,6 +178,12 @@ Edit `_includes/nav.html` to:
 └── etc.html            # Registry/contact page
 ```
 
+## Markdown versions for agents
+
+Every page has a hand-written plain-markdown twin for AI agents, served at `/<page>.md` (and `/index.md` for the home page). The sources live in `agents/*.txt`: each sets `permalink: /<page>.md` and `layout: null`, so Jekyll renders the Liquid but does not convert the markdown to HTML. The shared footer is `_includes/contact.md`. The home page HTML carries a comment pointing agents at `index.md`, and every page has a `<link rel="alternate" type="text/markdown">`.
+
+**When you change a page, update its `agents/` twin too.**
+
 ## Building for Production
 
 ```bash
