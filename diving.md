@@ -10,9 +10,9 @@ Some of the guides carry GoPros, so there will be free photos and video.
 
 ## How the day works
 
-Divers and snorkellers go to different sites, so the day is staggered. First the snorkellers head out by boat to two sites while the beginners and refreshers do their training at the dive base. When the snorkellers are back, all the divers go out for two dives.
+Divers and snorkellers go to different sites, so the day is staggered. Everyone meets at 10:00 AM. The snorkellers head out by boat to two sites (about 2–2.5 hours, back around 12:00–1:00 PM) while the beginners, and any certified divers who'd like a refresher, do their pool training. The divers go out on the same boat once it's back, around 12:30–1:00 PM, for two dives, returning around 3:30–5:00 PM. Times are approximate.
 
-Start time to be confirmed · finishing in time for the 5 PM [welcome party](/welcome-party.md).
+Back by 5 PM for the [welcome party](/welcome-party.md).
 
 ## Prices
 
@@ -26,11 +26,11 @@ Group rate, per person:
 | Snorkel: 2 sites                            | $700 MXN   | $550 MXN   |
 | Along for the ride (snorkel boat, no gear)  |            | $200 MXN   |
 
-Nothing to pay yet · payment details to follow.
+Deposit to the dive school: $200 MXN per diver, $100 MXN per snorkeller · the rest on the day.
 
 ## What divers will need to send
 
-To book you in, the dive school sets up a profile for you on SSI, its dive app. The profile gives you free courses in the app, dive insurance and a log of your dives. We'll be in touch to collect these details, so there's nothing to send yet. Snorkellers don't need to send anything.
+To book you in, the dive school sets up a profile for you on SSI, its dive app. The profile gives you free courses in the app, dive insurance and a log of your dives. Please send these, with a screenshot of your deposit, to Ramiro from the dive school in the scuba & snorkelling WhatsApp group (ask us if you're not in it). Snorkellers need to send less: Ramiro will say what in the group.
 
 - Full name, email and date of birth
 - Address and postcode, and nationality

@@ -2,7 +2,7 @@
 
 [Home](/index.md) · HTML version: https://wedding.houseabsolute.co.uk/ceremony/
 
-We are having a Mayan wedding at the beautiful [Cenote Agua Verde](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583) and we are thrilled that you can join us. See the [timetable](/timetable.md) for times and directions.
+We are having a Mayan wedding at the beautiful [Cenote Agua Verde](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583) and we are thrilled that you can join us. The ceremony starts at **4:30 PM** — please arrive by 3:45 PM. See the [timetable](/timetable.md) for times and directions.
 
 Afterwards we move on to the reception at [Casa Tattva](https://maps.app.goo.gl/WEHwz3ng65J16pev8), a few minutes down the road. The whole day will be relaxed and informal.
 

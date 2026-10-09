@@ -12,10 +12,10 @@ On the HTML site this is an interactive, step-by-step form (JavaScript and reCAP
 4. Where are you staying? (Hotel, AirBnB, or town — so we can plan pick-ups.)
 5. For each person, which activities they'd like to join:
    - **Welcome drinks & early-birds luau** — Wed 21 Oct, 5:00 PM, Casa Brisa y Mar, Puerto Morelos beach. BYOB.
-   - **Xel-Há day trip** — Thu 22 Oct, full day. A natural water park: snorkel the inlet, float the lazy river and swim in cenotes. Food and drinks included in the ticket. Book your own tickets.
-   - **Scuba & snorkelling** — Fri 23 Oct, start time TBC, done by 5:00 PM. A private trip on the Puerto Morelos reef with Scuba Public Diving. Each person joining picks one option (group rate per person): certified diver, 2 dives ($1,800 MXN); beginner try-dive, training + 2 dives ($2,400 MXN); refresher, training + 2 dives ($2,400 MXN); snorkel, 2 sites ($550 MXN); along for the ride on the boat, no gear ($200 MXN). Nothing to pay yet. See [diving & snorkelling](/diving.md).
+   - **Xel-Há day trip** — Thu 22 Oct, full day. A natural water park: snorkel the inlet, float the lazy river and swim in cenotes. Food and drinks included in the ticket. Buy your own tickets before the day.
+   - **Scuba & snorkelling** — Fri 23 Oct, meet 10:00 AM, back by 5:00 PM. A private trip on the Puerto Morelos reef with Scuba Public Diving. Each person joining picks one option (group rate per person): certified diver, 2 dives ($1,800 MXN); beginner try-dive, training + 2 dives ($2,400 MXN); refresher, training + 2 dives ($2,400 MXN); snorkel, 2 sites ($550 MXN); along for the ride on the boat, no gear ($200 MXN). Deposit to the dive school, rest on the day. See [diving & snorkelling](/diving.md).
    - **Welcome party at sunset** — Fri 23 Oct, 5:00–9:00 PM, Ojo de Agua Beach Club, Puerto Morelos. Free entry, tacos included, paid bar. See [welcome party](/welcome-party.md).
-   - **Chichén Itzá trip** — Sat 24 Oct, full day. Charles & Gaby won't make this one (wedding prep!) but will help the group organise it. ≈ $40 USD per person (to be confirmed).
+   - **Chichén Itzá trip** — Sat 24 Oct, full day. Charles & Gaby won't make this one (wedding prep!) but will help the group organise it. Guided tour with Aleman Travel Agency, $95 USD per person, all inclusive, paid to the agency directly.
 6. For each person, whether they'd like shared transport on the wedding day (Sun 25 Oct):
    - Puerto Morelos → Cenote Agua Verde (to the ceremony)
    - Cenote Agua Verde → Casa Tattva (on to the reception)
