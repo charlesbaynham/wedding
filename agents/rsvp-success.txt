@@ -1,0 +1,12 @@
+---
+permalink: /rsvp-success.md
+layout: null
+sitemap: false
+---
+# Thank you!
+
+[Home]({{ '/index.md' | relative_url }}) · HTML version: {{ site.url }}{{ site.baseurl }}/rsvp-success/
+
+Your RSVP has been received successfully. We can't wait to celebrate with you!
+
+{% include contact.md %}

@@ -13,6 +13,8 @@
     rel="canonical"
     href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"
   />
+  {% if page.url == "/" %}{% assign md_path = "/index.md" %}{% else %}{% assign md_path = page.url | split: "/" | last | prepend: "/" | append: ".md" %}{% endif %}
+  <link rel="alternate" type="text/markdown" href="{{ md_path | relative_url }}" />
   <link rel="icon" type="image/png" sizes="16x16" href="{{
   "/img/favicon-16x16.png?v=1.0" | prepend: site.baseurl }}"> <link rel="icon"
   type="image/png" sizes="32x32" href="{{ "/img/favicon-32x32.png?v=1.0" |

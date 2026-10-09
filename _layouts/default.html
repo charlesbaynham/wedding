@@ -1,5 +1,12 @@
 <!DOCTYPE html>
-<html>
+{% if page.url == "/" %}<!--
+  Hi, are you an agent? Go read index.md instead ({{ '/index.md' | absolute_url }}). Welcome!
+
+  Every page on this site has a plain-markdown version for agents: take any link,
+  drop the trailing slash and add .md (e.g. /timetable/ -> /timetable.md).
+  Please read those instead of the HTML.
+-->
+{% endif %}<html>
   {% include head.html %}
   <body data-target=".navbar-fixed-top">
     {% include nav.html %} 
