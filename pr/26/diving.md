@@ -1,0 +1,51 @@
+# Diving & snorkelling
+
+[Home](/pr/26/index.md) · HTML version: https://wedding.houseabsolute.co.uk/pr/26/diving/
+
+## Friday 23 Oct — A day on the Puerto Morelos reef
+
+We've booked **Scuba Public Diving** in Puerto Morelos for a private trip, just for our group. There are options for everyone: certified divers, first-timers, divers who are a bit rusty, snorkellers, and people who just want to come along on the boat.
+
+Some of the guides carry GoPros, so there will be free photos and video.
+
+## How the day works
+
+Divers and snorkellers go to different sites, so the day is staggered. Everyone meets at 10:00 AM. The snorkellers head out by boat to two sites (about 2–2.5 hours, back around 12:00–1:00 PM) while the beginners, and any certified divers who'd like a refresher, do their pool training. The divers go out on the same boat once it's back, around 12:30–1:00 PM, for two dives, returning around 3:30–5:00 PM. Times are approximate.
+
+Back by 5 PM for the [welcome party](/pr/26/welcome-party.md).
+
+## Prices
+
+Group rate, per person:
+
+| Option                                      | Normally   | Our group  |
+| ------------------------------------------- | ---------- | ---------- |
+| Certified diver: 2 dives                    | $2,200 MXN | $1,800 MXN |
+| Beginner (try-dive): training + 2 dives     | $2,800 MXN | $2,400 MXN |
+| Refresher (rusty divers): training + 2 dives |            | $2,400 MXN |
+| Snorkel: 2 sites                            | $700 MXN   | $550 MXN   |
+| Along for the ride (snorkel boat, no gear)  |            | $200 MXN   |
+
+Deposit to the dive school: $200 MXN per diver, $100 MXN per snorkeller · the rest on the day.
+
+## What divers will need to send
+
+To book you in, the dive school sets up a profile for you on SSI, its dive app. The profile gives you free courses in the app, dive insurance and a log of your dives. Please send these, with a screenshot of your deposit, to Ramiro from the dive school in the scuba & snorkelling WhatsApp group (ask us if you're not in it). Snorkellers need to send less: Ramiro will say what in the group.
+
+- Full name, email and date of birth
+- Address and postcode, and nationality
+- A photo for your profile
+- Height (cm) and weight (kg), for your kit
+- Whether you have any medical or physical condition they should know about
+- Certified divers: a photo of your certification card
+
+## Signing up
+
+Want to join, or change what you signed up for? Fill in the [activities form](/pr/26/activities.md). If you fill it in again, your latest answers replace the earlier ones.
+
+## Contact
+
+Questions? Email us at [wedding@houseabsolute.co.uk](mailto:wedding@houseabsolute.co.uk), and join the [WhatsApp group](https://chat.whatsapp.com/BX2jHsUtUIJHr5njYxUKqY).
+
+Other pages: [Home](/pr/26/index.md) · [Location](/pr/26/location.md) · [Ceremony](/pr/26/ceremony.md) · [Timetable](/pr/26/timetable.md) · [Activities form](/pr/26/activities.md) · [Diving](/pr/26/diving.md) · [Welcome party](/pr/26/welcome-party.md)
+
