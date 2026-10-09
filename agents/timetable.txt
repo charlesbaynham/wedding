@@ -17,13 +17,11 @@ BYOB · bring your own drinks.
 
 ## Thursday 22 Oct — Xel-Há day trip
 
-A full day at the water park. Book your own tickets ahead at [xelha.com](https://www.xelha.com/en/) for the best discounts — or simply turn up on the day.
-
-Please book your own tickets.
+A full day at the water park. Please buy your own tickets before the day, at [xelha.com](https://www.xelha.com/en/) or a reseller such as booking.com, which is often cheaper. Everyone makes their own way there.
 
 ## Friday 23 Oct — Scuba & snorkelling
 
-A private trip on the Puerto Morelos reef with Scuba Public Diving, for certified divers, beginners and snorkellers. Group rates from $550 MXN per person. [Prices & details]({{ '/diving.md' | relative_url }})
+A private trip on the Puerto Morelos reef with Scuba Public Diving, for certified divers, beginners and snorkellers. Meet at 10:00 AM. Group rates from $550 MXN per person. [Prices & details]({{ '/diving.md' | relative_url }})
 
 ## Friday 23 Oct — Welcome party at sunset
 
@@ -31,35 +29,39 @@ The official start of the celebrations: tacos, a DJ and our own area on the beac
 
 ## Saturday 24 Oct — Chichén Itzá trip
 
-A trip to the great pyramid for anyone who wants to go — though Charles & Gaby won't be joining this one (wedding prep!).
+A guided day trip to the great pyramid with Aleman Travel Agency: air-conditioned transport, a bilingual guide, entry, a cenote swim, a Yucatecan buffet lunch and a stop in Valladolid. Charles & Gaby won't be joining this one (wedding prep!). You pay the agency directly.
 
-≈ $40 USD per person (to be confirmed).
+$95 USD per person, all inclusive.
 
 ## Sunday 25 Oct — Wedding day
 
 | Time    | What                                                                                                                  |
 | ------- | --------------------------------------------------------------------------------------------------------------------- |
 | 3:45 PM | Please arrive for the ceremony — see [Finding the cenote](#finding-the-cenote)                                        |
-| 4:30 PM | Ceremony at Cenote Agua Verde — [map](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583)            |
+| 4:30 PM | Ceremony at Cenote Agua Verde — [map of the track entrance](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583) |
 | 7:00 PM | Reception at Casa Tattva, carrying on until 1:00 AM — [map](https://maps.app.goo.gl/WEHwz3ng65J16pev8)                 |
 
 ## Booking & tickets
 
-**Xel-Há** is the only activity you book yourself — get tickets at [xelha.com](https://www.xelha.com/en/) (cheaper in advance) or just show up on the day. For **everything else** — scuba, snorkelling, transport and the rest — we'll coordinate the bookings for you based on your form responses, so all you need to do is [fill in your details]({{ '/activities.md' | relative_url }}).
+- **Xel-Há:** buy your own tickets before the day ([xelha.com](https://www.xelha.com/en/), or a reseller such as booking.com).
+- **Scuba & snorkelling:** we've booked the boat; you pay the dive school a deposit, then the rest on the day ([details]({{ '/diving.md' | relative_url }})).
+- **Chichén Itzá:** you book and pay the agency directly.
+- **Wedding-day transport:** we coordinate it based on your form responses, so all you need to do is [fill in your details]({{ '/activities.md' | relative_url }}).
 
 ## Maps
 
-- **Cenote Agua Verde** (ceremony) — [map](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583)
+- **Cenote Agua Verde** (ceremony, track entrance) — [map](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583)
 - **Casa Tattva** (reception) — [map](https://maps.app.goo.gl/WEHwz3ng65J16pev8)
 - **Casa Brisa y Mar** (welcome drinks) — [map](https://maps.app.goo.gl/aHXQmrGhYBZx2qBf7)
+- **Ojo de Agua Beach Club** (welcome party) — [map](https://www.google.com/maps/search/?api=1&query=Ojo+de+Agua+Beach+Club+Puerto+Morelos)
 
 ## Finding the cenote
 
-It's a private cenote, so don't worry if the pin doesn't look like much on Google Maps — that's it! From Casa Tattva it's about 5 minutes on the highway plus 5–7 minutes on an unpaved track: roughly km 28.7, opposite the wells area (zona de pozos). Look for a tyre by the road, pass three wells, and the entrance is at the next tyre.
+It's a private cenote with no pin of its own, so the map pin marks the turn-off from the highway where the unpaved track to the cenote begins: roughly km 28.7, opposite the wells area (zona de pozos), about 5 minutes from Casa Tattva. From there it's 5–7 minutes along the track. Look for a tyre by the road, pass three wells, and the entrance is at the next tyre. Our planner's team will be along the way on the day to guide you in.
 
 There's no phone signal or internet at the cenote, so please save this page (or a screenshot of the map / directions) before you set out.
 
-- Coordinates: 20.933806, -87.131583
+- Track entrance coordinates: 20.933806, -87.131583
 - what3words: [///skimmers.examinees.informative](https://what3words.com/skimmers.examinees.informative)
 - [Google Maps](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583)
 

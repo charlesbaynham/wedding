@@ -6,9 +6,9 @@ invisible_nav: true
 
 # <span class="label-en">Ceremony</span><span class="label-es" lang="es">Ceremonia</span>
 
-<span class="label-en">We are having a Mayan wedding at the beautiful [Cenote Agua Verde](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583) and we are thrilled that you can join us. The ceremony will be in the afternoon - exact timings to be confirmed.</span>
+<span class="label-en">We are having a Mayan wedding at the beautiful [Cenote Agua Verde](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583) and we are thrilled that you can join us. The ceremony starts at **4:30 PM** — please arrive by 3:45 PM. See the [timetable]({{ '/timetable/' | relative_url }}#finding-the-cenote) for directions.</span>
 
-<span class="label-es" lang="es">Tendremos una boda maya en el hermoso [Cenote Agua Verde](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583) y estamos encantados de que puedan acompañarnos. La ceremonia será por la tarde - los horarios exactos se confirmarán más cerca a la fecha.</span>
+<span class="label-es" lang="es">Tendremos una boda maya en el hermoso [Cenote Agua Verde](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583) y estamos encantados de que puedan acompañarnos. La ceremonia empieza a las **16:30** — por favor lleguen a las 15:45. Consulten el [cronograma]({{ '/timetable/' | relative_url }}#finding-the-cenote) para saber cómo llegar.</span>
 
 <span class="label-en">Afterwards we move on to the reception at [Casa Tattva](https://maps.app.goo.gl/WEHwz3ng65J16pev8), a few minutes down the road. The whole day will be relaxed and informal. We do have one special request however: please wear white / cream / linen! It will be up to 30°C so Charles will be in a short-sleeved linen shirt, Gaby in a floral dress of some sort. If you're looking for ideas, I recommend a [Guayabera](https://en.wikipedia.org/wiki/Guayabera) for men - they're fantastic for everyday use too.</span>
 

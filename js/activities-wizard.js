@@ -66,7 +66,7 @@
     scuba: {
       emoji: '🤿',
       en: 'Scuba & snorkeling', es: 'Buceo y snorkel',
-      whenEn: 'Fri 23 Oct · start time TBC · done by 5:00 PM', whenEs: 'Vie 23 oct · hora por confirmar · terminamos antes de las 17:00',
+      whenEn: 'Fri 23 Oct · 10:00 AM · back by 5:00 PM', whenEs: 'Vie 23 oct · 10:00 · de regreso antes de las 17:00',
       descEn: 'A private trip on the Puerto Morelos reef with Scuba Public Diving, just for our group. Options for certified divers, first-timers, rusty divers, snorkellers, and anyone who just wants to come along on the boat.',
       descEs: 'Una salida privada al arrecife de Puerto Morelos con Scuba Public Diving, solo para nuestro grupo. Hay opciones para buzos certificados, principiantes, buzos que necesitan repasar, snorkel, y quien solo quiera acompañar en el barco.',
       priceEn: 'Prices on the next step', priceEs: 'Precios en el siguiente paso',
@@ -89,7 +89,7 @@
       whenEn: 'Sat 24 Oct · full day', whenEs: 'Sáb 24 oct · día completo',
       descEn: 'A trip to the great Mayan pyramid, one of the New Seven Wonders. Charles & Gaby won\'t make this one (wedding prep!) but we\'ll help the group organise it.',
       descEs: 'Una excursión a la gran pirámide maya, una de las Nuevas Siete Maravillas. Charles y Gaby no irán a esta (¡preparativos!) pero ayudaremos al grupo a organizarla.',
-      priceEn: '≈ $40 USD per person (to be confirmed)', priceEs: '≈ $40 USD por persona (por confirmar)',
+      priceEn: '$95 USD per person, all inclusive', priceEs: '$95 USD por persona, todo incluido',
       yesEn: 'Yes, count me in', yesEs: 'Sí, apúntame',
       noEn: 'Not this one', noEs: 'Me la salto',
     },
@@ -540,7 +540,7 @@
         '<h2 style="font-size:clamp(18px,4vw,22px); margin-bottom:8px;">' +
           t('Which option for ', '¿Qué opción para ') + $('<div>').text(name).html() + '?</h2>' +
         '<p style="font-size:14px; color:rgba(255,255,255,0.7); margin:0; font-family:Raleway,sans-serif;">' +
-          t('Our group rates, per person. Nothing to pay yet.', 'Tarifas de nuestro grupo, por persona. Nada que pagar todavía.') +
+          t('Our group rates, per person. Small deposit to the dive school, the rest on the day.', 'Tarifas de nuestro grupo, por persona. Un pequeño depósito a la escuela de buceo, el resto el mismo día.') +
         '</p>' +
       '</div>';
     SCUBA_TYPES.forEach(function (st) {
