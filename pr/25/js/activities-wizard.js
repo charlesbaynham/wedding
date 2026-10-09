@@ -66,20 +66,20 @@
     scuba: {
       emoji: '🤿',
       en: 'Scuba & snorkeling', es: 'Buceo y snorkel',
-      whenEn: 'Fri 23 Oct · morning or afternoon', whenEs: 'Vie 23 oct · mañana o tarde',
-      descEn: 'Head out over the Puerto Morelos reef — part of the second-largest barrier reef in the world. Certified dives, beginner dives and snorkel trips all on offer.',
-      descEs: 'Salimos sobre el arrecife de Puerto Morelos — parte del segundo arrecife más grande del mundo. Hay buceo certificado, para principiantes y snorkel.',
+      whenEn: 'Fri 23 Oct · start time TBC · done by 5:00 PM', whenEs: 'Vie 23 oct · hora por confirmar · terminamos antes de las 17:00',
+      descEn: 'A private trip on the Puerto Morelos reef with Scuba Public Diving, just for our group. Options for certified divers, first-timers, rusty divers, snorkellers, and anyone who just wants to come along on the boat.',
+      descEs: 'Una salida privada al arrecife de Puerto Morelos con Scuba Public Diving, solo para nuestro grupo. Hay opciones para buzos certificados, principiantes, buzos que necesitan repasar, snorkel, y quien solo quiera acompañar en el barco.',
       priceEn: 'Prices on the next step', priceEs: 'Precios en el siguiente paso',
       yesEn: 'Yes, I\'m in', yesEs: 'Sí, me apunto',
       noEn: 'Not this one', noEs: 'Me lo salto',
     },
     cocktails: {
       emoji: '🍹',
-      en: 'Welcome cocktails at sunset', es: 'Cócteles de bienvenida al atardecer',
-      whenEn: 'Fri 23 Oct · 5:00 PM · Puerto Morelos beach', whenEs: 'Vie 23 oct · 17:00 · playa de Puerto Morelos',
-      descEn: 'The official start of the celebrations — cocktails on the beach as the sun goes down. This is the one not to miss!',
-      descEs: 'El inicio oficial de la celebración — cócteles en la playa mientras se pone el sol. ¡Esta es la que no te puedes perder!',
-      priceEn: 'Free entry · paid bar', priceEs: 'Entrada libre · barra de pago',
+      en: 'Welcome party at sunset', es: 'Fiesta de bienvenida al atardecer',
+      whenEn: 'Fri 23 Oct · 5:00–9:00 PM · Ojo de Agua Beach Club', whenEs: 'Vie 23 oct · 17:00–21:00 · Ojo de Agua Beach Club',
+      descEn: 'The official start of the celebrations — tacos, a DJ and our own area on the beach in Puerto Morelos. This is the one not to miss!',
+      descEs: 'El inicio oficial de la celebración — tacos, DJ y nuestra propia área en la playa en Puerto Morelos. ¡Esta es la que no te puedes perder!',
+      priceEn: 'Free entry · tacos included · paid bar', priceEs: 'Entrada libre · tacos incluidos · barra de pago',
       yesEn: 'Yes, I\'ll be there', yesEs: 'Sí, estaré ahí',
       noEn: 'Not this one', noEs: 'Me la salto',
     },
@@ -96,9 +96,12 @@
   };
 
   var SCUBA_TYPES = [
-    { value: 'certified', en: 'Certified diver',  es: 'Buzo certificado',    price: '$2,200 MXN', group: '$1,700 MXN' },
-    { value: 'snorkeler', en: 'Snorkeler',         es: 'Snorkel',             price: '$700 MXN',   group: '$400 MXN' },
-    { value: 'beginner',  en: 'Beginner diver',    es: 'Buzo principiante',   price: '$2,800 MXN', group: '$2,100 MXN' },
+    // Keep in sync with diving.html. `price` is the normal rate ('' if none).
+    { value: 'certified', en: 'Certified diver: 2 dives',                es: 'Buzo certificado: 2 inmersiones',                   price: '$2,200 MXN', group: '$1,800 MXN' },
+    { value: 'beginner',  en: 'Beginner (try-dive): training + 2 dives', es: 'Principiante (bautizo): entrenamiento + 2 inmersiones', price: '$2,800 MXN', group: '$2,400 MXN' },
+    { value: 'refresher', en: 'Refresher: training + 2 dives',           es: 'Repaso: entrenamiento + 2 inmersiones',             price: '',           group: '$2,400 MXN' },
+    { value: 'snorkeler', en: 'Snorkel: 2 sites',                        es: 'Snorkel: 2 sitios',                                 price: '$700 MXN',   group: '$550 MXN' },
+    { value: 'rideAlong', en: 'Along for the ride (boat, no gear)',      es: 'Acompañante (barco, sin equipo)',                   price: '',           group: '$200 MXN' },
   ];
 
   var TRANSPORT = {
@@ -535,18 +538,18 @@
     var html = '<div style="text-align:center; margin-bottom:14px;">' +
         '<div style="font-size:48px; line-height:1.1; margin-bottom:12px;">🤿</div>' +
         '<h2 style="font-size:clamp(18px,4vw,22px); margin-bottom:8px;">' +
-          t('Which dive for ', '¿Qué buceo para ') + $('<div>').text(name).html() + '?</h2>' +
+          t('Which option for ', '¿Qué opción para ') + $('<div>').text(name).html() + '?</h2>' +
         '<p style="font-size:14px; color:rgba(255,255,255,0.7); margin:0; font-family:Raleway,sans-serif;">' +
-          t('Group price applies if 10+ people choose the same type.', 'El precio de grupo aplica si 10 o más personas eligen el mismo tipo.') +
+          t('Our group rates, per person. Nothing to pay yet.', 'Tarifas de nuestro grupo, por persona. Nada que pagar todavía.') +
         '</p>' +
       '</div>';
     SCUBA_TYPES.forEach(function (st) {
       var on = current === st.value;
       html += '<button type="button" class="scuba-type-btn" data-val="' + st.value + '" style="display:flex; align-items:center; justify-content:space-between; width:100%; max-width:460px; padding:16px 18px; border-radius:11px; border:2px solid ' + (on ? '#afa63d' : 'rgba(255,255,255,0.3)') + '; background:' + (on ? 'rgba(175,166,61,0.18)' : 'rgba(0,0,0,0.25)') + '; color:#fff; font-family:Raleway,sans-serif; cursor:pointer; margin-bottom:10px; text-align:left;">' +
         '<span style="font-size:15px; font-weight:700;">' + t(st.en, st.es) + '</span>' +
-        '<span style="text-align:right; font-size:13px; line-height:1.5; color:rgba(255,255,255,0.75);">' +
-          st.price + '<br />' +
-          '<span style="color:#afa63d;">' + t('Group: ', 'Grupo: ') + st.group + '</span>' +
+        '<span style="text-align:right; font-size:13px; line-height:1.5; color:rgba(255,255,255,0.75); white-space:nowrap; margin-left:12px;">' +
+          (st.price ? '<s>' + st.price + '</s><br />' : '') +
+          '<span style="color:#afa63d;">' + st.group + '</span>' +
         '</span>' +
       '</button>';
     });
