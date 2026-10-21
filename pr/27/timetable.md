@@ -59,7 +59,7 @@ The cenote is private and sits down an unpaved track off the highway, about 5 mi
 2. **Drive about 5 minutes** along the track until you reach a yellow tyre on a post, then **turn right**. [Photo of the yellow tyre](https://wedding.houseabsolute.co.uk/pr/27/img/cenote-turn-tyre.jpg)
 3. **Carry on about another 5 minutes** until you reach a metal gate. That's the cenote: what3words [///grapples.firebird.heads](https://what3words.com/grapples.firebird.heads). [Photo of the gate](https://wedding.houseabsolute.co.uk/pr/27/img/cenote-gate.jpg)
 
-Our planner's team will also be along the way on the day to guide you in. Afterwards, the reception at Casa Tattva is at what3words [///shrugs.cartoon.messes](https://what3words.com/shrugs.cartoon.messes).
+There should also be signs along the way on the day. Afterwards, the reception at Casa Tattva is at what3words [///shrugs.cartoon.messes](https://what3words.com/shrugs.cartoon.messes).
 
 There's no phone signal or internet at the cenote, so please save this page (or a screenshot of the directions and photos) before you set out.
 
