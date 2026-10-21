@@ -33,8 +33,8 @@ $95 USD per person, all inclusive.
 | Time    | What                                                                                                                  |
 | ------- | --------------------------------------------------------------------------------------------------------------------- |
 | 3:45 PM | Please arrive for the ceremony — see [Finding the cenote](#finding-the-cenote)                                        |
-| 4:30 PM | Ceremony at Cenote Agua Verde — [map of the track entrance](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583) |
-| 7:00 PM | Reception at Casa Tattva, carrying on until 1:00 AM — [map](https://maps.app.goo.gl/WEHwz3ng65J16pev8)                 |
+| 4:30 PM | Ceremony at Cenote Agua Verde — [///grapples.firebird.heads](https://what3words.com/grapples.firebird.heads) |
+| 7:00 PM | Reception at Casa Tattva, carrying on until 1:00 AM — [map](https://maps.app.goo.gl/WEHwz3ng65J16pev8) · [///shrugs.cartoon.messes](https://what3words.com/shrugs.cartoon.messes) |
 
 ## Booking & tickets
 
@@ -45,20 +45,24 @@ $95 USD per person, all inclusive.
 
 ## Maps
 
-- **Cenote Agua Verde** (ceremony, track entrance) — [map](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583)
-- **Casa Tattva** (reception) — [map](https://maps.app.goo.gl/WEHwz3ng65J16pev8)
+- **Cenote Agua Verde** (ceremony) — what3words [///grapples.firebird.heads](https://what3words.com/grapples.firebird.heads); see [Finding the cenote](#finding-the-cenote)
+- **Turn-off to the cenote track** — [map](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583), what3words [///skimmers.examinees.informative](https://what3words.com/skimmers.examinees.informative)
+- **Casa Tattva** (reception) — [map](https://maps.app.goo.gl/WEHwz3ng65J16pev8), what3words [///shrugs.cartoon.messes](https://what3words.com/shrugs.cartoon.messes)
 - **Casa Brisa y Mar** (welcome drinks) — [map](https://maps.app.goo.gl/aHXQmrGhYBZx2qBf7)
 - **Ojo de Agua Beach Club** (welcome party) — [map](https://www.google.com/maps/search/?api=1&query=Ojo+de+Agua+Beach+Club+Puerto+Morelos)
 
 ## Finding the cenote
 
-It's a private cenote with no pin of its own, so the map pin marks the turn-off from the highway where the unpaved track to the cenote begins: roughly km 28.7, opposite the wells area (zona de pozos), about 5 minutes from Casa Tattva. From there it's 5–7 minutes along the track. Look for a tyre by the road, pass three wells, and the entrance is at the next tyre. Our planner's team will be along the way on the day to guide you in.
+The cenote is private and sits down an unpaved track off the highway, about 5 minutes from Casa Tattva.
 
-There's no phone signal or internet at the cenote, so please save this page (or a screenshot of the map / directions) before you set out.
+1. **Turn off the highway** onto the dirt track at roughly km 28.7, opposite the wells area (zona de pozos). Coming from Puerto Morelos it is a sharp left that doubles back at about 45°; don't take the next road along, which leaves the highway at a right angle. what3words [///skimmers.examinees.informative](https://what3words.com/skimmers.examinees.informative), [Google Maps](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583) (20.933806, -87.131583).
+2. **Drive about 5 minutes** along the track until you reach a yellow tyre on a post, then **turn right**. [Photo of the yellow tyre](https://wedding.houseabsolute.co.uk/img/cenote-turn-tyre.jpg)
+3. **Shortly after the turn** you reach a metal gate. That's the cenote: what3words [///grapples.firebird.heads](https://what3words.com/grapples.firebird.heads). [Photo of the gate](https://wedding.houseabsolute.co.uk/img/cenote-gate.jpg)
 
-- Track entrance coordinates: 20.933806, -87.131583
-- what3words: [///skimmers.examinees.informative](https://what3words.com/skimmers.examinees.informative)
-- [Google Maps](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583)
+There should also be signs along the way on the day. Afterwards, the reception at Casa Tattva is at what3words [///shrugs.cartoon.messes](https://what3words.com/shrugs.cartoon.messes).
+
+There's no phone signal or internet at the cenote, so please save this page (or a screenshot of the directions and photos) before you set out.
+
 
 ## Contact
 
