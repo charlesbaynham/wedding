@@ -1,0 +1,26 @@
+# Location
+
+[Home](/pr/27/index.md) · HTML version: https://wedding.houseabsolute.co.uk/pr/27/location/
+
+Our wedding will be in Mexico, in the beautiful Yucatán region. In October, you can expect temperatures in the high 20s °C with sun and the occasional shower. The closest airport is Cancún which has cheap flights from the UK: you should book as soon as possible as prices are low right now. Within the Yucatán peninsula, public transport is fairly sparse — you'll be getting around with taxis or rented cars. Taxis are cheap, and Uber / apps work well. Don't hail a taxi at the airport though, either book in advance or use an app when you get there.
+
+## The locale
+
+We will be staying in **Puerto Morelos** before the wedding which is a 20 minute drive from the airport. This is a beautiful town of white sand and beaches that's not too overrun by tourists. From here, we'll head out to [various activities](/pr/27/timetable.md) which you are very welcome to join if you're looking for something to do.
+
+The ceremony itself will be at **[Cenote Agua Verde](https://what3words.com/grapples.firebird.heads)**, a half-hour drive from Puerto Morelos into the jungle. There is shared transport on the wedding day for guests staying in the jungle lodges, and for guests in Puerto Morelos who asked for it on the [activities form](/pr/27/activities.md); pickup times and points to follow. Everyone else makes their own way.
+
+## Accommodation
+
+This is a generally touristy area of Mexico so you'll find plenty of options that range from local AirBnB to gigantic all-inclusive hotels if that's your thing.
+
+## Booking accommodation and transport
+
+Our wedding planner is happy to organise both accommodation and transport for anyone who wants it. If you would like her to organise your hotel for you then please email us at [wedding@houseabsolute.co.uk](mailto:wedding@houseabsolute.co.uk).
+
+## Contact
+
+Questions? Email us at [wedding@houseabsolute.co.uk](mailto:wedding@houseabsolute.co.uk), and join the [WhatsApp group](https://chat.whatsapp.com/BX2jHsUtUIJHr5njYxUKqY).
+
+Other pages: [Home](/pr/27/index.md) · [Location](/pr/27/location.md) · [Ceremony](/pr/27/ceremony.md) · [Timetable](/pr/27/timetable.md) · [Activities form](/pr/27/activities.md) · [Diving](/pr/27/diving.md) · [Welcome party](/pr/27/welcome-party.md)
+
