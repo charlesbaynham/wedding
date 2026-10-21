@@ -25,6 +25,6 @@ Free entry · tacos included · pay-as-you-go bar.
 
 ## Let us know you're coming
 
-So we can get the numbers right, please let us know if you're coming on the [activities form]({{ '/activities.md' | relative_url }}). If you fill it in again, your latest answers replace the earlier ones.
+{% comment %}So we can get the numbers right, please let us know if you're coming on the [activities form]({{ '/activities.md' | relative_url }}). If you fill it in again, your latest answers replace the earlier ones.{% endcomment %}
 
 {% include contact.md %}

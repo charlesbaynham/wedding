@@ -7,7 +7,7 @@ sitemap: false
 
 [Home]({{ '/index.md' | relative_url }}) · HTML version: {{ site.url }}{{ site.baseurl }}/timetable/
 
-So we can plan numbers, bookings and transport, please [fill in your details]({{ '/activities.md' | relative_url }}) — let us know when you're arriving and which activities you'd like to join.
+{% comment %}So we can plan numbers, bookings and transport, please [fill in your details]({{ '/activities.md' | relative_url }}) — let us know when you're arriving and which activities you'd like to join.{% endcomment %}
 
 ## Wednesday 21 Oct — Welcome drinks & early birds luau
 
@@ -46,7 +46,7 @@ $95 USD per person, all inclusive.
 - **Xel-Há:** buy your own tickets before the day ([xelha.com](https://www.xelha.com/en/), or a reseller such as booking.com).
 - **Scuba & snorkelling:** we've booked the boat; you pay the dive school a deposit, then the rest on the day ([details]({{ '/diving.md' | relative_url }})).
 - **Chichén Itzá:** you book and pay the agency directly.
-- **Wedding-day transport:** we coordinate it based on your form responses, so all you need to do is [fill in your details]({{ '/activities.md' | relative_url }}).
+{% comment %}- **Wedding-day transport:** we coordinate it based on your form responses, so all you need to do is [fill in your details]({{ '/activities.md' | relative_url }}).{% endcomment %}
 
 ## Maps
 

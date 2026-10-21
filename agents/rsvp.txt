@@ -17,6 +17,6 @@ The RSVP form must be submitted by a human in a browser at {{ site.url }}{{ site
 - Dietary requirements or allergies
 - Any other comments
 
-Guests planning to come should also fill in the [activities form]({{ '/activities.md' | relative_url }}).
+{% comment %}Guests planning to come should also fill in the [activities form]({{ '/activities.md' | relative_url }}).{% endcomment %}
 
 {% include contact.md %}

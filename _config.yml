@@ -54,9 +54,10 @@ navigation:
   - title_en: "Timetable"
     title_es: "Cronograma"
     url: "/timetable/"
-  - title_en: "Activities"
-    title_es: "Actividades"
-    url: "/activities/"
+# Activities form closed (all booked); uncomment to restore
+#  - title_en: "Activities"
+#    title_es: "Actividades"
+#    url: "/activities/"
 # calendar:
 #   ical: https://www.google.com/calendar/ical/YOUR_CALENDAR_ID/public/basic.ics
 #   google_id: YOUR_CALENDAR_ID@group.calendar.google.com

@@ -44,6 +44,7 @@ background_image: /img/sitting.jpg
   >
 </p>
 
+{% comment %} Activities form closed (all booked); restore by removing the comment wrapper and the replacement below.
 <p>
   <span class="label-en"
     >If you are coming, please <a href="{{ '/activities/' | relative_url }}">fill in your details here</a> so we can plan the activities and transport — and take a look at the <a href="{{ '/timetable/' | relative_url }}">full timetable.</a></span
@@ -51,4 +52,9 @@ background_image: /img/sitting.jpg
   <span class="label-es" lang="es"
     >Si van a venir, por favor <a href="{{ '/activities/' | relative_url }}">llenen sus datos aquí</a> para poder organizar las actividades y el transporte — y echen un vistazo al <a href="{{ '/timetable/' | relative_url }}">cronograma completo.</a></span
   >
+</p>
+{% endcomment %}
+<p>
+  <span class="label-en">Take a look at the <a href="{{ '/timetable/' | relative_url }}">full timetable.</a></span>
+  <span class="label-es" lang="es">Echen un vistazo al <a href="{{ '/timetable/' | relative_url }}">cronograma completo.</a></span>
 </p>
