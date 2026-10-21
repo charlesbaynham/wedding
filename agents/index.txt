@@ -16,14 +16,14 @@ We would be honoured if you would join us for our wedding in October, in Mexico.
 
 If you are coming (wonderful!) then the most important thing is to book flights ASAP! Flying to Cancún airport is the cheapest and quickest way to get to the wedding, and flights are at their cheapest right now, but the prices will go up.
 
-If you are coming, please [fill in your details]({{ '/activities.md' | relative_url }}) so we can plan the activities and transport — and take a look at the [full timetable]({{ '/timetable.md' | relative_url }}).
+{% comment %}If you are coming, please [fill in your details]({{ '/activities.md' | relative_url }}) so we can plan the activities and transport — and take a look at the [full timetable]({{ '/timetable.md' | relative_url }}).{% endcomment %}Take a look at the [full timetable]({{ '/timetable.md' | relative_url }}).
 
 ## Pages
 
 - [Location]({{ '/location.md' | relative_url }}) — getting there, where to stay, getting around
 - [Ceremony]({{ '/ceremony.md' | relative_url }}) — venues, dress code, gifts
 - [Timetable]({{ '/timetable.md' | relative_url }}) — the week's schedule, maps and directions to the cenote
-- [Activities form]({{ '/activities.md' | relative_url }}) — the sign-up form for activities and transport
+{% comment %}- [Activities form]({{ '/activities.md' | relative_url }}) — the sign-up form for activities and transport{% endcomment %}
 - [Diving & snorkelling]({{ '/diving.md' | relative_url }}) — Friday's reef trip, prices
 - [Welcome party]({{ '/welcome-party.md' | relative_url }}) — Friday evening beach party
 - [RSVP]({{ '/rsvp.md' | relative_url }})

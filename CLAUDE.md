@@ -11,6 +11,8 @@ Each page (`index.html`, `location.md`, `ceremony.md`, `timetable.html`, `activi
 - Shared cenote directions: `_includes/cenote-directions.html` (box on timetable and location) and its twin `_includes/cenote-directions.md`. Edit those, not the pages. `cenote-directions-print.html` lays the same include out as a two-page A4 sheet (English, then Spanish); CI prints it to `/cenote-directions.pdf` with `scripts/build-cenote-pdf.sh` after `jekyll build`, so the PDF always matches the include. That print page has no markdown twin; it is a print source, not a page. Locally: `CHROME=/path/to/chrome scripts/build-cenote-pdf.sh`.
 - `_layouts/default.html` puts an HTML comment on the home page that points agents to `index.md`. `_includes/head.html` adds `<link rel="alternate" type="text/markdown">` to every page.
 
+**Activities form closed (all booked):** `activities.html` and `agents/activities.txt` are `published: false`, and every link to the form is wrapped in `{% comment %}` / commented out (nav in `_config.yml`, `_includes/js.html`, index, timetable, diving, welcome-party, location, and the `agents/` twins). To restore, remove `published: false` and the comment wrappers (`git show` this change to find them).
+
 **Rules for any edit:**
 
 1. **Changing page content** (times, prices, venues, links, wording): make the same change in the matching `agents/<page>.txt` in the same commit.

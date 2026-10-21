@@ -46,6 +46,6 @@ To book you in, the dive school sets up a profile for you on SSI, its dive app. 
 
 ## Signing up
 
-Want to join, or change what you signed up for? Fill in the [activities form]({{ '/activities.md' | relative_url }}). If you fill it in again, your latest answers replace the earlier ones.
+{% comment %}Want to join, or change what you signed up for? Fill in the [activities form]({{ '/activities.md' | relative_url }}). If you fill it in again, your latest answers replace the earlier ones.{% endcomment %}
 
 {% include contact.md %}

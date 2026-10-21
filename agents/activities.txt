@@ -2,6 +2,7 @@
 permalink: /activities.md
 layout: null
 sitemap: false
+published: false # Activities form closed (all booked); remove this line to restore
 ---
 # Activities form
 
