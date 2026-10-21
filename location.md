@@ -18,6 +18,8 @@ invisible_nav: true
 
 <span class="label-en">The ceremony itself will be at **[Cenote Agua Verde](https://what3words.com/grapples.firebird.heads)**, a half-hour drive from Puerto Morelos into the jungle. There is shared transport on the wedding day for guests staying in the jungle lodges, and for guests in Puerto Morelos who asked for it on the [activities form]({{ '/activities/' | relative_url }}); pickup times and points to follow. Everyone else makes their own way.</span><span class="label-es" lang="es">La ceremonia será en **[Cenote Agua Verde](https://what3words.com/grapples.firebird.heads)**, a media hora en auto de Puerto Morelos hacia la selva. Habrá transporte compartido el día de la boda para quienes se hospedan en los hoteles de la selva, y para quienes están en Puerto Morelos y lo pidieron en el [formulario de actividades]({{ '/activities/' | relative_url }}); los horarios y puntos de salida se confirmarán pronto. Los demás llegan por su cuenta.</span>
 
+{% include cenote-directions.html %}
+
 ## <span class="label-en">Accommodation</span><span class="label-es" lang="es">Alojamiento</span>
 
 <span class="label-en">This is a generally touristy area of Mexico so you'll find plenty of options that range from local AirBnB to gigantic all-inclusive hotels if that's your thing.</span><span class="label-es" lang="es">Puerto Morelos es un área turística de México, así que encontrarás muchas opciones que van desde AirBnB local hasta un hotel todo incluido gigante si eso es lo tuyo.</span>
