@@ -63,6 +63,7 @@ There should also be signs along the way on the day. Afterwards, the reception a
 
 There's no phone signal or internet at the cenote, so please save this page (or a screenshot of the directions and photos) before you set out.
 
+
 ## Contact
 
 Questions? Email us at [wedding@houseabsolute.co.uk](mailto:wedding@houseabsolute.co.uk), and join the [WhatsApp group](https://chat.whatsapp.com/BX2jHsUtUIJHr5njYxUKqY).

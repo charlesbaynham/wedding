@@ -10,6 +10,19 @@ We will be staying in **Puerto Morelos** before the wedding which is a 20 minute
 
 The ceremony itself will be at **[Cenote Agua Verde](https://what3words.com/grapples.firebird.heads)**, a half-hour drive from Puerto Morelos into the jungle. There is shared transport on the wedding day for guests staying in the jungle lodges, and for guests in Puerto Morelos who asked for it on the [activities form](/pr/27/activities.md); pickup times and points to follow. Everyone else makes their own way.
 
+## Finding the cenote
+
+The cenote is private and sits down an unpaved track off the highway, about 5 minutes from Casa Tattva.
+
+1. **Turn off the highway** onto the dirt track at roughly km 28.7, opposite the wells area (zona de pozos): what3words [///skimmers.examinees.informative](https://what3words.com/skimmers.examinees.informative), [Google Maps](https://www.google.com/maps/search/?api=1&query=20.933806,-87.131583) (20.933806, -87.131583).
+2. **Drive about 5 minutes** along the track until you reach a yellow tyre on a post, then **turn right**. [Photo of the yellow tyre](https://wedding.houseabsolute.co.uk/pr/27/img/cenote-turn-tyre.jpg)
+3. **Carry on about another 5 minutes** until you reach a metal gate. That's the cenote: what3words [///grapples.firebird.heads](https://what3words.com/grapples.firebird.heads). [Photo of the gate](https://wedding.houseabsolute.co.uk/pr/27/img/cenote-gate.jpg)
+
+There should also be signs along the way on the day. Afterwards, the reception at Casa Tattva is at what3words [///shrugs.cartoon.messes](https://what3words.com/shrugs.cartoon.messes).
+
+There's no phone signal or internet at the cenote, so please save this page (or a screenshot of the directions and photos) before you set out.
+
+
 ## Accommodation
 
 This is a generally touristy area of Mexico so you'll find plenty of options that range from local AirBnB to gigantic all-inclusive hotels if that's your thing.
