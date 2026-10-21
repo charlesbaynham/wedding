@@ -14,6 +14,7 @@ permalink: pretty
 exclude:
   - vendor/
   - CLAUDE.md
+  - scripts/
 
 # Background image
 default_background_image: img/header.jpg
