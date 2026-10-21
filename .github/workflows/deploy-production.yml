@@ -24,6 +24,9 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      - name: Print the cenote directions PDF
+        run: scripts/build-cenote-pdf.sh
+
       - name: Deploy to GitHub Pages (production)
         uses: peaceiris/actions-gh-pages@v4
         with:
